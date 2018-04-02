@@ -18,7 +18,7 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-package com.vibridi.edix.read;
+package com.vibridi.edix.lexer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,11 +45,11 @@ import java.util.Optional;
  */
 public class ParserRegistry { // TODO name?
 
-	private static final Map<String,EDILexer> registered;
+	private static final Map<String, Class<? extends EDILexer>> registered;
 
     static {
     	registered = new HashMap<>();
-//        registered.put("ISA", AnsiReader.class); // TODO
+        registered.put("ISA", AnsiLexer.class);
 //        registered.put("UNA", EdifactReaderWithCONTRL.class);
 //        registered.put("UNB", EdifactReaderWithCONTRL.class);
 //        registered.put("UNH", UNHReader.class);
@@ -74,7 +74,7 @@ public class ParserRegistry { // TODO name?
         // See if a suitable registered class name
         for(String k : registered.keySet()) {
         	if(k.regionMatches(true, 0, prefix, 0, Math.min(k.length(), prefix.length()))) {
-        		result = registered.get(k);
+        		result = EDILexer.instanceOf(registered.get(k));
         		break;
         	}
         }
@@ -89,8 +89,8 @@ public class ParserRegistry { // TODO name?
      * @param firstChars of data to be parsed
      * @param className  fully qualified classname of an EDIReader subclass
      */
-    public static void register(String firstChars, EDILexer lexer) {
-        registered.put(firstChars, lexer);
+    public static void register(String firstChars, Class<? extends EDILexer> clazz) {
+        registered.put(firstChars, clazz);
     }
 
 }

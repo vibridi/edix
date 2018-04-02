@@ -20,18 +20,18 @@
 
 package com.vibridi.edix.error;
 
-import com.berryworks.edireader.tokenizer.Tokenizer;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
+
+import org.xml.sax.SAXException;
 
 /**
  * An exception thrown during EDI parsing when invalid EDI syntax, structure,
  * or content is encountered.
  */
 public class EDISyntaxException extends SAXException {
+	private static final long serialVersionUID = 1L;
 
-    private int errorSegmentNumber;
+	private int errorSegmentNumber;
 
     private int errorElementNumber;
 
@@ -42,24 +42,6 @@ public class EDISyntaxException extends SAXException {
     public EDISyntaxException(String desc, int seg) {
         super(desc + " at segment " + seg);
         errorSegmentNumber = seg;
-    }
-
-    public EDISyntaxException(String desc, Tokenizer tokenizer) {
-        super(desc + " at segment " + tokenizer.getSegmentCount() + ", field "
-                + tokenizer.getElementInSegmentCount());
-        errorSegmentNumber = tokenizer.getSegmentCount();
-        errorElementNumber = tokenizer.getElementInSegmentCount();
-    }
-
-    public EDISyntaxException(String desc, String expected, String actual,
-                              Tokenizer tokenizer) {
-        this(desc + ". Expected " + expected + " instead of " + actual,
-                tokenizer);
-    }
-
-    public EDISyntaxException(String desc, int expected, int actual, Tokenizer tokenizer) {
-        this(desc + ". Expected " + expected + " instead of " + actual,
-                tokenizer);
     }
 
     public EDISyntaxException(String desc, IOException e) {

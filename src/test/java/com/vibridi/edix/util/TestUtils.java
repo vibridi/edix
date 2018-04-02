@@ -3,11 +3,19 @@ package com.vibridi.edix.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.nio.ByteBuffer;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.junit.Test;
 
-import com.vibridi.util.StringUtils;
+import com.vibridi.edix.TestResources;
+import com.vibridi.edix.error.EDISyntaxException;
+import com.vibridi.edix.lexer.EDILexer;
+import com.vibridi.edix.lexer.EDILexerFactory;
+import com.vibridi.edix.lexer.Token;
+import com.vibridi.edix.lexer.TokenType;
+import com.vibridi.edix.util.StringUtils;
 
 public class TestUtils {
 
@@ -41,15 +49,33 @@ public class TestUtils {
 	
 	
 	@Test
-	public void test() {
-//	//	ByteBuffer bb = ByteBuffer.
-//		
-//		byte b = 0x24;
-		char[] g = Character.toChars(0x01D50A);
-		//char a = '\uD835';\uDD0A';
-//					 
-//		System.out.println((char)b);
-		System.out.println(String.valueOf(g));
+	public void test() throws EDISyntaxException, IOException { // TODO move to own class
+		InputStream in = TestResources.getAsStream("minimal-interchange.edi");
+		
+		//AnsiLexer lx = new AnsiLexer();
+		
+		EDILexer lx = EDILexerFactory.newFor(new InputStreamReader(in));
+		
+		TokenType[] cc = lx.getControlCharacters();
+		for(int i = 0; i < cc.length; i++) {
+			if(cc[i] != TokenType.E) 
+				System.out.println(cc[i] + ": " + (char)i);
+			
+			
+		}
+	}
+	
+	@Test
+	public void test2() throws EDISyntaxException, IOException { // TODO move to own class
+		InputStream in = TestResources.getAsStream("minimal-interchange.edi");
+		
+		//AnsiLexer lx = new AnsiLexer();
+		
+		EDILexer lx = EDILexerFactory.newFor(new InputStreamReader(in));
+		
+		for(Token t : lx.tokenize()) {
+			System.out.println(t);
+		}
 	}
 	
 }

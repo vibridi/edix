@@ -1,4 +1,4 @@
-package com.vibridi.util;
+package com.vibridi.edix.util;
 
 import java.util.Objects;
 

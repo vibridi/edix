@@ -18,7 +18,7 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-package com.vibridi.edix.read;
+package com.vibridi.edix.lexer;
 
 import static com.berryworks.edireader.tokenizer.Token.TokenType.SEGMENT_END;
 import static com.berryworks.edireader.tokenizer.Token.TokenType.SEGMENT_START;

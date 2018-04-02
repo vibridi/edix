@@ -1,12 +1,9 @@
 package edix;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Source;
-
-import com.berryworks.edireader.demo.EDItoXML;
+import com.vibridi.edix.EDIFactory;
+import com.vibridi.edix.EDIFactory.EDISourceFormat;
+import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.parser.EDIParser;
 
 public class Temp {
 
@@ -16,14 +13,14 @@ public class Temp {
 	public void tryout() {
 		
 		
-		EDIParser r = EDIFactory.newParser(EDISourceFormat.PLAIN_EDI | XML)
-				.setThis()
-				.setThat();
+		EDIParser r = EDIFactory.newParser(EDISourceFormat.PLAIN_EDI);
+//				.setThis()
+//				.setThat();
 		
 		// EDIPlainReader -> EDIReader 
 		// EDIXMLReader -> EDIReader
 		
-		EDIMessage msg = r.read(/* xml source */);
+		EDIMessage msg = r.parse(null/* xml source */);
 		
 		EDIWriter w = EDIFactory.newWriter(EDITargetFormat.X12 | EDIFACT | XML)
 				.setThis()
