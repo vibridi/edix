@@ -52,13 +52,7 @@ public class AnsiParser extends EDIParser {
 			seg.setName(t.value);
 			seg.setTextContent(t.value);
 		}
-		
-		// *00*SA*95018017***950118$
-
-		// 		2. sub-field first slot is empty (eg. BEG*00*SA*<95018017<stuff*
-		// 												        ^ BEG.3.1 = empty
-//																^ BEG.3.2 =  95018017			
-		
+			
 		while(tokens.hasNext()) {	
 			Token t = tokens.next();
 			
