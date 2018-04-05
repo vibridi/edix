@@ -20,40 +20,30 @@
 
 package com.vibridi.edix.error;
 
-import java.io.IOException;
-
-import org.xml.sax.SAXException;
-
 /**
  * An exception thrown during EDI parsing when invalid EDI syntax, structure,
  * or content is encountered.
  */
-public class EDISyntaxException extends SAXException {
+public class EDISyntaxException extends Exception {
+	
+	//public class IncorrectNumberOfISAFieldsException extends EDISyntaxException {};
+	
 	private static final long serialVersionUID = 1L;
-
-	private int errorSegmentNumber;
-
-    private int errorElementNumber;
 
     public EDISyntaxException(String desc) {
         super(desc);
     }
+    
+    public EDISyntaxException(ErrorMessages em, Object... args) {
+    	super(em.withArgs(args).toString());
+    }
 
-    public EDISyntaxException(String desc, int seg) {
+    public EDISyntaxException(String desc, String seg) {
         super(desc + " at segment " + seg);
-        errorSegmentNumber = seg;
     }
 
-    public EDISyntaxException(String desc, IOException e) {
-        this(desc);
-    }
-
-    public int getErrorElementNumber() {
-        return errorElementNumber;
-    }
-
-    public int getErrorSegmentNumber() {
-        return errorSegmentNumber;
+    public EDISyntaxException(String desc, Throwable e) {
+        super(desc, e);
     }
 
 }

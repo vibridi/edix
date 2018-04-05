@@ -18,6 +18,7 @@ import com.vibridi.edix.lexer.TokenStream;
 import com.vibridi.edix.lexer.TokenType;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.parser.EDIParser;
+import com.vibridi.edix.path.EDIPath;
 
 public class TestReader {
 
@@ -78,8 +79,8 @@ public class TestReader {
 		
 		EDIMessage m = parser.parse(ts);
 		assertNotNull(m);
-		assertEquals(m.getTextAt("GS"), "GS");
-		assertEquals(m.getTextAt("GS.1"), "AG");
+		assertEquals(m.getTextAt(EDIPath.of("GS")), "GS");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1")), "AG");
 	}
 	
 	@Test
@@ -89,16 +90,10 @@ public class TestReader {
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(ts);
 		assertNotNull(m);
-		assertEquals(m.getTextAt("GS"), "GS");
-		assertEquals(m.getTextAt("GS.1.1"), "AG");
-		assertEquals(m.getTextAt("GS.1.2"), "sub1");
-		assertEquals(m.getTextAt("GS.1.3"), "sub2");
-//		
-		m.walk(n -> {
-			if(!n.getTextContent().isEmpty())
-				System.out.println(n.getTextContent());
-		});
-		
+		assertEquals(m.getTextAt(EDIPath.of("GS")), "GS");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.1")), "AG");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.2")), "sub1");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.3")), "sub2");
 	}
 	
 	@Test
@@ -109,17 +104,32 @@ public class TestReader {
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(ts);
 		assertNotNull(m);
-		assertEquals(m.getTextAt("GS"), "GS");
-		assertEquals(m.getTextAt("GS.1.1"), "");
-		assertEquals(m.getTextAt("GS.1.2"), "AG");
-		assertEquals(m.getTextAt("GS.1.3"), "sub1");
-		assertEquals(m.getTextAt("GS.1.4"), "sub2");
-		
-		m.walk(n -> {
-			if(!n.getTextContent().isEmpty())
-				System.out.println(n.getTextContent());
-		});
-		
+		assertEquals(m.getTextAt(EDIPath.of("GS")), "GS");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.1")), "");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.2")), "AG");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.3")), "sub1");
+		assertEquals(m.getTextAt(EDIPath.of("GS.1.4")), "sub2");		
+	}
+	
+	@Test
+	public void parseMultipleSegments() throws Exception {
+		TokenStream ts = TestResources.getTokenStream("test-interchange-multi.edi");
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIMessage m = parser.parse(ts);
+		assertNotNull(m);
+		assertEquals(m.getTextAt(EDIPath.of("GS[1]")), "GS");
+		assertEquals(m.getTextAt(EDIPath.of("GS[1].6")), "38327");
+		assertEquals(m.getTextAt(EDIPath.of("GS[2]")), "GS");
+		assertEquals(m.getTextAt(EDIPath.of("GS[2].6")), "38328");
+		assertEquals(m.getTextAt(EDIPath.of("BGN[3].1.3")), "15");
+	}
+	
+	@Test
+	public void validateX12() throws Exception {
+		TokenStream ts = TestResources.getTokenStream("test-interchange-multi.edi");
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIMessage m = parser.parse(ts);
+		parser.validate(m);
 	}
 	
 }

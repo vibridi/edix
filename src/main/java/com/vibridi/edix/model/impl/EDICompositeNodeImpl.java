@@ -69,5 +69,10 @@ public class EDICompositeNodeImpl extends EDITextNodeImpl implements EDIComposit
 	public boolean isRoot() {
 		return false;
 	}
+
+	@Override
+	public int fields() {
+		return children.size();
+	}
 	
 }

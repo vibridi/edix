@@ -1,0 +1,18 @@
+ISA*00* *00* *08*9251750000 *08*1234567890 *030627*1304*U*00401*000001403*0*P*>~
+    GS*PO*8019721193*1234567890*20030627*1304*1403*X*004010~
+        ST*850*01403001~
+            BEG*00*SA*548177**20030627~   
+            DTM*002*20030705~
+            DTM*118*20030704~
+            PKG******01~
+            TD5****H*OUR CR/T~
+            N9*AH*548177~
+            MSG*THIS PURCHASE ORDER IS SUBJECT TO THE SAME TERMS AND~
+            MSG*CONDITIONS AS SAFEWAY PURCHASE ORDER FORM 1030~
+            N1*ST*SAFEWAY INC*9*0091372092527~
+            N2*Tracy Produce~
+            N3*16900 West Schulte Road~
+            N4*Tracy*CA*95376~                                                                                                        left-arrow.gif  Document Summary
+        SE*30*01403001~                                                                                               
+    GE*1*1403~
+IEA*1*000001403~

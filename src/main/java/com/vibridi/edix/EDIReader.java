@@ -24,7 +24,7 @@ public abstract class EDIReader {
 	protected EDIStandard detectStandard() throws IOException {
 		char[] buf = new char[MAX_LOOK_AHEAD];
 		if(source.read(buf) < buf.length)
-			throw new RuntimeException(ErrorMessages.LOOK_AHEAD_FAILED); // TODO change error msg
+			throw new RuntimeException(ErrorMessages.LOOK_AHEAD_FAILED.toString());
 		source.unread(buf);
 		return EDIStandard.of(new String(buf));
 	}

@@ -5,15 +5,16 @@ import java.io.StreamTokenizer;
 
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
-import com.vibridi.edix.util.StringUtils;
 
 public class AnsiLexer extends EDILexer {
 	
 	public static final int ISA_LENGTH = 106;
 	
-	public static final int DELIMITER_POS = 3;			// 0-based
-	public static final int SUB_DELIMITER_POS = 104;		// 0-based
-	public static final int TERMINATOR_POS = 105;		// 0-based
+	// Positions are 0-indexed
+	public static final int DELIMITER_POS = 3;
+	public static final int REPETITION_SEPARATOR_POS = 82;
+	public static final int SUB_DELIMITER_POS = 104;
+	public static final int TERMINATOR_POS = 105;
 
 	/**
 	 * Preview the ANSI X.12 input before attempting to tokenize it in order to
@@ -31,20 +32,16 @@ public class AnsiLexer extends EDILexer {
 
 		char[] buf = new char[ISA_LENGTH];
 		if(source.read(buf) < ISA_LENGTH)
-			throw new EDISyntaxException(ErrorMessages.INCOMPLETE_X12);
+			throw new EDISyntaxException(ErrorMessages.INCOMPLETE_X12.toString());
 		source.unread(buf);
 
 		if (!"ISA".equals(String.copyValueOf(buf, 0, 3)))
-			throw new EDISyntaxException(ErrorMessages.X12_MISSING_ISA);
+			throw new EDISyntaxException(ErrorMessages.X12_MISSING_ISA.toString());
 
 		// ISA*
 		// ...^ (offset 3)
 		char d = buf[DELIMITER_POS];
 		controlCharacters[d] = TokenType.DELIMITER;
-		
-//		int indexOf16thFieldSeparator = StringUtils.nthIndexOf(buf, getDelimiter(), 16);
-//		if (indexOf16thFieldSeparator < 0)
-//			throw new EDISyntaxException(ErrorMessages.ISA_SEGMENT_HAS_TOO_FEW_FIELDS);
 
 		char c = buf[SUB_DELIMITER_POS];
 		if(c != d)
@@ -54,31 +51,24 @@ public class AnsiLexer extends EDILexer {
 		if(c != d)
 			controlCharacters[t] = TokenType.TERMINATOR;
 		else
-			throw new EDISyntaxException(ErrorMessages.INVALID_SEGMENT_TERMINATOR);
+			throw new EDISyntaxException(ErrorMessages.INVALID_SEGMENT_TERMINATOR.withArgs(""+c).toString());
 
-		//setTerminatorSuffix(findTerminatorSuffix(buf, TERMINATOR_POS + 3, 128));
-
-		// Determine the repetition character. This changed in 4.6.5 to support repetition chars
-		// introduced in version 4020 of the ANSI X12 standard.
-		int indexOf11thFieldSeparator = StringUtils.nthIndexOf(buf, d, 11);
-		char repetitionChar = buf[indexOf11thFieldSeparator + 1];
 		
-		if (Character.isLetterOrDigit(repetitionChar)
-			||	repetitionChar == t
-			||	repetitionChar == d
-			||	Character.isWhitespace(repetitionChar)) {
-			// This is not a suitable repetition character.
-			// It may be desirable to further check to see if the version number
-			// in the next ISA element indicates 4020 or later; if not, then
-			// repetition characters were not used.
+		c = buf[REPETITION_SEPARATOR_POS];
+		String x12version = String.valueOf(buf, 84, 5);
+		
+		// Repetition character wasn't used before version 4020 of the ANSI X12 standard
+		if(x12version.compareTo("00402") >= 0) {
 			
-		} else {
-			controlCharacters[repetitionChar] = TokenType.REPETITION_SEPARATOR;
+			// It also can't be a letter, digit, whitespace and must differ from other control chars
+			if (!Character.isLetterOrDigit(c)
+					&&	!Character.isWhitespace(c)
+					&&	c != t
+					&&	c != d) {
+				
+				controlCharacters[c] = TokenType.REPETITION_SEPARATOR;
+			}
 		}
-
-		//setFirstSegment(new String(buf, 0, indexOf16thFieldSeparator + 3)); // TODO see if needed
-		//setPreviewed(true);
-
 	}
 
 	@Override

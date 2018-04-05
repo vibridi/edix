@@ -2,6 +2,7 @@ package com.vibridi.edix.model;
 
 public interface EDICompositeNode extends EDITextNode {
 	public EDINode appendChild(EDINode newChild);
+	public int fields();
 	public boolean isRoot();
 	
 	public interface NodeWalker {

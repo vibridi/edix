@@ -1,12 +1,54 @@
 package com.vibridi.edix.error;
 
-public interface ErrorMessages {
-	String INCOMPLETE_X12 = "Incomplete ANSI X.12 interchange";
-	String INVALID_SEGMENT_TERMINATOR = "Invalid segment terminator";
-	String LOOK_AHEAD_FAILED = "Lexer look-ahead returned too few characters.";
-	String X12_MISSING_ISA = "ANSI X.12 interchange must begin with ISA";
+public enum ErrorMessages {
+	INCOMPLETE_X12("Incomplete ANSI X.12 interchange"),
+	INVALID_SEGMENT_TERMINATOR("Invalid segment terminator [{0}]"),
+	LOOK_AHEAD_FAILED("Lexer look-ahead returned too few characters."),
+	X12_MISSING_ISA("ANSI X.12 interchange must begin with ISA"),
+	ISA_FIELDS_NUMBER("ISA must have exactly 16 fields."),
+	FUNCTIONAL_GROUPS("Incorrect number of functional groups. Expected {0} but was {1}."),
+	INTERCHANGE_CONTROL_NUMBER("ISA and IEA interchange control numbers don't match"),
+	TRANSACTION_SETS("Incorrect number of transaction sets. Expected {0} but was {1}."),
+	GROUP_CONTROL_NUMBER("GS and GE control numbers don't match"),
+	TRANSACTION_CONTROL_NUMBER("ST and SE control numbers don't match"),
+	;
 	
 	
+	private String text;
+	private String[] args;
+	
+	private ErrorMessages(String text) {
+		this.text = text;
+		this.args = new String[0];
+	}
+	
+	public ErrorMessages withArgs(Object... args) {
+		if(args == null || args.length == 0)
+			return this;
+		
+		this.args = new String[args.length];
+		for(int i = 0; i < args.length; i++)
+			this.args[i] = args[i].toString();
+		return this;
+	}
+	
+	public ErrorMessages withArgs(String... args) {
+		this.args = args;
+		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return resolve();
+	}
+
+	private String resolve() {
+		String tmp = text;
+		for(int i = 0; i < args.length; i++) {
+			tmp = tmp.replace("{"+i+"}", args[i]);
+		}
+		return tmp;
+	}
 	
 //    String ELEMENT_TOO_LONG = "Too many characters in an element (delimiter problem?)";
 //    String EXPECTED_SIMPLE_TOKEN = "Expected a simple token";
