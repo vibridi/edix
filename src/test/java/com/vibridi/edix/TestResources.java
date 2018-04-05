@@ -1,9 +1,13 @@
 package com.vibridi.edix;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PushbackReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -13,6 +17,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+
+import com.vibridi.edix.lexer.EDILexer;
+import com.vibridi.edix.lexer.TokenStream;
 
 public class TestResources {
 	
@@ -37,6 +44,20 @@ public class TestResources {
 		Document doc = parser.parse(fis);
 		fis.close();
 		return doc;
+	}
+	
+	public static TokenStream getTokenStream() throws Exception {
+		return getTokenStream("minimal-interchange.edi");
+	}
+	
+	public static TokenStream getTokenStream(String fileName) throws Exception {
+		InputStream in = getAsStream(fileName);
+		
+		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
+		assertNotNull(lexer);
+		
+		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256))
+				.tokenize();
 	}
 
 }

@@ -1,24 +1,11 @@
 package com.vibridi.edix.model;
 
-import java.util.Map;
+import com.vibridi.edix.lexer.TokenType;
 
-public class EDIMessage {
-
-	private EDINode root;
-	
-	private Map<String,EDINode> segments;
-	
-	
-	public EDIMessage() {
-		root = new EDIBaseNode(null);
-	}
-
-	public EDINode getRoot() {
-		return root;
-	}
-	
-	public EDINode getSegment(String name) {
-		return segments.get(name);
-	}
-	
+public interface EDIMessage extends EDICompositeNode {
+	public void addSegment(String name, EDICompositeNode node);
+	public EDICompositeNode getSegment(String name);
+	public TokenType[] getControlCharacters();
+	public void setControlCharacters(TokenType[] controlCharacters);
+	public String getTextAt(String path);
 }

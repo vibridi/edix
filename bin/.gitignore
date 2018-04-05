@@ -13,7 +13,6 @@
 *.rar
 
 /target/
-
 .settings/
 .project
 .classpath

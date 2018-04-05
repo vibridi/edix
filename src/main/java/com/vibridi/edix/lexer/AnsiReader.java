@@ -507,7 +507,7 @@ public class AnsiReader extends EDILexer {
         // No release character is supported for ANSI X.12
         setRelease(-1);
 
-        char[] buf = getTokenizer().lookahead(128);
+        char[] buf = getTokenizer().lookAhead(128);
         if ((buf == null) || (buf.length < 128))
             throw new EDISyntaxException(INCOMPLETE_X12);
 
