@@ -10,6 +10,7 @@ import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.model.EDINode;
 import com.vibridi.edix.path.EDIPath;
 
 public class TestParser {
@@ -82,6 +83,16 @@ public class TestParser {
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
-
+		
+		assertEquals(m.getTextAt(EDIPath.of("BGN.1.1")), "11"); // TODO add edipath support for repetition fields
+		
+		EDINode dmg5 = m.getNodeAt(EDIPath.of("DMG.5"));
+		assertNotNull(dmg5);
+		
+		// DMG~D8~19880208~F~~<RET<R5^<RET<E1.01~~~~~$
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5.1")), "");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5.2")), "RET");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5.3")), "R5");
 	}
+	
 }

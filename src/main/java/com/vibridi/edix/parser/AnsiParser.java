@@ -60,11 +60,20 @@ public class AnsiParser extends EDIParser {
 			Token t = tokens.next();
 			
 			switch(t.type) {
+				
+			// It arrives here in case of a composite field
 			case WORD:
 				seg.appendChild(EDIMessageFactory.newTextNode(seg, t.value));
 				break;
 			
 			case DELIMITER:
+				seg.setDelimiter(t.value);
+				int stop = MiscUtils.coalesce(n -> n != -1,
+						tokens.nextIndexOf(t.type), 
+						tokens.nextIndexOf(TokenType.TERMINATOR));
+				seg.appendChild(parse(seg, tokens.until(stop)));
+				break;
+				
 			case SUB_DELIMITER:
 			case SUB_SUB_DELIMITER:
 				seg.setDelimiter(t.value);
@@ -72,16 +81,18 @@ public class AnsiParser extends EDIParser {
 				if(!tokens.lookBack(2).isPresent())
 					seg.appendChild(EDIMessageFactory.newTextNode(seg, ""));
 				
-				int d = MiscUtils.coalesce(n -> n != -1, 
-					tokens.nextIndexOf(t.type), 
-					tokens.nextIndexOf(TokenType.TERMINATOR),
-					tokens.size());
-				seg.appendChild(parse(seg, tokens.until(d)));
+				int ctrl = tokens.nextIndexOfControlChar(); // Includes repetition separator
+				seg.appendChild(parse(seg, tokens.until(ctrl)));
 				break;
 				
 			case REPETITION_SEPARATOR:
-				// TODO 
-				break;
+				seg.setRepetitionSeparator(t.value);
+				int rep = MiscUtils.coalesce(n -> n != -1,
+						tokens.nextIndexOf(t.type),
+						tokens.nextIndexOf(TokenType.DELIMITER),
+						tokens.nextIndexOf(TokenType.TERMINATOR),
+						tokens.size());
+				seg.appendRepetition(parse(seg, tokens.until(rep)));
 				
 			default:
 				break;

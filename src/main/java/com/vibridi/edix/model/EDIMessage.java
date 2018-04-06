@@ -10,4 +10,5 @@ public interface EDIMessage extends EDICompositeNode {
 	public void setControlCharacters(TokenType[] controlCharacters);
 	public String getTextAt(EDIPath path);
 	public void setTextAt(EDIPath path, String text);
+	public EDINode getNodeAt(EDIPath path);
 }

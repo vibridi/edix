@@ -87,4 +87,23 @@ public class TestWriter {
 		assertEquals(interchange, out.toString().trim());
 	}
 	
+	@Test
+	public void writeToTextRepetitions() throws Exception {
+		String interchange = TestResources.getAsString("test-interchange-rep.edi");
+		EDILexer lx = TestResources.getLexer("test-interchange-rep.edi");		
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		assertNotNull(parser);
+		
+		EDIMessage m = parser.parse(lx);
+		assertNotNull(m);
+		
+		EDIWriter w = EDIFactory.newWriter(EDIFormat.PLAIN_TEXT, m);
+		w.setPrettyPrint(true);
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		w.write(out, "UTF-8");
+		
+		assertEquals(interchange, out.toString().trim());
+	}
+	
 }

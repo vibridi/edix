@@ -91,6 +91,14 @@ public class TokenStream implements Iterable<Token> {
 		return -1;
 	}
 	
+	public int nextIndexOfControlChar() {
+		for(int i = pos; i < list.size(); i++) {
+			if(list.get(i).type != TokenType.WORD)
+				return i;
+		}
+		return size();
+	}
+	
 	public TokenStream subStream(int start, int end) {
 		int to = Math.min(end, size());
 		TokenStream sub = new TokenStream();

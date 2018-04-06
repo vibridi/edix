@@ -78,6 +78,7 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 		getNodeAt(path).setTextContent(text);
 	}
 	
+	@Override
 	public EDINode getNodeAt(EDIPath path) {
 		EDINode n = getSegment(path.segment(), path.ordinal());
 		Objects.requireNonNull(n);

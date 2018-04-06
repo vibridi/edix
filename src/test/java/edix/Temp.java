@@ -18,6 +18,14 @@ public class Temp {
 	
 	public void tryout() throws EDISyntaxException, IOException {
 		
+		// ALTERNATIVE
+//		X12Simple x12 = (X12Simple) new X12SimpleParser().parse(new File("C:\\test\\835.txt"));
+//		for (Segment s : x12)
+//		{
+//		        if (s.getElement(0).equals("CLP")) {
+//		                System.out.println("Total Change Amount " + s.getElement(3));
+//		        }
+//		}
 		
 		EDIReader r = EDIFactory.newReader(EDIFormat.PLAIN_TEXT, null /* xml source */);
 //				.setThis()
