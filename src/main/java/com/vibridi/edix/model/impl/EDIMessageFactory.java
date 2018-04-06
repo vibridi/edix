@@ -3,7 +3,6 @@ package com.vibridi.edix.model.impl;
 import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.model.EDINode;
-import com.vibridi.edix.model.EDITextNode;
 
 public class EDIMessageFactory {
 
@@ -15,8 +14,8 @@ public class EDIMessageFactory {
 		return new EDICompositeNodeImpl(parent);
 	}
 
-	public static EDITextNode newTextNode(EDINode parent, String text) {
-		return new EDITextNodeImpl(parent, text);
+	public static EDINode newTextNode(EDINode parent, String text) {
+		return new EDISimpleTextNode(parent, text);
 	}
 	
 }

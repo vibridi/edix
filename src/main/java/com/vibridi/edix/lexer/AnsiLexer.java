@@ -3,6 +3,7 @@ package com.vibridi.edix.lexer;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 
+import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
 
@@ -90,7 +91,7 @@ public class AnsiLexer extends EDILexer {
 			if(st.ttype == StreamTokenizer.TT_WORD) {
 				tks.add(new Token(TokenType.WORD, st.sval));
 				
-			} else if(st.ttype == getControlCharacter(TokenType.TERMINATOR)) {
+			} else if(getControlCharacters()[st.ttype] == TokenType.TERMINATOR) {
 				tks.add(new Token(getControlCharacters()[st.ttype], Character.toString((char)st.ttype)));
 				// Skip trailer characters. 
 				// After a terminator, we can resume tokenizing as soon as we encounter an alphabetic char
@@ -123,6 +124,11 @@ public class AnsiLexer extends EDILexer {
 		} while(n < j && !Character.isLetter(buf[n]));
 
 		return String.copyValueOf(buf, i, n);
+	}
+
+	@Override
+	public EDIStandard getStandard() {
+		return EDIStandard.ANSI_X12;
 	}
 
 }

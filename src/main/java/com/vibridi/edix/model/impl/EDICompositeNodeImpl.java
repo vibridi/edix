@@ -2,27 +2,34 @@ package com.vibridi.edix.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDINode;
 
-public class EDICompositeNodeImpl extends EDITextNodeImpl implements EDICompositeNode {
+public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompositeNode {
 
 	private List<EDINode> children;
+	private String delimiter;
 	
 	protected EDICompositeNodeImpl(EDINode parent) {
 		super(parent, "");
 		setName("");
 		children = new ArrayList<>();
+		delimiter = "";
 	}
 	
 	@Override
-	public String toString() {
-		return "[EDICompositeNode\n"
-				+ "Name: " + getName() + "\n"
-				+ "Fields: " + getChildren().size() + "\n"
-				+ getChildren().toString() + "\n"
-				+ "]";
+	public String toString() {	
+		StringJoiner sj = new StringJoiner(delimiter, "", "");
+		
+		if(!getName().isEmpty())
+			sj.add(getName());
+		
+		for(EDINode n : getChildren())
+			sj.add(n.toString());
+		
+		return sj.toString();
 	}
 
 	@Override
@@ -73,6 +80,16 @@ public class EDICompositeNodeImpl extends EDITextNodeImpl implements EDIComposit
 	@Override
 	public int fields() {
 		return children.size();
+	}
+
+	@Override
+	public void setDelimiter(String delimiter) {
+		this.delimiter = delimiter;
+	}
+
+	@Override
+	public String getDelimiter() {
+		return delimiter;
 	}
 	
 }

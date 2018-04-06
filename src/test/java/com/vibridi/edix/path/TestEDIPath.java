@@ -10,7 +10,7 @@ import com.vibridi.edix.EDIRegistry;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.error.EDIPathException;
-import com.vibridi.edix.lexer.TokenStream;
+import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.parser.EDIParser;
 
@@ -20,9 +20,9 @@ public class TestEDIPath {
 	
 	@Before
 	public void setup() throws Exception {
-		TokenStream ts = TestResources.getTokenStream("test-interchange-complex.edi");
+		EDILexer lx = TestResources.getLexer("test-interchange-complex.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
-		m = parser.parse(ts);
+		m = parser.parse(lx);
 		assertNotNull(m);
 	}
 	

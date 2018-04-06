@@ -15,8 +15,8 @@ public class TokenStream implements Iterable<Token> {
 	private int pos;
 	
 	public TokenStream() {
-		list = new ArrayList<>();
-		pos = 0;
+		this.list = new ArrayList<>();
+		this.pos = 0;
 	}
 	
 	public void add(Token t) {
@@ -126,8 +126,6 @@ public class TokenStream implements Iterable<Token> {
 				q.add(list.get(i));
 				break;
 				
-
-			
 			default:
 				if(!q.isEmpty()) {
 					

@@ -15,10 +15,12 @@ public interface EDINode {
 	public String getTextContent();
 	public void setTextContent(String textContent);
 	public boolean isEmpty();
+	public boolean isEndOfComposite();
 	
 	public EDINodeType getNodeType();
 	public EDINode getOwnerInterchange();
 	public EDINode getParent();
+	public boolean isRoot();
 	
 	public List<EDINode> getChildren();
 	public EDINode getChild(int index);

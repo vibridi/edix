@@ -5,6 +5,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PushbackReader;
 
+import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.writer.EDIPlainWriter;
+import com.vibridi.edix.writer.EDIWriter;
+
 public class EDIFactory {
 	
 	public static enum EDIFormat {
@@ -37,7 +41,19 @@ public class EDIFactory {
 	}
 	
 	
-	
+	public static EDIWriter newWriter(EDIFormat sourceFormat, EDIMessage message) throws IOException {
+		switch(sourceFormat) {
+		case PLAIN_TEXT:
+			return new EDIPlainWriter(message);
+			
+		case XML:
+			return null; // new EDIXMLWriter(message);
+			
+		default:
+			throw new IllegalStateException("Unsupported EDI format: " + sourceFormat);	
+			
+		}		
+	}
 	
 	
 }

@@ -5,7 +5,6 @@ import java.io.PushbackReader;
 
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.lexer.EDILexer;
-import com.vibridi.edix.lexer.TokenStream;
 import com.vibridi.edix.model.EDIMessage;
 
 public class EDIPlainReader extends EDIReader {
@@ -19,12 +18,8 @@ public class EDIPlainReader extends EDIReader {
 		EDILexer lexer = EDIRegistry.newLexer(standard);
 		lexer.setSource(source);
 		
-		TokenStream ts = lexer.tokenize();
-		EDIMessage message = EDIRegistry.newParser(standard).parse(ts);
-		message.setControlCharacters(lexer.getControlCharacters());
-		
-		return message;
+		return EDIRegistry.newParser(standard)
+				.parse(lexer);
 	}
-	
 	
 }

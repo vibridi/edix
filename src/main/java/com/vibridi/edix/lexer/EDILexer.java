@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PushbackReader;
 import java.util.Arrays;
 
+import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
 
 
@@ -12,11 +13,9 @@ public abstract class EDILexer {
     protected PushbackReader source;
     
     private TokenType[] controlCharacters = new TokenType[256];
-    private char[] controlTokens = new char[TokenType.values().length];
     
 	public EDILexer() {
 		Arrays.fill(controlCharacters, TokenType.E);
-		Arrays.fill(controlTokens, '\0');
 	}
 	
 	/* 	=========================
@@ -25,10 +24,6 @@ public abstract class EDILexer {
 	public EDILexer setSource(PushbackReader source) throws EDISyntaxException, IOException {
 		this.source = source;
 		findControlCharacters(controlCharacters);
-		
-		for(int i = 0; i < controlCharacters.length; i++) {
-			controlTokens[controlCharacters[i].num] = (char)i;
-		}
 		return this; // Chainable
 	}
 	
@@ -40,6 +35,8 @@ public abstract class EDILexer {
 			ABSTRACT MEMBERS
 		========================= 	*/
 	public abstract TokenStream tokenize() throws IOException;
+	public abstract EDIStandard getStandard();
+	
 	protected abstract void findControlCharacters(TokenType[] controlCharacters) throws EDISyntaxException, IOException;
 
 
@@ -47,10 +44,6 @@ public abstract class EDILexer {
 	/* 	=========================
 	  		GETTERS AND SETTERS
 	   	========================= 	*/	
-	public char getControlCharacter(TokenType type) {
-		return controlTokens[type.num];
-	}
-
 	public TokenType[] getControlCharacters() {
 		return Arrays.copyOf(controlCharacters, controlCharacters.length);
 	}

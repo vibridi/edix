@@ -1,11 +1,13 @@
 package com.vibridi.edix.parser;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
+import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.lexer.Token;
 import com.vibridi.edix.lexer.TokenStream;
 import com.vibridi.edix.lexer.TokenType;
@@ -21,7 +23,8 @@ public class AnsiParser extends EDIParser {
 	}
 	
 	@Override
-	public EDIMessage parse(TokenStream tokens) throws EDISyntaxException {
+	public EDIMessage parse(EDILexer lexer) throws EDISyntaxException, IOException {
+		TokenStream tokens = lexer.tokenize();
 		EDIMessage message = EDIMessageFactory.newMessage();
 		
 		while(tokens.hasNext()) {
@@ -31,7 +34,7 @@ public class AnsiParser extends EDIParser {
 		
 		if(strict)
 			validate(message);
-		
+		message.setControlCharacters(lexer.getControlCharacters());
 		return message;
 	}
 	
@@ -64,7 +67,7 @@ public class AnsiParser extends EDIParser {
 			case DELIMITER:
 			case SUB_DELIMITER:
 			case SUB_SUB_DELIMITER:
-				// TODO set separator
+				seg.setDelimiter(t.value);
 				
 				if(!tokens.lookBack(2).isPresent())
 					seg.appendChild(EDIMessageFactory.newTextNode(seg, ""));
@@ -92,7 +95,7 @@ public class AnsiParser extends EDIParser {
 	
 	private TokenStream nextSegment(TokenStream tokens) throws EDISyntaxException {
 		if(!tokens.hasNext())
-			return new TokenStream();
+			return new TokenStream(); // TODO consider TokenStream.emptyStream();
 		
 		if(tokens.lookAhead(0).get().type != TokenType.WORD)
 			throw new EDISyntaxException("Segment doesn't start with a segment tag.");

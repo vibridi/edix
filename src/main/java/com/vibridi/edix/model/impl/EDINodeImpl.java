@@ -39,5 +39,10 @@ public abstract class EDINodeImpl implements EDINode {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public boolean isEndOfComposite() {
+		return parent == null ? false : (this == parent.getLastChild());
+	}
 		
 }

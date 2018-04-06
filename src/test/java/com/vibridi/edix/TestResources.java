@@ -19,7 +19,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 import com.vibridi.edix.lexer.EDILexer;
-import com.vibridi.edix.lexer.TokenStream;
 
 public class TestResources {
 	
@@ -46,18 +45,15 @@ public class TestResources {
 		return doc;
 	}
 	
-	public static TokenStream getTokenStream() throws Exception {
-		return getTokenStream("minimal-interchange.edi");
+	public static EDILexer getLexer() throws Exception {
+		return getLexer("minimal-interchange.edi");
 	}
 	
-	public static TokenStream getTokenStream(String fileName) throws Exception {
+	public static EDILexer getLexer(String fileName) throws Exception {
 		InputStream in = getAsStream(fileName);
-		
 		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
 		assertNotNull(lexer);
-		
-		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256))
-				.tokenize();
+		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256));
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.vibridi.edix;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.PushbackReader;
 
@@ -7,7 +8,7 @@ import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
 import com.vibridi.edix.model.EDIMessage;
 
-public abstract class EDIReader {
+public abstract class EDIReader implements Closeable {
 
 	private static final int MAX_LOOK_AHEAD = 3; 
 	
@@ -36,4 +37,10 @@ public abstract class EDIReader {
 	public EDIStandard getStandard() {
 		return standard;
 	}
+	
+	@Override
+	public void close() throws IOException {
+		source.close();
+	}
+	
 }
