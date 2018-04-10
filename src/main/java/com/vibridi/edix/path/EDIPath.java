@@ -24,6 +24,7 @@ public class EDIPath {
 	private String segment;
 	private int ordinal;
 	private int[] fields;
+	private int[] repetitionAccessors;
 	
 	private EDIPath() {
 		this("");
