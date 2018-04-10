@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.lexer.TokenType;
 import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDIMessage;
@@ -16,12 +17,14 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 	
 	private TokenType[] controlCharacters;
 	private Map<String,List<EDICompositeNode>> segments;
-
-	protected EDIMessageImpl() {
-		super(null);
-		segments = new LinkedHashMap<>();
-	}
+	private EDIStandard standard;
 	
+	public EDIMessageImpl(EDIStandard standard) {
+		super(null);
+		this.segments = new LinkedHashMap<>();
+		this.standard = standard;
+	}
+
 	@Override
 	public EDINodeType getNodeType() {
 		return EDINodeType.INTERCHANGE;
@@ -97,6 +100,17 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 		return true;
 	}
 
+	@Override
+	public void setStandard(EDIStandard standard) {
+		throw new UnsupportedOperationException("Message standard is final.");
+	}
 
+	@Override
+	public EDIStandard getStandard() {
+		return standard;
+	}
 	
+	public Map<String,List<EDICompositeNode>> getSegments() {
+		return segments;
+	}
 }

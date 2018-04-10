@@ -25,7 +25,7 @@ public class AnsiParser extends EDIParser {
 	@Override
 	public EDIMessage parse(EDILexer lexer) throws EDISyntaxException, IOException {
 		TokenStream tokens = lexer.tokenize();
-		EDIMessage message = EDIMessageFactory.newMessage();
+		EDIMessage message = EDIMessageFactory.newMessage(lexer.getStandard());
 		
 		while(tokens.hasNext()) {
 			EDICompositeNode seg = (EDICompositeNode) parse(message, nextSegment(tokens));
