@@ -1,0 +1,155 @@
+<levelone xmlns="urn:hl7-org:v3/cda" xmlns:v3dt="urn:hl7-org:v3/v3dt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3/cda levelone_1.0.attachments.xsd">
+    <clinical_document_header>
+        <id EX="a123" RT="2.16.840.1.113883.3.933"/>
+        <document_type_cd V="99999-7" DN="Imidazole-Related Antifungals Attachment"/>
+        <origination_dttm V="2006-01-05"/>
+        <provider>
+            <provider.type_cd V="PRF"/>
+            <person>
+                <id EX="4376557IM" RT="2.16.840.1.113883.19.10.1"/>
+                <person_name>
+                    <nm>
+                        <v3dt:GIV V="Robert"/>
+                        <v3dt:MID V="J"/>
+                        <v3dt:FAM V="Podell"/>
+                        <v3dt:SFX V="MD"/>
+                    </nm>
+                    <person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/>
+                </person_name>
+            </person>
+        </provider>
+        <patient>
+            <patient.type_cd V="PATSBJ"/>
+            <person>
+                <id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/>
+                <person_name>
+                    <nm>
+                        <v3dt:GIV V="Sara"/>
+                        <v3dt:MID V="J"/>
+                        <v3dt:FAM V="Smith"/>
+                    </nm>
+                    <person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/>
+                </person_name>
+            </person>
+            <is_known_by>
+                <id EX="184569" RT="2.16.840.1.1138863.19.10.3"/>
+                <is_known_to>
+                    <id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/>
+                </is_known_to>
+            </is_known_by>
+        </patient>
+        <local_header descriptor="Att_ACN">
+            <local_attr name="attachment_control_number" value="XA728302"/>
+        </local_header>
+    </clinical_document_header>
+    <body>
+        <section>
+            <caption>PRESCRIBER INFORMATION</caption>
+            <paragraph>
+                <caption>PRESCRIBER INFORMATION, NAME</caption>
+                <content>Robert J. Podell, MD</content>
+            </paragraph>
+            <paragraph>
+                <caption>PRESCRIBER INFORMATION, IDENTIFIER</caption>
+                <content>4376557IM</content>
+            </paragraph>
+            <paragraph>
+                <caption>PRESCRIBER INFORMATION, SPECIALTY TAXONOMY</caption>
+                <content>Hepatologist (207RI0008X)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>PRESCRIBER CONTACT INFORMATION</caption>
+            <paragraph>
+                <caption>PRESCRIBER CONTACT INFORMATION, PHONE NUMBER</caption>
+                <content>(765) 228-1234</content>
+            </paragraph>
+            <paragraph>
+                <caption>PRESCRIBER CONTACT INFORMATION, FAX NUMBER</caption>
+                <content>(765) 228-3123</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>DRUG PRESCRIBED</caption>
+            <paragraph>
+                <caption>DRUG PRESCRIBED, NAME</caption>
+                <content>Oxistat Cream, 1%, 60g tube</content>
+            </paragraph>
+            <paragraph>
+                <caption>DRUG PRESCRIBED, DRUG CODE</caption>
+                <content>0173-0423-04 (NDC)</content>
+            </paragraph>
+            <paragraph>
+                <caption>DRUG PRESCRIBED, THERAPY TYPE</caption>
+                <content>Replacement (RPLRQ)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>DRUG HISTORY, PRIOR THERAPY FOR DIAGNOSIS</caption>        
+            <paragraph>
+                <caption>DRUG HISTORY, PRIOR THERAPY FOR DIAGNOSIS - DRUG NAME</caption>
+                <content>Tinactin Cream</content>
+            </paragraph>
+            <paragraph>
+                <caption>DRUG HISTORY, PRIOR THERAPY FOR DIAGNOSIS - DRUG CODE</caption>
+                <content>0085-0715-07 (NDC)</content>
+            </paragraph>
+            <paragraph>
+                <caption>DRUG HISTORY, PRIOR THERAPY FOR DIAGNOSIS - DURATION OF THERAPY</caption>
+                <content>90 days</content>
+            </paragraph>
+            <paragraph>
+                <caption>DRUG HISTORY, PRIOR THERAPY FOR DIAGNOSIS - REASON PRIOR THERAPY DISCONTINUED</caption>
+                <content>Not or no longer effective (NTEFF)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>IMIDAZOLE-RELATED ANTIFUNGALS, RELATED DIAGNOSIS</caption>
+            <paragraph>
+                <caption>IMIDAZOLE-RELATED ANTIFUNGALS, RELATED DIAGNOSIS</caption>
+                <content>Tinea Pedia (ICD-9-CM 110.4)</content>
+            </paragraph>
+            <paragraph>
+                <caption>IMIDAZOLE-RELATED ANTIFUNGALS, RELATED DIAGNOSIS - CONFIRMED BY</caption>
+                <content>KOH Preparation (KOH)</content>
+            </paragraph>
+        </section>
+
+        <section>
+            <caption>FUNGAL INFECTION LOCATION</caption>
+            <paragraph>
+                <content>Between Toes, right foot (OTH)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>DRUG PRESCRIBED, REASON FOR TOPICAL THERAPY</caption>
+            <paragraph>
+                <content>Hepatic Dysfunction (HDS)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>CO-MORBID CONDITION INFORMATION</caption>
+            <paragraph>
+                <caption>CO-MORBID CONDITION INFORMATION, LIVER DYSFUNCTION INDICATOR</caption>
+                <content>yes (Y)</content>
+            </paragraph>
+            <paragraph>
+                <caption>CO-MORBID CONDITION INFORMATION, LIVER DYSFUNCTION CONFIRMED BY</caption>
+                <content>Hepatic Function Panel (HFP)</content>
+            </paragraph>
+        </section>
+
+        <section>
+            <caption>MEDICARE ESRD CERTIFICATION INDICATOR</caption>
+            <paragraph>
+                <content>Yes (Y)</content>
+            </paragraph>
+        </section>
+        <section>
+            <caption>IMIDAZOLE-RELATED ANTIFUNGALS, PRIOR THERAPY TYPE</caption>
+            <paragraph>
+                <content>Topical (TOP)</content>
+            </paragraph>
+        </section>
+    </body>
+</levelone>

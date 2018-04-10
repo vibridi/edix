@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 
 import com.vibridi.edix.EDIStandard;
+import com.vibridi.edix.error.EDILexerException;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
 
@@ -17,6 +18,11 @@ public class AnsiLexer extends EDILexer {
 	public static final int SUB_DELIMITER_POS = 104;
 	public static final int TERMINATOR_POS = 105;
 
+	@Override
+	public EDIStandard getStandard() {
+		return EDIStandard.ANSI_X12;
+	}
+	
 	/**
 	 * Preview the ANSI X.12 input before attempting to tokenize it in order to
 	 * discover syntactic details including segment terminator and field
@@ -75,14 +81,7 @@ public class AnsiLexer extends EDILexer {
 	@Override
 	public TokenStream tokenize() throws IOException {
 		StreamTokenizer st = new StreamTokenizer(source);
-		st.resetSyntax();
-		st.wordChars(0, 255);
-		
-		TokenType[] cc = getControlCharacters();
-		for(int i = 0; i < cc.length; i++) {
-			if(cc[i] != TokenType.E)
-				st.ordinaryChar((char)i);
-		}	
+		initSyntax(st);
 		
 		TokenStream tks = new TokenStream();
 		
@@ -90,6 +89,9 @@ public class AnsiLexer extends EDILexer {
 			
 			if(st.ttype == StreamTokenizer.TT_WORD) {
 				tks.add(new Token(TokenType.WORD, st.sval));
+				
+				if(st.sval.equals("BIN") && tks.get(tks.size() - 2).type == TokenType.TERMINATOR)
+					tokenizeBIN(st, tks);
 				
 			} else if(getControlCharacters()[st.ttype] == TokenType.TERMINATOR) {
 				tks.add(new Token(getControlCharacters()[st.ttype], Character.toString((char)st.ttype)));
@@ -110,7 +112,6 @@ public class AnsiLexer extends EDILexer {
 		
 		return tks;
 	}
-	
 
 	protected static String findTerminatorSuffix(char[] buf, int i, int j) {
 		// AAAAA<------       M
@@ -126,9 +127,46 @@ public class AnsiLexer extends EDILexer {
 		return String.copyValueOf(buf, i, n);
 	}
 
-	@Override
-	public EDIStandard getStandard() {
-		return EDIStandard.ANSI_X12;
+	private void initSyntax(StreamTokenizer st) {
+		st.resetSyntax();
+		st.wordChars(0, 255);
+		
+		TokenType[] cc = getControlCharacters();
+		for(int i = 0; i < cc.length; i++) {
+			if(cc[i] != TokenType.E)
+				st.ordinaryChar((char)i);
+		}	
+	}
+	
+	private void tokenizeBIN(StreamTokenizer st, TokenStream tks) throws IOException {
+		// BIN and BIN01 Delimiter
+		st.nextToken();
+		tks.add(new Token(getControlCharacters()[st.ttype], Character.toString((char)st.ttype)));
+		
+		// BIN01
+		st.nextToken();
+		tks.add(new Token(TokenType.WORD, st.sval));
+		int binLength = Integer.parseUnsignedInt(st.sval);
+		
+		// BIN01 and BIN02 Delimiter
+		st.nextToken();
+		tks.add(new Token(getControlCharacters()[st.ttype], Character.toString((char)st.ttype)));
+		
+		// BIN02
+		st.resetSyntax();
+		st.wordChars(0, 255);
+		TokenType[] cc = getControlCharacters();
+		for(int i = 0; i < cc.length; i++) {
+			if(cc[i] == TokenType.TERMINATOR)
+				st.ordinaryChar((char)i);
+		}	
+		
+		st.nextToken();
+		if(st.sval.getBytes().length != binLength)
+			throw new EDILexerException(String.format("BIN01 [%d] doesn't equal BIN02 length [%d]", binLength, st.sval.getBytes().length));
+		tks.add(new Token(TokenType.WORD, st.sval));
+		
+		initSyntax(st);
 	}
 
 }

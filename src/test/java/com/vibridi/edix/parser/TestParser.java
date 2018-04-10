@@ -10,7 +10,6 @@ import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.model.EDIMessage;
-import com.vibridi.edix.model.EDINode;
 import com.vibridi.edix.path.EDIPath;
 
 public class TestParser {
@@ -84,15 +83,28 @@ public class TestParser {
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
 		
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1.1")), "11"); // TODO add edipath support for repetition fields
+		assertEquals(m.getTextAt(EDIPath.of("BGN.1[1]")), "11");
+		assertEquals(m.getTextAt(EDIPath.of("BGN.1[2]")), "12");
+		assertEquals(m.getTextAt(EDIPath.of("BGN.1[3]")), "13");
 		
-		EDINode dmg5 = m.getNodeAt(EDIPath.of("DMG.5"));
-		assertNotNull(dmg5);
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].1")), "");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].2")), "RET");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].3")), "R5");
 		
-		// DMG~D8~19880208~F~~<RET<R5^<RET<E1.01~~~~~$
-		assertEquals(m.getTextAt(EDIPath.of("DMG.5.1")), "");
-		assertEquals(m.getTextAt(EDIPath.of("DMG.5.2")), "RET");
-		assertEquals(m.getTextAt(EDIPath.of("DMG.5.3")), "R5");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].1")), "");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].2")), "RET");
+		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].3")), "E1.01");
 	}
 	
+	@Test
+	public void parseBIN() throws Exception {
+		EDILexer lx = TestResources.getLexer("test-interchange-bin.edi");
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIMessage m = parser.parse(lx);
+		assertNotNull(m);
+		
+		String bin02 = TestResources.getAsString("test-interchange-bin-BIN02-content.txt");
+		assertEquals(m.getTextAt(EDIPath.of("BIN.1")), "6390");
+		assertEquals(m.getTextAt(EDIPath.of("BIN.2")), bin02);
+	}
 }

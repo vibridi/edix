@@ -84,7 +84,9 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 		Objects.requireNonNull(n);
 		
 		for(int i = 0; i < path.fields(); i++) {
-			n = n.getChild(path.field(i) - 1);
+			n = n.getChild(path.field(i));
+			if(path.repetitionAccessor(i) >= 0)
+				n = ((EDICompositeNode) n).getChild(path.repetitionAccessor(i));
 		}
 		
 		return n;

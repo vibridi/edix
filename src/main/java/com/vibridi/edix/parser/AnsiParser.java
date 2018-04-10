@@ -86,6 +86,7 @@ public class AnsiParser extends EDIParser {
 				break;
 				
 			case REPETITION_SEPARATOR:
+				seg.setRepeated(true);
 				seg.setRepetitionSeparator(t.value);
 				int rep = MiscUtils.coalesce(n -> n != -1,
 						tokens.nextIndexOf(t.type),

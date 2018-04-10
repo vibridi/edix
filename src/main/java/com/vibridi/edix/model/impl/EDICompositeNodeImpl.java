@@ -11,37 +11,28 @@ import com.vibridi.edix.model.EDINode;
 public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompositeNode {
 
 	private List<EDINode> children;
-	private List<EDINode> repetitions;
 	private String delimiter;
 	private String repetitionSeparator;
+	private boolean repeated;
 	
 	protected EDICompositeNodeImpl(EDINode parent) {
 		super(parent, "");
 		setName("");
 		children = new ArrayList<>();
-		repetitions = new ArrayList<>();
 		delimiter = "";
 		repetitionSeparator = "";
+		repeated = false;
 	}
 	
 	@Override
 	public String toString() {	
-		StringJoiner sj = new StringJoiner(delimiter, "", "");
+		StringJoiner sj = new StringJoiner(isRepeated() ? repetitionSeparator : delimiter, "", "");
 		
 		if(!getName().isEmpty())
 			sj.add(getName());
-		
+
 		for(EDINode n : getChildren())
 			sj.add(n.toString());
-		
-		if(isRepeated()) {
-			String r = sj.toString();
-			sj = new StringJoiner(repetitionSeparator, "", "");
-			sj.add(r);
-			for(EDINode n : repetitions)
-				sj.add(n.toString());
-			return sj.toString();
-		}
 		
 		return sj.toString();
 	}
@@ -116,17 +107,38 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 		Objects.requireNonNull(repetitionSeparator);
 		this.repetitionSeparator = repetitionSeparator;
 	}
+	
+	@Override
+	public void setRepeated(boolean repeated) {
+		if(!isRepeated())
+			mergeChildren();
+		this.repeated = repeated;
+	}
 
 	@Override
 	public boolean isRepeated() {
-		return repetitions.size() > 0;
+		return repeated;
 	}
 
 	@Override
 	public void appendRepetition(EDINode repetition) {
 		if(repetitionSeparator.isEmpty())
 			throw new IllegalStateException("Adding a repetition but repetition separator is unspecified.");
-		repetitions.add(repetition);
+		children.add(repetition);
+	}
+	
+	private void mergeChildren() {
+		if(children.size() <= 1)
+			return;
+		
+		EDICompositeNode merged = EDIMessageFactory.newCompositeNode(this);
+		merged.setDelimiter(this.delimiter);
+		for(EDINode n : children) {
+			merged.getChildren().add(n);
+		}
+		
+		children.clear();
+		children.add(merged);
 	}
 	
 }

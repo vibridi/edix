@@ -75,4 +75,16 @@ public class TestLexer {
 		assertTrue(ts.hasNext());
 	}
 	
+	@Test
+	public void tokenizeWithBINSegment() throws Exception {
+		InputStream in = TestResources.getAsStream("test-interchange-bin.edi");
+		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
+		assertNotNull(lexer);
+		
+		lexer.setSource(new PushbackReader(new InputStreamReader(in), 256));
+		TokenStream ts = lexer.tokenize();
+		assertNotNull(ts);
+		assertTrue(ts.hasNext());
+	}
+	
 }

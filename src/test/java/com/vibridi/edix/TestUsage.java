@@ -1,21 +1,15 @@
-package edix;
+package com.vibridi.edix;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import com.vibridi.edix.EDIFactory;
 import com.vibridi.edix.EDIFactory.EDIFormat;
-import com.vibridi.edix.EDIReader;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.writer.EDIWriter;
 
-public class Temp {
-
-	
-	
-	
+public class TestUsage {
 	public void tryout() throws EDISyntaxException, IOException {
 		
 		// ALTERNATIVE
@@ -37,7 +31,7 @@ public class Temp {
 		EDIMessage msg = r.read();
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		EDIWriter w = EDIFactory.newWriter(EDIFormat.PLAIN_TEXT, message);
+		EDIWriter w = EDIFactory.newWriter(EDIFormat.PLAIN_TEXT, msg);
 //				.setThis()
 //				.setThat();
 		
@@ -46,13 +40,9 @@ public class Temp {
 		// EDIXMLWriter
 			
 		
-		w.write(new OutputStreamWriter(out));
+	//	w.write(new OutputStreamWriter(out));
 		//w.write(edistring, target);
 		
 		
 	}
-	
-	
-	
-	
 }
