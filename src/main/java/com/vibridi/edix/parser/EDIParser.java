@@ -27,10 +27,6 @@ public abstract class EDIParser {
 	public abstract EDIMessage parse(EDILexer lexer) throws EDISyntaxException, IOException;
 	public abstract Set<EDIValidationRule> initValidationRules();
 	
-	public void setStrict(boolean strict) {
-		this.strict = strict;
-	}
-	
 	public void registerValidationRule(EDIValidationRule rule) {
 		validationRules.add(rule);
 	}

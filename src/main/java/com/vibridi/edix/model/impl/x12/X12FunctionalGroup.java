@@ -6,20 +6,19 @@ import java.util.Map;
 
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.model.EDICompositeNode;
-import com.vibridi.edix.model.EDINode;
 
 public class X12FunctionalGroup {
 
 	private Map<String,X12TransactionSet> sets;
 	private EDICompositeNode gs, ge;
 	
-	public X12FunctionalGroup(List<EDINode> segments) throws EDISyntaxException {
+	public X12FunctionalGroup(List<EDICompositeNode> segments) throws EDISyntaxException {
 		this.sets = new LinkedHashMap<>();
-		this.gs = (EDICompositeNode) segments.get(0); // TODO check class cast?
+		this.gs = segments.get(0);
 		if(!"GS".equals(gs.getName()))
 			throw new EDISyntaxException("Functional group first segment isn't GS");
 		
-		this.ge = (EDICompositeNode) segments.get(segments.size() - 1);
+		this.ge = segments.get(segments.size() - 1);
 		if(!"GE".equals(ge.getName()))
 			throw new EDISyntaxException("Functional group last segment isn't GE");
 		
@@ -41,11 +40,16 @@ public class X12FunctionalGroup {
 					throw new EDISyntaxException("Functional group contains duplicated transaction sets.");
 				
 				sets.put(ts.getControlNumber(), ts);
+				i = j;
 			}
 		}
 		
 		if(Integer.parseInt(ge.getChild(0).getTextContent()) != sets.size())
 			throw new EDISyntaxException("GE01 doesn't match number of transaction sets.");
+	}
+	
+	public int size() {
+		return sets.size();
 	}
 
 	public String getGroupHeaderCode() {

@@ -4,13 +4,18 @@ import java.util.List;
 
 import com.vibridi.edix.model.EDINode;
 
-public class EDISimpleTextNode extends EDINodeImpl implements EDINode {
+public class EDISimpleTextNode extends EDINodeImpl {
 
 	private String text;
 	
 	protected EDISimpleTextNode(EDINode parent, String text) {
 		super(parent);
 		this.text = text;
+	}
+	
+	public EDISimpleTextNode(EDISimpleTextNode that, EDINode parent) {
+		super(parent);
+		this.text = that.text;
 	}
 	
 	@Override
@@ -61,6 +66,11 @@ public class EDISimpleTextNode extends EDINodeImpl implements EDINode {
 	@Override
 	public boolean isRoot() {
 		return false;
+	}
+
+	@Override
+	public EDINode appendChild(EDINode newChild) {
+		throw new UnsupportedOperationException("Trying to append children to a leaf node.");
 	}
 
 }

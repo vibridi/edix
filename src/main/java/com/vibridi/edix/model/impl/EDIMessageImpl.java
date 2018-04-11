@@ -1,7 +1,9 @@
 package com.vibridi.edix.model.impl;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -13,27 +15,32 @@ import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.model.EDINode;
 import com.vibridi.edix.path.EDIPath;
 
-public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
+public class EDIMessageImpl implements EDIMessage {
 	
+	private EDIRootNode root;
 	private TokenType[] controlCharacters;
 	private Map<String,List<EDICompositeNode>> segments;
 	private EDIStandard standard;
 	
 	public EDIMessageImpl(EDIStandard standard) {
-		super(null);
-		this.segments = new LinkedHashMap<>();
+		this.root = new EDIRootNode(null);
+		this.segments = new HashMap<>();
 		this.standard = standard;
 	}
-
+	
 	@Override
-	public EDINodeType getNodeType() {
-		return EDINodeType.INTERCHANGE;
+	public String toString() {
+		return root.toString();
+	}
+	
+	@Override
+	public int size() {
+		return segments.size();
 	}
 	
 	@Override
 	public void addSegment(String name, EDICompositeNode node) {
-		checkOwnership(node, this);
-		getChildren().add(node);
+		root.appendChild(node);
 		
 		if(segments.containsKey(name)) {
 			segments.get(name).add(node);
@@ -94,11 +101,6 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 		
 		return n;
 	}
-	
-	@Override
-	public boolean isRoot() {
-		return true;
-	}
 
 	@Override
 	public void setStandard(EDIStandard standard) {
@@ -109,8 +111,15 @@ public class EDIMessageImpl extends EDICompositeNodeImpl implements EDIMessage {
 	public EDIStandard getStandard() {
 		return standard;
 	}
-	
-	public Map<String,List<EDICompositeNode>> getSegments() {
-		return segments;
+
+	@Override
+	public List<EDICompositeNode> getSegments() {
+		return root.getSegments();
 	}
+
+	@Override
+	public EDICompositeNode getRoot() {
+		return root;
+	}
+	
 }

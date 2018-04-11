@@ -58,7 +58,7 @@ public class AnsiLexer extends EDILexer {
 		if(c != d)
 			controlCharacters[t] = TokenType.TERMINATOR;
 		else
-			throw new EDISyntaxException(ErrorMessages.INVALID_SEGMENT_TERMINATOR.withArgs(""+c).toString());
+			throw new EDISyntaxException(ErrorMessages.INVALID_SEGMENT_TERMINATOR, c);
 
 		
 		c = buf[REPETITION_SEPARATOR_POS];

@@ -53,8 +53,8 @@ public class EDIPlainWriter extends EDIWriter {
 	public void write(OutputStream out, String characterSet) throws IOException {
 		OutputStreamWriter w = new OutputStreamWriter(out, characterSet);
 
-		for(int i = 0; i < message.getChildren().size(); i++) {
-			EDICompositeNode segment = (EDICompositeNode) message.getChild(i);
+		for(int i = 0; i < message.getRoot().getChildren().size(); i++) {
+			EDICompositeNode segment = (EDICompositeNode) message.getRoot().getChild(i);
 			w.write(segment.toString());
 			w.write(controls[7]);
 			if(prettyPrint)

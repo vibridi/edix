@@ -1,12 +1,10 @@
 package com.vibridi.edix.parser;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
-import java.util.Stack;
 
 import com.vibridi.edix.error.EDISyntaxException;
-import com.vibridi.edix.error.ErrorMessages;
 import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.lexer.Token;
 import com.vibridi.edix.lexer.TokenStream;
@@ -28,7 +26,7 @@ public class AnsiParser extends EDIParser {
 		EDIMessage message = EDIMessageFactory.newMessage(lexer.getStandard());
 		
 		while(tokens.hasNext()) {
-			EDICompositeNode seg = (EDICompositeNode) parse(message, nextSegment(tokens));
+			EDICompositeNode seg = (EDICompositeNode) parse(message.getRoot(), nextSegment(tokens));
 			message.addSegment(seg.getName(), seg);
 		}
 		
@@ -121,98 +119,7 @@ public class AnsiParser extends EDIParser {
 
 	@Override
 	public Set<EDIValidationRule> initValidationRules() {
-		Set<EDIValidationRule> set = new HashSet<>();
-		set.add(this::numberOfISAFields);
-		set.add(this::ansiX12Envelope);
-		return set;
+		return Collections.emptySet();
 	}
-	
-	private void numberOfISAFields(EDIMessage message) throws EDISyntaxException {
-		if(message.getSegment("ISA", 0).fields() != 16)
-			throw new EDISyntaxException(ErrorMessages.ISA_FIELDS_NUMBER);
-	}
-	
-	private void ansiX12Envelope(EDIMessage message) throws EDISyntaxException {
-		Stack<EDINode> stack = new Stack<>();
-		int functionalGroups = 0;
-		int transactionSets = 0;
-		int documentSegments = 0;
-		
-		for(EDINode n : message.getChildren()) {
-			switch(n.getName()) {
-			case "ISA":
-				stack.push(n);
-				break;
-			case "GS":
-				functionalGroups++;
-				stack.push(n);
-				break;
-			case "ST":
-				transactionSets++;
-				stack.push(n);
-				break;
-				
-			case "SE":
-				EDINode st = stack.pop();
-				if(!st.getName().equals("ST"))
-					throw new EDISyntaxException("No ST segment matching SE.");
-				
-				//SE01 must match number of document segments
-				int expectedDocSegs = Integer.parseInt(n.getChild(0).getTextContent());
-				if(expectedDocSegs != documentSegments)
-					throw new EDISyntaxException(ErrorMessages.TRANSACTION_SETS, expectedDocSegs, documentSegments);
-				documentSegments = 0;
-				
-				//SE02 must match ST02
-				if(!n.getChild(1).getTextContent().equals(st.getChild(1).getTextContent()))
-					throw new EDISyntaxException(ErrorMessages.TRANSACTION_CONTROL_NUMBER);
-				
-				break;
-				
-			case "GE":
-				EDINode gs = stack.pop();
-				
-				// GE must match GS
-				if(!gs.getName().equals("GS"))
-					throw new EDISyntaxException("No GS segment matching GE.");
-				
-				//GE01 must match number of transaction sets
-				int expectedSets = Integer.parseInt(n.getChild(0).getTextContent());
-				if(expectedSets != transactionSets)
-					throw new EDISyntaxException(ErrorMessages.TRANSACTION_SETS, expectedSets, transactionSets);
-				transactionSets = 0;
-				
-				//GE02 must match GS06
-				if(!n.getChild(1).getTextContent().equals(gs.getChild(5).getTextContent()))
-					throw new EDISyntaxException(ErrorMessages.GROUP_CONTROL_NUMBER);
-				
-				break;
-				
-			case "IEA":
-				EDINode isa = stack.pop();
-				
-				// IEA must match ISA
-				if(!isa.getName().equals("ISA"))
-					throw new EDISyntaxException("No ISA segment matching IEA.");
-				
-				// IEA01 must match number of functional groups
-				int expectedGS = Integer.parseInt(n.getChild(0).getTextContent());
-				if(expectedGS != functionalGroups)
-					throw new EDISyntaxException(ErrorMessages.FUNCTIONAL_GROUPS, expectedGS, functionalGroups);
-				
-				// IEA02 must match ISA13.
-				if(!n.getChild(1).getTextContent().equals(isa.getChild(12).getTextContent()))
-					throw new EDISyntaxException(ErrorMessages.INTERCHANGE_CONTROL_NUMBER);
-				break;
-				
-			default:
-				documentSegments++;	
-			}
-		}
-		
-		if(!stack.isEmpty())
-			throw new EDISyntaxException("Unexpected segments in interchange");
-	}
-	
 	
 }

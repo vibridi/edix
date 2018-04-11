@@ -41,7 +41,7 @@ public abstract class EDIWriter {
 	}
 	
 	protected void walk(NodeWalker delegate) throws IOException {
-		walk(delegate, message);
+		walk(delegate, message.getRoot());
 	}
 	
 	private void walk(NodeWalker delegate, EDICompositeNode node) throws IOException {

@@ -1,6 +1,8 @@
 package com.vibridi.edix.model.impl;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -22,6 +24,16 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 		delimiter = "";
 		repetitionSeparator = "";
 		repeated = false;
+	}
+	
+	public EDICompositeNodeImpl(EDICompositeNodeImpl that, EDINode parent) {
+		super(parent, that.getTextContent());
+		this.setName(that.getName());
+		this.children = new ArrayList<>();
+		Collections.copy(this.children, that.children);
+		this.delimiter = that.delimiter;
+		this.repetitionSeparator = that.repetitionSeparator;
+		this.repeated = that.repeated;
 	}
 	
 	@Override
@@ -71,10 +83,19 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 
 	@Override
 	public EDINode appendChild(EDINode newChild) {
-		if(newChild.getParent() == null || newChild.getParent() != this)
-			throw new IllegalArgumentException(); // TODO make own exception
+		checkOwnership(newChild, this);
 		children.add(newChild);
 		return newChild;
+	}
+	
+	@Override
+	public void importChild(EDINode n) {
+		try {
+			EDINode copy = n.getClass().getConstructor(n.getClass(), EDINode.class).newInstance(n, this);
+			appendChild(copy);
+		} catch (Exception e) {
+			throw new IllegalStateException("No copy constructor for class " + n.getClass());
+		}
 	}
 
 	@Override
@@ -134,11 +155,10 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 		EDICompositeNode merged = EDIMessageFactory.newCompositeNode(this);
 		merged.setDelimiter(this.delimiter);
 		for(EDINode n : children) {
-			merged.getChildren().add(n);
+			merged.importChild(n);
 		}
 		
 		children.clear();
 		children.add(merged);
 	}
-	
 }

@@ -7,9 +7,14 @@ public abstract class EDINodeImpl implements EDINode {
 	private EDINode parent;
 	private String name;
 	
-	public EDINodeImpl(EDINode parent) {
+	protected EDINodeImpl(EDINode parent) {
 		this.parent = parent;
 		this.name = "";
+	}
+	
+	public EDINodeImpl(EDINodeImpl that, EDINode parent) {
+		this.parent = parent;
+		this.name = that.name;
 	}
 	
 	protected void checkOwnership(EDINode node, EDINode parent) {

@@ -22,9 +22,9 @@ public interface EDINode {
 	public EDINode getParent();
 	public boolean isRoot();
 	
-	public List<EDINode> getChildren();
+	public EDINode appendChild(EDINode newChild);
+	public List<? extends EDINode> getChildren();
 	public EDINode getChild(int index);
 	public EDINode getFirstChild();
 	public EDINode getLastChild();
-
 }

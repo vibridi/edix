@@ -34,8 +34,8 @@ public class EDISyntaxException extends Exception {
         super(desc);
     }
     
-    public EDISyntaxException(ErrorMessages em, Object... args) {
-    	super(em.withArgs(args).toString());
+    public EDISyntaxException(String msg, Object... args) {
+    	super(String.format(msg, args));
     }
 
     public EDISyntaxException(String desc, String seg) {

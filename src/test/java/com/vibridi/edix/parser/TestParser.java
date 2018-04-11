@@ -69,14 +69,6 @@ public class TestParser {
 	}
 	
 	@Test
-	public void validateX12() throws Exception {
-		EDILexer lx = TestResources.getLexer("test-interchange-multi.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
-		EDIMessage m = parser.parse(lx);
-		parser.validate(m);
-	}
-	
-	@Test
 	public void parseRepetitions() throws Exception {
 		EDILexer lx = TestResources.getLexer("test-interchange-rep.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
