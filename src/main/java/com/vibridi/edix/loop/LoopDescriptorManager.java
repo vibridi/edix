@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vibridi.edix.EDIStandard;
-import com.vibridi.edix.loop.LoopDescriptor.Loop;
 
 public enum LoopDescriptorManager {
 	instance;
@@ -52,7 +51,7 @@ public enum LoopDescriptorManager {
 			JsonNode array = jsonLoops.get(name);
 			
 			for(int i = 0; i < array.size(); i++) {	
-				ld.addLoop(name, new Loop(
+				ld.addLoop(name, new LoopData(
 						array.get(i).get("name").asText(), 
 						array.get(i).get("nestingLevel").asInt(), 
 						array.get(i).get("context").asText()));

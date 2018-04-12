@@ -19,6 +19,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 import com.vibridi.edix.lexer.EDILexer;
+import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.model.impl.x12.X12Interchange;
+import com.vibridi.edix.parser.EDIParser;
 
 public class TestResources {
 	
@@ -54,6 +57,13 @@ public class TestResources {
 		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
 		assertNotNull(lexer);
 		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256));
+	}
+	
+	public static X12Interchange getX12Interchange(String fileName) throws Exception {
+		EDILexer lx = TestResources.getLexer(fileName);
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIMessage m = parser.parse(lx);		
+		return new X12Interchange(m);
 	}
 
 }

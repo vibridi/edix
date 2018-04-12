@@ -6,9 +6,14 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import com.vibridi.edix.EDIRegistry;
 import com.vibridi.edix.EDIStandard;
+import com.vibridi.edix.TestResources;
+import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.loop.LoopDescriptor;
 import com.vibridi.edix.loop.LoopDescriptorManager;
+import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.model.impl.x12.X12Interchange;
 
 public class TestLoop {
 
@@ -32,5 +37,13 @@ public class TestLoop {
 		assertEquals(ld.get("L1", 0).context, "*");
 	}
 	
+	
+	@Test
+	public void testX12_110() throws Exception {
+		X12Interchange x12 = TestResources.getX12Interchange("x12-110.edi");
+		
+		System.out.println(x12.toString());
+		
+	}
 	
 }
