@@ -1,36 +1,41 @@
 {
 	"transactionSet": "824",
 	"description": "Application Advice",
-	"loops": {
-		"N1": [{
-				"name": "N1",
-				"nestingLevel": 1,
-				"context": "*"
+	"versions": {
+		"all": {
+
+			"loops": {
+				"N1": [{
+						"name": "N1",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"OTI": [{
+						"name": "OTI",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"TED": [{
+						"name": "TED",
+						"nestingLevel": 2,
+						"context": "*"
+					}
+				],
+				"LM": [{
+						"name": "LM",
+						"nestingLevel": 2,
+						"context": "*"
+					}
+				],
+				"LQ": [{
+						"name": "LQ",
+						"nestingLevel": 3,
+						"context": "*"
+					}
+				]
 			}
-		],
-		"OTI": [{
-				"name": "OTI",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"TED": [{
-				"name": "TED",
-				"nestingLevel": 2,
-				"context": "*"
-			}
-		],
-		"LM": [{
-				"name": "LM",
-				"nestingLevel": 2,
-				"context": "*"
-			}
-		],
-		"LQ": [{
-				"name": "LQ",
-				"nestingLevel": 3,
-				"context": "*"
-			}
-		]
+		}
 	}
 }

@@ -19,6 +19,7 @@ public class X12TransactionSet {
 	private EDICompositeNode st, se;
 	private String idCode;
 	private String controlNumber;
+	private String description;
 	private List<EDICompositeNode> segments;
 	private EDILoopNode root;
 
@@ -46,6 +47,7 @@ public class X12TransactionSet {
 		this.segments = segments.subList(1, segments.size() - 1);
 		
 		LoopMatcher ld = getLoopMatcher();
+		this.description = ld.getDescription();
 		
 		EDILoop currentLoop = root;
 		for(EDICompositeNode seg : this.segments) {
@@ -89,6 +91,10 @@ public class X12TransactionSet {
 
 	public String getControlNumber() {
 		return controlNumber;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 	
 	public EDILoopNode getMainLoop() {

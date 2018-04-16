@@ -8,6 +8,7 @@ import java.io.PushbackReader;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.writer.EDIPlainWriter;
 import com.vibridi.edix.writer.EDIWriter;
+import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class EDIFactory {
 	
@@ -47,7 +48,7 @@ public class EDIFactory {
 			return new EDIPlainWriter(message);
 			
 		case XML:
-			return null; // new EDIXMLWriter(message);
+			return new EDIXMLWriter(message);
 			
 		default:
 			throw new IllegalStateException("Unsupported EDI format: " + sourceFormat);	
