@@ -17,7 +17,7 @@ public class TestParser {
 	@Test
 	public void createAndUseParser() throws Exception {
 		// GS~AG~04000~58401~040714~1003~38327~X~002040CHRY$;
-		EDILexer lx = TestResources.getLexer("test-interchange-regular.edi");		
+		EDILexer lx = TestResources.getAsLexer("test-interchange-regular.edi");		
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		assertNotNull(parser);
 		
@@ -30,7 +30,7 @@ public class TestParser {
 	@Test
 	public void parseSubFields() throws Exception {
 		// GS~AG<sub1<sub2~04000~58401~040714~1003~38327~X~002040CHRY$;
-		EDILexer lx = TestResources.getLexer("test-interchange-sub.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-sub.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
@@ -44,7 +44,7 @@ public class TestParser {
 	public void parseSubFieldsFirstEmpty() throws Exception {
 		// GS~<AG<sub1<sub2~04000~58401~040714~1003~38327~X~002040CHRY$
 		//    ^ empty first sub-field
-		EDILexer lx = TestResources.getLexer("test-interchange-sub-first-empty.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-sub-first-empty.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
@@ -57,7 +57,7 @@ public class TestParser {
 	
 	@Test
 	public void parseMultipleSegments() throws Exception {
-		EDILexer lx = TestResources.getLexer("test-interchange-multi.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-multi.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
@@ -70,7 +70,7 @@ public class TestParser {
 	
 	@Test
 	public void parseRepetitions() throws Exception {
-		EDILexer lx = TestResources.getLexer("test-interchange-rep.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-rep.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
@@ -90,7 +90,7 @@ public class TestParser {
 	
 	@Test
 	public void parseBIN() throws Exception {
-		EDILexer lx = TestResources.getLexer("test-interchange-bin.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-bin.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);

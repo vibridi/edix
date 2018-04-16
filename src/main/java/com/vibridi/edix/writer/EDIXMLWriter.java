@@ -108,26 +108,23 @@ public class EDIXMLWriter extends EDIWriter {
 		EDICompositeNode seg = loop.getSegment();
 		
 		if(loop.isLeaf()) {	
-			writeNode(writer, seg);
+			writeSegment(writer, seg);
 			return;
 		}
 		
-		writer.writeStartElement("Loop");
-		writer.writeAttribute("id", loop.getName());
-		
 		if(loop.isRoot()) {
-			// do nothing
+			for(int i = 0; i < loop.getChildren().size(); i++) {
+				writeLoop(writer, loop.getChildren().get(i));
+			}
 		} else {
-			writer.writeStartElement("Segment");
-			writer.writeAttribute("id", seg.getName());
-			writeNode(writer, seg);
-			writer.writeEndElement();	// Segment
+			writer.writeStartElement("Loop");
+			writer.writeAttribute("id", loop.getName());
+			writeSegment(writer, loop.getSegment());
+			for(int i = 0; i < loop.getChildren().size(); i++) {
+				writeLoop(writer, loop.getChildren().get(i));
+			}
+			writer.writeEndElement(); // end loop
 		}
-		
-		for(int i = 0; i < loop.getChildren().size(); i++) {
-			writeLoop(writer, loop.getChildren().get(i));
-		}
-		writer.writeEndElement(); // end loop
 	}
 	
 	private void writeNode(XMLStreamWriter writer, EDINode node) throws XMLStreamException {
@@ -138,11 +135,19 @@ public class EDIXMLWriter extends EDIWriter {
 
 		for(int i = 0; i < node.getChildren().size(); i++) {
 			writer.writeStartElement("Field");
-			writer.writeAttribute("id", String.format("%2d", i));
+			writer.writeAttribute("id", String.format("%02d", (i+1)));
 			writeNode(writer, node.getChild(i));
 			writer.writeEndElement(); // Field
 		}		
 	}
+	
+	private void writeSegment(XMLStreamWriter writer, EDICompositeNode segment) throws XMLStreamException {
+		writer.writeStartElement("Segment");
+		writer.writeAttribute("id", segment.getName());
+		writeNode(writer, segment);
+		writer.writeEndElement();	// Segment
+	}
+	
 	private void appendElement(XMLStreamWriter writer, String tag, String content) throws XMLStreamException {
 		writer.writeStartElement(tag);
 		writer.writeCharacters(content);

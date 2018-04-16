@@ -237,6 +237,6 @@ public class TestTokenStream {
 	
 	
 	private TokenStream getTokenStream() throws Exception {
-		return TestResources.getLexer().tokenize();
+		return TestResources.getAsLexer().tokenize();
 	}
 }

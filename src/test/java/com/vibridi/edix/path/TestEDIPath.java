@@ -95,7 +95,7 @@ public class TestEDIPath {
 	
 	@Test
 	public void ediPathUsage() throws Exception {
-		EDILexer lx = TestResources.getLexer("test-interchange-rep.edi");
+		EDILexer lx = TestResources.getAsLexer("test-interchange-rep.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		m = parser.parse(lx);
 		assertNotNull(m);

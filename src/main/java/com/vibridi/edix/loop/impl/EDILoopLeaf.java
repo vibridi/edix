@@ -25,4 +25,8 @@ public class EDILoopLeaf extends EDILoopNode {
 		throw new UnsupportedOperationException("Attempting to create a child loop on a loop leaf.");
 	}
 	
+	@Override
+	public boolean isLeaf() {
+		return true;
+	}
 }

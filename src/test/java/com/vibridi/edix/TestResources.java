@@ -48,22 +48,25 @@ public class TestResources {
 		return doc;
 	}
 	
-	public static EDILexer getLexer() throws Exception {
-		return getLexer("minimal-interchange.edi");
+	public static EDILexer getAsLexer() throws Exception {
+		return getAsLexer("minimal-interchange.edi");
 	}
 	
-	public static EDILexer getLexer(String fileName) throws Exception {
+	public static EDILexer getAsLexer(String fileName) throws Exception {
 		InputStream in = getAsStream(fileName);
 		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
 		assertNotNull(lexer);
 		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256));
 	}
 	
-	public static X12Interchange getX12Interchange(String fileName) throws Exception {
-		EDILexer lx = TestResources.getLexer(fileName);
+	public static EDIMessage getAsMessage(String fileName) throws Exception {
+		EDILexer lx = TestResources.getAsLexer(fileName);
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
-		EDIMessage m = parser.parse(lx);		
-		return new X12Interchange(m);
+		return parser.parse(lx);
+	}
+	
+	public static X12Interchange getAsX12Interchange(String fileName) throws Exception {
+		return new X12Interchange(getAsMessage(fileName));
 	}
 
 }

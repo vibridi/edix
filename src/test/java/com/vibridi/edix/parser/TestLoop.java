@@ -40,7 +40,7 @@ public class TestLoop {
 	// TODO test loops
 	@Test
 	public void testX12_110() throws Exception {
-		X12Interchange x12 = TestResources.getX12Interchange("x12-110.edi");
+		X12Interchange x12 = TestResources.getAsX12Interchange("x12-110.edi");
 		
 		X12TransactionSet ts = x12.getFunctionalGroupt(0).getTransactionSet(0);
 				

@@ -71,15 +71,16 @@ public class X12TransactionSet {
 				// Walk the tree up until the nesting level indicated by this descriptor
 				// We actually retrieve the parent of the wanted nesting level, so we can add a new segment to it.
 				currentLoop = currentLoop.getAncestor(test.data.level);
-				EDILoop nextLoop = currentLoop.newChild(test.data, seg);
 				
 				// If the descriptor's name is the special character '.' ... 
-				if(nextLoop.getName().equals(LoopDescriptor.CURRENT_LOOP)) {
+				if(test.data.name.equals(LoopDescriptor.CURRENT_LOOP)) {
 					// ...we stay in the current loop. 
 					// This means the descriptor was used to break out of the ongoing loop
+					currentLoop.addSegment(seg);
+					
 				} else {
 					// Otherwise we start a new loop.
-					currentLoop = nextLoop;
+					currentLoop = currentLoop.newChild(test.data, seg);
 				}
 			}
 		}

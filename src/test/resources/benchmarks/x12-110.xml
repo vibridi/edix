@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interchange standard="ANSI_X12">
+	<InterchangeControlHeader terminator=" " type="ISA">
+		<AuthorizationInformationQualifier>01</AuthorizationInformationQualifier>
+		<AuthorizationInformation>0000000000</AuthorizationInformation>
+		<SecurityInformationQualifier>01</SecurityInformationQualifier>
+		<SecurityInformation>0000000000</SecurityInformation>
+		<InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+		<SenderId>ABCDEFGHIJKLMNO</SenderId>
+		<InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+		<ReceiverId>123456789012345</ReceiverId>
+		<Date format="yyMMdd">101127</Date>
+		<Time format="HHmm">1719</Time>
+		<RepetitionSeparator>U</RepetitionSeparator>
+		<VersionNumber>00400</VersionNumber>
+		<ControlNumber>000000009</ControlNumber>
+		<AckRequested>0</AckRequested>
+		<TestIndicator>P</TestIndicator>
+		<SubDelimiter>&gt;</SubDelimiter>
+	</InterchangeControlHeader>
+	<FunctionalGroup agency="T" code="NL" controlNumber="1" version="004010">
+		<TransactionSet code="110" controlNumber="000000001" description="Air Freight Details and Invoice">
+			<Segment id="B3">
+				<Field id="01"/>
+				<Field id="02">88799686</Field>
+				<Field id="03">3070-C</Field>
+				<Field id="04">PP</Field>
+				<Field id="05">K</Field>
+				<Field id="06">20030530</Field>
+				<Field id="07">13753</Field>
+				<Field id="08"/>
+				<Field id="09">20030529</Field>
+				<Field id="10">003</Field>
+				<Field id="11">SIFF</Field>
+			</Segment>
+			<Segment id="B3A">
+				<Field id="01">SS</Field>
+				<Field id="02">1</Field>
+			</Segment>
+			<Loop id="N1">
+				<Segment id="N1">
+					<Field id="01">BT</Field>
+					<Field id="02">CUSTOMER NAME</Field>
+				</Segment>
+				<Segment id="N2">
+					<Field id="01">ATTN EXPORT DEPT</Field>
+				</Segment>
+				<Segment id="N3">
+					<Field id="01">1900 MAIN ST</Field>
+					<Field id="02">METRO PARK PARK</Field>
+				</Segment>
+				<Segment id="N4">
+					<Field id="01">ANYTOWN</Field>
+					<Field id="02">MA</Field>
+					<Field id="03">0100</Field>
+					<Field id="04">US</Field>
+				</Segment>
+				<Segment id="N9">
+					<Field id="01">IT</Field>
+					<Field id="02">123456</Field>
+				</Segment>
+			</Loop>
+			<Loop id="N1">
+				<Segment id="N1">
+					<Field id="01">SH</Field>
+					<Field id="02">CUSTOMER NAME</Field>
+				</Segment>
+				<Segment id="N2">
+					<Field id="01">ATTN EXPORT DEPT</Field>
+				</Segment>
+				<Segment id="N3">
+					<Field id="01">1900 MAIN ST</Field>
+					<Field id="02">METRO PARK PARK</Field>
+				</Segment>
+				<Segment id="N4">
+					<Field id="01">ANYTOWN</Field>
+					<Field id="02">MA</Field>
+					<Field id="03">0100</Field>
+					<Field id="04">US</Field>
+				</Segment>
+				<Segment id="N9">
+					<Field id="01">IT</Field>
+					<Field id="02">432694</Field>
+				</Segment>
+				<Segment id="N9">
+					<Field id="01">CR</Field>
+					<Field id="02">3070-C</Field>
+				</Segment>
+			</Loop>
+			<Loop id="N1">
+				<Segment id="N1">
+					<Field id="01">CN</Field>
+					<Field id="02">MEGAWATT TECHNOLOGIES INC</Field>
+				</Segment>
+				<Segment id="N3">
+					<Field id="01">44 3RD ST</Field>
+					<Field id="02">ELECTRONICS CITY RD</Field>
+				</Segment>
+				<Segment id="N4">
+					<Field id="01">OTHERTON 561999</Field>
+					<Field id="02">HG</Field>
+					<Field id="03"/>
+					<Field id="04">IN</Field>
+				</Segment>
+				<Segment id="N9">
+					<Field id="01">IT</Field>
+					<Field id="02">973902</Field>
+				</Segment>
+				<Segment id="N9">
+					<Field id="01">CR</Field>
+					<Field id="02">052103</Field>
+				</Segment>
+			</Loop>
+			<Loop id="LX">
+				<Segment id="LX">
+					<Field id="01">1</Field>
+				</Segment>
+				<Segment id="P1">
+					<Field id="01">SD</Field>
+					<Field id="02">20030521</Field>
+					<Field id="03">140</Field>
+					<Field id="04">1955</Field>
+				</Segment>
+				<Segment id="R1">
+					<Field id="01">SIFF</Field>
+					<Field id="02"/>
+					<Field id="03">BOS</Field>
+					<Field id="04">SFF</Field>
+					<Field id="05">BLR</Field>
+				</Segment>
+				<Segment id="POD">
+					<Field id="01">20030529</Field>
+					<Field id="02">1200</Field>
+					<Field id="03">CAPITAL</Field>
+				</Segment>
+				<Loop id="L5">
+					<Segment id="L5">
+						<Field id="01">1</Field>
+						<Field id="02">COMPUTER PARTS</Field>
+						<Field id="03"/>
+						<Field id="04"/>
+						<Field id="05">PCS</Field>
+					</Segment>
+					<Segment id="L0">
+						<Field id="01">1</Field>
+						<Field id="02">999</Field>
+						<Field id="03">FR</Field>
+						<Field id="04">99.5</Field>
+						<Field id="05">G</Field>
+						<Field id="06"/>
+						<Field id="07"/>
+						<Field id="08">1</Field>
+						<Field id="09">PCS</Field>
+						<Field id="10"/>
+						<Field id="11">K</Field>
+					</Segment>
+					<Segment id="L4">
+						<Field id="01">23</Field>
+						<Field id="02">23</Field>
+						<Field id="03">16</Field>
+						<Field id="04">N</Field>
+						<Field id="05">1</Field>
+					</Segment>
+					<Segment id="L10">
+						<Field id="01">13</Field>
+						<Field id="02">A</Field>
+						<Field id="03">K</Field>
+					</Segment>
+					<Segment id="L10">
+						<Field id="01">23.5</Field>
+						<Field id="02">A1</Field>
+						<Field id="03">K</Field>
+					</Segment>
+					<Segment id="L10">
+						<Field id="01">23.5</Field>
+						<Field id="02">B</Field>
+						<Field id="03">K</Field>
+					</Segment>
+					<Segment id="SL1">
+						<Field id="01">SE</Field>
+						<Field id="02">41002</Field>
+						<Field id="03">41002</Field>
+						<Field id="04"/>
+						<Field id="05"/>
+						<Field id="06">SE</Field>
+					</Segment>
+					<Loop id="L1">
+						<Segment id="L1">
+							<Field id="01">1</Field>
+							<Field id="02">114</Field>
+							<Field id="03">FR</Field>
+							<Field id="04">19900</Field>
+							<Field id="05"/>
+							<Field id="06"/>
+							<Field id="07"/>
+							<Field id="08">400</Field>
+							<Field id="09"/>
+							<Field id="10"/>
+							<Field id="11"/>
+							<Field id="12">FREIGHT CHARGE</Field>
+						</Segment>
+					</Loop>
+					<Loop id="L1">
+						<Segment id="L1">
+							<Field id="01">2</Field>
+							<Field id="02">114</Field>
+							<Field id="03">FR</Field>
+							<Field id="04">1000</Field>
+							<Field id="05"/>
+							<Field id="06"/>
+							<Field id="07"/>
+							<Field id="08">405</Field>
+							<Field id="09"/>
+							<Field id="10"/>
+							<Field id="11"/>
+							<Field id="12">FUEL SURCHARGE</Field>
+						</Segment>
+					</Loop>
+					<Loop id="L1">
+						<Segment id="L1">
+							<Field id="01">3</Field>
+							<Field id="02">114</Field>
+							<Field id="03">FR</Field>
+							<Field id="04">1000</Field>
+							<Field id="05"/>
+							<Field id="06"/>
+							<Field id="07"/>
+							<Field id="08">WAR</Field>
+							<Field id="09"/>
+							<Field id="10"/>
+							<Field id="11"/>
+							<Field id="12">SECURITY SURCHG</Field>
+						</Segment>
+					</Loop>
+					<Loop id="L1">
+						<Segment id="L1">
+							<Field id="01">4</Field>
+							<Field id="02">114</Field>
+							<Field id="03">FR</Field>
+							<Field id="04">1000</Field>
+							<Field id="05"/>
+							<Field id="06"/>
+							<Field id="07"/>
+							<Field id="08">999</Field>
+							<Field id="09"/>
+							<Field id="10"/>
+							<Field id="11"/>
+							<Field id="12">SED PREP OR TRANSMISSION</Field>
+						</Segment>
+					</Loop>
+				</Loop>
+			</Loop>
+			<Segment id="L3">
+				<Field id="01">99.5</Field>
+				<Field id="02">G</Field>
+				<Field id="03">114</Field>
+				<Field id="04">FR</Field>
+				<Field id="05">19900</Field>
+				<Field id="06"/>
+				<Field id="07"/>
+				<Field id="08"/>
+				<Field id="09">8464</Field>
+				<Field id="10">N</Field>
+				<Field id="11">1</Field>
+			</Segment>
+			<Segment id="NTE">
+				<Field id="01">GEN</Field>
+				<Field id="02">XN 08879968600102458</Field>
+			</Segment>
+		</TransactionSet>
+	</FunctionalGroup>
+</Interchange>
