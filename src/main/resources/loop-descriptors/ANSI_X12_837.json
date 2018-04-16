@@ -1,1 +1,118 @@
-{"transactionSet":"837","description":"Health Care Claim","loops":{"CLM":[{"name":"2300","nestingLevel":2,"context":"/2000/2300"},{"name":"2300","nestingLevel":2,"context":"/2000"}],"CR7":[{"name":"2305","nestingLevel":3,"context":"/2000/2300/2305"},{"name":"2305","nestingLevel":3,"context":"/2000/2300"}],"HL":[{"name":"2000","nestingLevel":1,"context":"*"}],"LQ":[{"name":"2440","nestingLevel":4,"context":"/2000/2300/2400/2440"},{"name":"2440","nestingLevel":4,"context":"/2000/2300/2400"}],"LX":[{"name":"2400","nestingLevel":3,"context":"/2000/2300/2400"},{"name":"2400","nestingLevel":3,"context":"/2000/2300"}],"NM1":[{"name":"2330","nestingLevel":4,"context":"/2000/2300/2320/2330"},{"name":"2420","nestingLevel":4,"context":"/2000/2300/2400/2420"},{"name":"2310","nestingLevel":3,"context":"/2000/2300/2310"},{"name":"2330","nestingLevel":4,"context":"/2000/2300/2320"},{"name":"2420","nestingLevel":4,"context":"/2000/2300/2400"},{"name":"2010","nestingLevel":2,"context":"/2000/2010"},{"name":"2310","nestingLevel":3,"context":"/2000/2300"},{"name":"2010","nestingLevel":2,"context":"/2000"},{"name":"1000","nestingLevel":1,"context":"*"}],"SBR":[{"name":"2320","nestingLevel":3,"context":"/2000/2300/2320"},{"name":"2320","nestingLevel":3,"context":"/2000/2300"},{"name":".","nestingLevel":1,"context":"/2000"}],"SVD":[{"name":"2430","nestingLevel":4,"context":"/2000/2300/2400/2430"},{"name":"2430","nestingLevel":4,"context":"/2000/2300/2400"}]}}
+{
+	"transactionSet": "837",
+	"description": "Health Care Claim",
+	"versions": {
+		"all": {
+			"loops": {
+				"CLM": [{
+						"name": "2300",
+						"nestingLevel": 2,
+						"context": "/2000/2300"
+					}, {
+						"name": "2300",
+						"nestingLevel": 2,
+						"context": "/2000"
+					}
+				],
+				"CR7": [{
+						"name": "2305",
+						"nestingLevel": 3,
+						"context": "/2000/2300/2305"
+					}, {
+						"name": "2305",
+						"nestingLevel": 3,
+						"context": "/2000/2300"
+					}
+				],
+				"HL": [{
+						"name": "2000",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"LQ": [{
+						"name": "2440",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400/2440"
+					}, {
+						"name": "2440",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400"
+					}
+				],
+				"LX": [{
+						"name": "2400",
+						"nestingLevel": 3,
+						"context": "/2000/2300/2400"
+					}, {
+						"name": "2400",
+						"nestingLevel": 3,
+						"context": "/2000/2300"
+					}
+				],
+				"NM1": [{
+						"name": "2330",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2320/2330"
+					}, {
+						"name": "2420",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400/2420"
+					}, {
+						"name": "2310",
+						"nestingLevel": 3,
+						"context": "/2000/2300/2310"
+					}, {
+						"name": "2330",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2320"
+					}, {
+						"name": "2420",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400"
+					}, {
+						"name": "2010",
+						"nestingLevel": 2,
+						"context": "/2000/2010"
+					}, {
+						"name": "2310",
+						"nestingLevel": 3,
+						"context": "/2000/2300"
+					}, {
+						"name": "2010",
+						"nestingLevel": 2,
+						"context": "/2000"
+					}, {
+						"name": "1000",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"SBR": [{
+						"name": "2320",
+						"nestingLevel": 3,
+						"context": "/2000/2300/2320"
+					}, {
+						"name": "2320",
+						"nestingLevel": 3,
+						"context": "/2000/2300"
+					}, {
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "/2000"
+					}
+				],
+				"SVD": [{
+						"name": "2430",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400/2430"
+					}, {
+						"name": "2430",
+						"nestingLevel": 4,
+						"context": "/2000/2300/2400"
+					}
+				]
+			}
+		}
+	}
+}

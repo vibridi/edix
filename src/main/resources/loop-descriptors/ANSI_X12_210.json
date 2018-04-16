@@ -1,1 +1,106 @@
-{"transactionSet":"210","description":"Motor Carrier Freight Details and Invoice","loops":{"B3":[{"name":".","nestingLevel":0,"context":"*"}],"C2":[{"name":".","nestingLevel":0,"context":"*"}],"C3":[{"name":".","nestingLevel":0,"context":"*"}],"G62":[{"name":null,"nestingLevel":1,"context":"/S5"},{"name":".","nestingLevel":0,"context":"*"}],"H1":[{"name":null,"nestingLevel":1,"context":"/LX"}],"H2":[{"name":null,"nestingLevel":1,"context":"/LX"}],"H3":[{"name":null,"nestingLevel":1,"context":"/S5"},{"name":".","nestingLevel":0,"context":"*"}],"ITD":[{"name":".","nestingLevel":0,"context":"*"}],"K1":[{"name":null,"nestingLevel":1,"context":"/LX"},{"name":".","nestingLevel":0,"context":"*"}],"L0":[{"name":null,"nestingLevel":1,"context":"/LX"}],"L1":[{"name":null,"nestingLevel":1,"context":"/LX"}],"L3":[{"name":".","nestingLevel":0,"context":"*"}],"L4":[{"name":null,"nestingLevel":1,"context":"/LX"}],"L5":[{"name":null,"nestingLevel":1,"context":"/LX"}],"L7":[{"name":null,"nestingLevel":1,"context":"/LX"}],"LX":[{"name":"LX","nestingLevel":1,"context":"*"}],"M7":[{"name":null,"nestingLevel":3,"context":"/S5/N1/N7"},{"name":null,"nestingLevel":1,"context":"/N7"}],"N1":[{"name":"N1","nestingLevel":2,"context":"/S5"},{"name":"N1","nestingLevel":1,"context":"*"}],"N2":[{"name":null,"nestingLevel":2,"context":"/S5/N1"},{"name":null,"nestingLevel":1,"context":"/N1"}],"N3":[{"name":null,"nestingLevel":2,"context":"/S5/N1"},{"name":null,"nestingLevel":1,"context":"/N1"}],"N4":[{"name":null,"nestingLevel":2,"context":"/S5/N1"},{"name":null,"nestingLevel":1,"context":"/N1"}],"N7":[{"name":"N7","nestingLevel":3,"context":"/S5/N1"},{"name":"N7","nestingLevel":1,"context":"*"}],"N9":[{"name":null,"nestingLevel":2,"context":"/S5/N1"},{"name":null,"nestingLevel":1,"context":"/N1"},{"name":".","nestingLevel":0,"context":"*"}],"R3":[{"name":".","nestingLevel":0,"context":"*"}],"S5":[{"name":"S5","nestingLevel":1,"context":"*"}],"SE":[{"name":".","nestingLevel":0,"context":"*"}],"ST":[{"name":".","nestingLevel":0,"context":"*"}]}}
+{
+	"transactionSet": "210",
+	"description": "Motor Carrier Freight Details and Invoice",
+		"versions": {
+			"all": {
+				"loops": {
+					"B3": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"C2": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"C3": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"G62": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*",
+							"except" : ["/S5"]
+						}
+					],
+					"H3": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*",
+							"except" : ["/S5"]
+						}
+					],
+					"ITD": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"K1": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*",
+							"except" : ["/LX"]
+						}
+					],
+					"L3": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"LX": [{
+							"name": "LX",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"N1": [{
+							"name": "N1",
+							"nestingLevel": 2,
+							"context": "/S5"
+						}, {
+							"name": "N1",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"N7": [{
+							"name": "N7",
+							"nestingLevel": 3,
+							"context": "/S5/N1"
+						}, {
+							"name": "N7",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"N9": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*",
+							"except" : ["/S5/N1", "/N1"]
+						}
+					],
+					"R3": [{
+							"name": ".",
+							"nestingLevel": 1,
+							"context": "*"
+						}
+					],
+					"S5": [{
+							"name": "S5",
+							"nestingLevel": 1,
+							"context": "*"
+					}
+				]
+			}
+		}
+	}
+}

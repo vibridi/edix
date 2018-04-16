@@ -1,5 +1,6 @@
 package com.vibridi.edix.model.impl.x12;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class X12Interchange {
 				if(j == segments.size())
 					throw new EDISyntaxException("GS segment not closed");
 				
-				X12FunctionalGroup g = new X12FunctionalGroup(segments.subList(i, j+1));
+				X12FunctionalGroup g = new X12FunctionalGroup(this, segments.subList(i, j+1));
 				
 				if(groups.containsKey(g.getGroupControlNumber()))
 					throw new EDISyntaxException("Interchange contains duplicated functional groups");
@@ -215,6 +216,10 @@ public class X12Interchange {
 	
 	public X12FunctionalGroup getFunctionalGroup(String gs06) {
 		return groups.get(gs06);
+	}
+	
+	public X12FunctionalGroup getFunctionalGroupt(int i) {
+		return new ArrayList<>(groups.values()).get(i);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.vibridi.edix.model.impl.x12;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +10,12 @@ import com.vibridi.edix.model.EDICompositeNode;
 
 public class X12FunctionalGroup {
 
+	private X12Interchange interchange;
 	private Map<String,X12TransactionSet> sets;
 	private EDICompositeNode gs, ge;
 	
-	public X12FunctionalGroup(List<EDICompositeNode> segments) throws EDISyntaxException {
+	public X12FunctionalGroup(X12Interchange interchange, List<EDICompositeNode> segments) throws EDISyntaxException {
+		this.interchange = interchange;
 		this.sets = new LinkedHashMap<>();
 		this.gs = segments.get(0);
 		if(!"GS".equals(gs.getName()))
@@ -34,7 +37,7 @@ public class X12FunctionalGroup {
 				if(j == segments.size())
 					throw new EDISyntaxException("ST segment not closed");
 				
-				X12TransactionSet ts = new X12TransactionSet(segments.subList(i, j+1));
+				X12TransactionSet ts = new X12TransactionSet(this, segments.subList(i, j+1));
 				
 				if(sets.containsKey(ts.getControlNumber()))
 					throw new EDISyntaxException("Functional group contains duplicated transaction sets.");
@@ -84,7 +87,15 @@ public class X12FunctionalGroup {
 		return gs.getChild(7).getTextContent();
 	}
 	
+	public X12Interchange getInterchange() {
+		return interchange;
+	}
+	
 	public X12TransactionSet getTransactionSet(String st02) {
 		return sets.get(st02);
+	}
+	
+	public X12TransactionSet getTransactionSet(int i) {
+		return new ArrayList<>(sets.values()).get(i);
 	}
 }

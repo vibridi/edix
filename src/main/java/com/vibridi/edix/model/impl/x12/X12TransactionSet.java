@@ -2,25 +2,30 @@ package com.vibridi.edix.model.impl.x12;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.loop.EDILoop;
-import com.vibridi.edix.loop.LoopData;
 import com.vibridi.edix.loop.LoopDescriptor;
 import com.vibridi.edix.loop.LoopDescriptorManager;
+import com.vibridi.edix.loop.LoopMatcher;
+import com.vibridi.edix.loop.LoopMatcher.LoopMatch;
+import com.vibridi.edix.loop.impl.EDILoopNode;
 import com.vibridi.edix.model.EDICompositeNode;
 
 public class X12TransactionSet {
 	
+	private X12FunctionalGroup group;
 	private EDICompositeNode st, se;
 	private String idCode;
 	private String controlNumber;
 	private List<EDICompositeNode> segments;
-	private EDILoop root;
+	private EDILoopNode root;
 
-	public X12TransactionSet(List<EDICompositeNode> segments) throws EDISyntaxException {		
+	public X12TransactionSet(X12FunctionalGroup group, List<EDICompositeNode> segments) throws EDISyntaxException {
+		this.group = group;
+		this.root = new EDILoopNode(null, null);
+		
 		this.st = segments.get(0);
 		if(!"ST".equals(st.getName()))
 			throw new EDISyntaxException("Transaction set first segment isn't ST");
@@ -40,38 +45,40 @@ public class X12TransactionSet {
 		
 		this.segments = segments.subList(1, segments.size() - 1);
 		
-		LoopDescriptor ld = getLoopDescriptor();
-		
-		root = new EDILoop(LoopData.NO_DATA, null);
+		LoopMatcher ld = getLoopMatcher();
 		
 		EDILoop currentLoop = root;
 		for(EDICompositeNode seg : this.segments) {
-						
-			Optional<EDILoop> opt = ld.getMatchFor(seg, currentLoop);
-			if(!opt.isPresent()) {
-				currentLoop.addLoop(new EDILoop(LoopData.NO_DATA, seg, currentLoop));
+			
+			LoopMatch test = ld.findMatch(seg, currentLoop.toString());
+			
+			if(!test.matches) {
+				currentLoop.addSegment(seg);
 				continue;
 			}
 			
-			EDILoop lp = opt.get();
-			
-			// Null action. This occurs when the segment has an otherwise applicable loop descriptor
-			// but isn't supposed to start a new loop in this specific context.
-			if(lp.getName() == null)
-				continue;
-			
 			// Finally we check the nesting level.
 			// Case 1: this loop descriptor has a greater nesting level than the current loop
-			// 		Then: start a new loop
+			// 		Then: start a new loop under this one.
 			// Case 2: this loop descriptor has a same or smaller nesting level than the current loop
-			// 		Then: close the current loop and start a new one
-			if(lp.getNestingLevel() > currentLoop.nestingLevel()) {
-				currentLoop.addLoop(lp);
-				currentLoop = lp;
+			// 		Then: close the current loop and return to the appropriate tree node
+			if(test.data.level > currentLoop.nestingLevel()) {
+				currentLoop = currentLoop.newChild(test.data, seg);
 				
 			} else {
-				currentLoop = currentLoop.getParent();
-				currentLoop.addLoop(lp);
+				// Walk the tree up until the nesting level indicated by this descriptor
+				// We actually retrieve the parent of the wanted nesting level, so we can add a new segment to it.
+				currentLoop = currentLoop.getAncestor(test.data.level);
+				EDILoop nextLoop = currentLoop.newChild(test.data, seg);
+				
+				// If the descriptor's name is the special character '.' ... 
+				if(nextLoop.getName().equals(LoopDescriptor.CURRENT_LOOP)) {
+					// ...we stay in the current loop. 
+					// This means the descriptor was used to break out of the ongoing loop
+				} else {
+					// Otherwise we start a new loop.
+					currentLoop = nextLoop;
+				}
 			}
 		}
 	}
@@ -84,13 +91,18 @@ public class X12TransactionSet {
 		return controlNumber;
 	}
 	
-	public EDILoop getRootLoop() {
+	public EDILoopNode getMainLoop() {
 		return root;
 	}
 	
-	private LoopDescriptor getLoopDescriptor() {
+	public X12FunctionalGroup getFunctionalGroup() {
+		return group;
+	}
+	
+	private LoopMatcher getLoopMatcher() {
 		try {
-			return LoopDescriptorManager.instance.forName(EDIStandard.ANSI_X12, idCode);
+			return LoopDescriptorManager.instance
+					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

@@ -1,50 +1,44 @@
 {
 	"transactionSet": "110",
 	"description": "Air Freight Details and Invoice",
-	"loops": {
-		"N1": [{
-				"name": "N1",
-				"nestingLevel": 1,
-				"context": "/"
-			}, {
-				"name": "*",
-				"nestingLevel": 1,
-				"context": "N1"
-			}, {
-				"name": "N1",
-				"nestingLevel": 2,
-				"context": "LX"
+	"versions": {
+		"all": {
+			"loops": {
+				"N1": [{
+						"name": "N1",
+						"nestingLevel": 1,
+						"context": "*"
+					}, {
+						"name": "N1",
+						"nestingLevel": 2,
+						"context": "/LX"
+					}
+				],
+				"LX": [{
+						"name": "LX",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"L5": [{
+						"name": "L5",
+						"nestingLevel": 2,
+						"context": "*"
+					}
+				],
+				"L1": [{
+						"name": "L1",
+						"nestingLevel": 3,
+						"context": "*"
+					}
+				],
+				"L3": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				]
 			}
-		],
-		"LX": [{
-				"name": "LX",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"P1": [{
-				"name": "*",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"L5": [{
-				"name": "L5",
-				"nestingLevel": 2,
-				"context": "*"
-			}
-		],
-		"L1": [{
-				"name": "L1",
-				"nestingLevel": 3,
-				"context": "*"
-			}
-		],
-		"L3": [{
-				"name": "*",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		]
+		}
 	}
 }

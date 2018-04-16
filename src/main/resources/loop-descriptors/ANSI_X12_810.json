@@ -1,444 +1,249 @@
 {
 	"transactionSet": "810",
 	"description": "Invoice",
-	"loops": {
-		"AMT": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
+	"versions": {
+		"all": {
+			"loops": {
+				"AMT": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"BAL": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"BIG": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"CAD": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"CRC": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"CTT": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"CUR": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"DTM": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/V1", "/IT1/SLN", "/IT1/SAC/TXI"]
+					}
+				],
+				"FA1": [{
+						"name": "FA1",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": "FA1",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"FOB": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"INC": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"ISS": [{
+						"name": "ISS",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"IT1": [{
+						"name": "IT1",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"ITD": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"L7": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"LM": [{
+						"name": "LM",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": "LM",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"MEA": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1", "/IT1/PID"]
+					}
+				],
+				"N1": [{
+						"name": "N1",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": "N1",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"N9": [{
+						"name": "N9",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"NTE": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"PAM": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"PER": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/N1", "/IT1/N1"]
+					}
+				],
+				"PID": [{
+						"name": "PID",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/ISS"]
+					}
+				],
+				"PKG": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"PWK": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				],
+				"REF": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "/IT1"
+					}, {
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/N1", "/IT1/SLN"]
+					}
+				],
+				"SAC": [{
+						"name": "SAC",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": "SAC",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"SLN": [{
+						"name": "SLN",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}
+				],
+				"TDS": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"TXI": [{
+						"name": "TXI",
+						"nestingLevel": 3,
+						"context": "/IT1/SAC"
+					}, {
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1", "/IT1/SLN"]
+					}
+				],
+				"V1": [{
+						"name": "V1",
+						"nestingLevel": 2,
+						"context": "/IT1"
+					}, {
+						"name": "V1",
+						"nestingLevel": 1,
+						"context": "*"
+					}
+				],
+				"YNQ": [{
+						"name": ".",
+						"nestingLevel": 1,
+						"context": "*",
+						"except" : ["/IT1"]
+					}
+				]
 			}
-		],
-		"BAL": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"BIG": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"CAD": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"CRC": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"CTP": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"CTT": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"CUR": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"DMG": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/N1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}
-		],
-		"DTM": [{
-				"name": null,
-				"nestingLevel": 3,
-				"context": "/IT1/SAC/TXI"
-			}, {
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/SLN"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/V1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"FA1": [{
-				"name": "FA1",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": "FA1",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"FA2": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/FA1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/FA1"
-			}
-		],
-		"FOB": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"INC": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"ISS": [{
-				"name": "ISS",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"IT1": [{
-				"name": "IT1",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"IT3": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"ITD": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"L7": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"LM": [{
-				"name": "LM",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": "LM",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"LQ": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/LM"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/LM"
-			}
-		],
-		"MEA": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/PID"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"MSG": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N9"
-			}
-		],
-		"N1": [{
-				"name": "N1",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": "N1",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"N2": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/N1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}
-		],
-		"N3": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/N1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}
-		],
-		"N4": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/N1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}
-		],
-		"N9": [{
-				"name": "N9",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"NTE": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"PAM": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"PER": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/N1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"PID": [{
-				"name": "PID",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/ISS"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"PKG": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"PO4": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"PWK": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"QTY": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"R4": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/V1"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/V1"
-			}
-		],
-		"REF": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/SLN"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/N1"
-			}, {
-				"name": ".",
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"SAC": [{
-				"name": "SAC",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": "SAC",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"SDQ": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"SE": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"SLN": [{
-				"name": "SLN",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}
-		],
-		"SR": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}
-		],
-		"ST": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"TC2": [{
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/SLN"
-			}
-		],
-		"TDS": [{
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"TXI": [{
-				"name": "TXI",
-				"nestingLevel": 3,
-				"context": "/IT1/SAC"
-			}, {
-				"name": null,
-				"nestingLevel": 2,
-				"context": "/IT1/SLN"
-			}, {
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		],
-		"V1": [{
-				"name": "V1",
-				"nestingLevel": 2,
-				"context": "/IT1"
-			}, {
-				"name": "V1",
-				"nestingLevel": 1,
-				"context": "*"
-			}
-		],
-		"YNQ": [{
-				"name": null,
-				"nestingLevel": 1,
-				"context": "/IT1"
-			}, {
-				"name": ".",
-				"nestingLevel": 0,
-				"context": "*"
-			}
-		]
+		}
 	}
 }

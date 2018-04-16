@@ -1,63 +1,51 @@
 package com.vibridi.edix.loop;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.StringJoiner;
 
-import com.vibridi.edix.model.EDICompositeNode;
-
+/**
+ * Describes an EDI loop. 
+ * <ul>
+ * <li>name: loop name. Normally it matches the segment name. Admits the special character '.' to signal 
+ * the return to the parent loop. Practically, this means the loop descriptor is used to break an ongoing loop 
+ * instead of starting a new one.</li>
+ * <li>level: depth of nesting. 1 is the most shallow level.</li>
+ * <li>context: path of nested loops where we can expect to find this loop. Admits the wildcard '*' to signal the 
+ * start of a new loop at any path.</li>
+ * <li>except: list of exceptions to the wildcard context
+ * </ul>
+ * 
+ * @author gabriele.vaccari
+ *
+ */
 public class LoopDescriptor {
-
-	private final String transaction; 				// 110
-	private final String text; 						// "Air Freight Details and Invoice"
-	private final Map<String,List<LoopData>> loops;
 	
-	public LoopDescriptor(String transaction, String text) {
-		this.transaction = transaction;
-		this.text = text;
-		this.loops = new HashMap<>();
+	public static final String CURRENT_LOOP = ".";
+	public static final String ANY_CONTEXT = "*";
+	
+	public final String name;
+	public final int level;
+	public final String context;
+	public final Set<String> exceptions;
+	
+	public LoopDescriptor(String name, int level, String context) {
+		this(name, level, context, new HashSet<>());
 	}
 	
-	public String getTransaction() {
-		return transaction;
+	public LoopDescriptor(String name, int level, String context, Set<String> exceptions) {
+		this.name = name;
+		this.level = level;
+		this.context = context;
+		this.exceptions = exceptions;
 	}
 	
-	public String getDescription() {
-		return text;
+	@Override
+	public String toString() {
+		StringJoiner sj = new StringJoiner(", ", "[", "]");
+		sj.add(name);
+		sj.add(Integer.toString(level));
+		sj.add(context);
+		return sj.toString();
 	}
-	
-	public void addLoop(String name, LoopData loop) {
-		loops.computeIfAbsent(name, k -> new ArrayList<>()).add(loop);
-	}
-	
-	public Set<String> getNames() {
-		return loops.keySet();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public int sizeOf(String name) {
-		return loops.getOrDefault(name, Collections.EMPTY_LIST).size();
-	}
-	
-	public LoopData get(String name, int i) {
-		return loops.get(name).get(i);
-	}
-
-	public Optional<EDILoop> getMatchFor(EDICompositeNode seg, EDILoop currentLoop) {
-		List<LoopData> candidates = loops.get(seg.getName()); 
-		if(candidates == null)
-			return Optional.ofNullable(null);
-		
-		for(LoopData data : candidates) {
-			if(data.context.equals("*") || data.context.equals(currentLoop.toString()))
-				return Optional.of(new EDILoop(data, seg, currentLoop));
-		}
-		
-		return Optional.ofNullable(null);
-	}
-	
 }
