@@ -74,11 +74,8 @@ public class TestParser {
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
-		
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[1]")), "11");
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[2]")), "12");
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[3]")), "13");
-		
+	
+		// Composite repeated field
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].1")), "");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].2")), "RET");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].3")), "R5");
@@ -86,6 +83,10 @@ public class TestParser {
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].1")), "");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].2")), "RET");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[2].3")), "E1.01");
+		
+		// Simple repeated field
+		assertEquals(m.getTextAt(EDIPath.of("MSG[1].1[1]")), "test1");
+		assertEquals(m.getTextAt(EDIPath.of("MSG[1].1[2]")), "test-rep");
 	}
 	
 	@Test

@@ -55,36 +55,79 @@ public class X12FunctionalGroup {
 		return sets.size();
 	}
 
+	/**
+	 * 1-indexed access to GS fields
+	 * @param i 1-indexed accessor
+	 * @return Value of i-th GS field
+	 */
+	public String getGSField(int i) {
+		if(i <= 0 || i > 8)
+			throw new IllegalArgumentException(String.format("Invalid GS field.", i));
+		return gs.getChild(i - 1).getTextContent();
+	}
+	
+	/**
+	 * GS01
+	 * @return content of GS01
+	 */
 	public String getGroupHeaderCode() {
-		return gs.getChild(0).getTextContent();
+		return getGSField(1);
 	}
 	
-	public String getApplicationSendersCode() {
-		return gs.getChild(1).getTextContent();
+	/**
+	 * GS02
+	 * @return content of GS02
+	 */
+	public String getApplicationSenderCode() {
+		return getGSField(2);
 	}
 	
-	public String getApplicationReceiversCode() {
-		return gs.getChild(2).getTextContent();
+	/**
+	 * GS03
+	 * @return content of GS03
+	 */
+	public String getApplicationReceiverCode() {
+		return getGSField(3);
 	}
 	
+	/**
+	 * GS04
+	 * @return content of GS04
+	 */
 	public String getDate() {
-		return gs.getChild(3).getTextContent();
+		return getGSField(4);
 	}
 	
+	/**
+	 * GS05
+	 * @return content of GS05
+	 */
 	public String getTime() {
-		return gs.getChild(4).getTextContent();
+		return getGSField(5);
 	}
 	
+	/**
+	 * GS06
+	 * @return content of GS06
+	 */
 	public String getGroupControlNumber() {
-		return gs.getChild(5).getTextContent();
+		return getGSField(6);
 	}
 	
+	/**
+	 * GS07
+	 * @return content of GS07
+	 */
 	public String getResponsibleAgencyCode() {
-		return gs.getChild(6).getTextContent();
+		return getGSField(7);
 	}
 	
+	/**
+	 * GS08
+	 * @return content of GS08
+	 */
 	public String getVersionIdCode() {
-		return gs.getChild(7).getTextContent();
+		return getGSField(8);
 	}
 	
 	public X12Interchange getInterchange() {

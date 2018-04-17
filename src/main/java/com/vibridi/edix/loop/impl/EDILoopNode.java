@@ -41,7 +41,6 @@ public class EDILoopNode implements EDILoop {
 	@Override
 	public boolean isLeaf() {
 		return false;
-		// return children.size() == 0;
 	}
 	
 	@Override

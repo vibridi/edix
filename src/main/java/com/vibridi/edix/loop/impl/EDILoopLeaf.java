@@ -9,6 +9,12 @@ public class EDILoopLeaf extends EDILoopNode {
 	public EDILoopLeaf(EDICompositeNode headSegment, EDILoopNode parent) {
 		super(headSegment, parent);
 	}
+	
+	@Override
+	public String getName() {
+		return getSegment().getName();
+	}
+	
 
 	@Override
 	public void addSegment(EDICompositeNode segment) {

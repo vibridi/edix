@@ -35,25 +35,22 @@ public class TestWriter {
 	}
 	
 	@Test
-	public void writeToXMLSimple() throws Exception {
-		Document docA = TestResources.getAsDOM("benchmarks/x12-110.xml");
-		EDIMessage m = TestResources.getAsMessage("transactions-x12/110.edi");
-		EDIWriter w = EDIFactory.newWriter(EDIFormat.XML, m);
+	public void writeToTextSimple() throws Exception {
+		String interchange = TestResources.getAsString("minimal-interchange.edi");
+		EDILexer lx = TestResources.getAsLexer("minimal-interchange.edi");		
+		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		assertNotNull(parser);
+		
+		EDIMessage m = parser.parse(lx);
+		assertNotNull(m);
+		
+		EDIWriter w = EDIFactory.newWriter(EDIFormat.PLAIN_TEXT, m);
+		w.setPrettyPrint(true);
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
 		w.write(out, "UTF-8");
-				
-		Document docB = 
-		DocumentBuilderFactory.newInstance()
-			.newDocumentBuilder()
-			.parse(new ByteArrayInputStream(out.toByteArray()));
 		
-		assertXPath("/Interchange/InterchangeControlHeader/@type", docA, docB, "ISA");
-		assertXPath("/Interchange/InterchangeControlHeader/SubDelimiter", docA, docB, ">");
-		assertXPath("/Interchange/FunctionalGroup/TransactionSet/@code", docA, docB, "110");
-		
-		
+		assertEquals(interchange, out.toString().trim());
 	}
 	
 	@Test
@@ -111,13 +108,6 @@ public class TestWriter {
 		w.write(out, "UTF-8");
 		
 		assertEquals(interchange, out.toString().trim());
-	}
-	
-	public void assertXPath(String xpath, Document A, Document B, String control) throws XPathExpressionException {
-		String sA = (String) XMLUtils.applyXPath(A, xpath, null, XPathConstants.STRING);
-		String sB = (String) XMLUtils.applyXPath(B, xpath, null, XPathConstants.STRING);
-		assertEquals(sA, sB);
-		assertEquals(sA, control);
 	}
 	
 }

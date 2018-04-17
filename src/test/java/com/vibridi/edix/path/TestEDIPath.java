@@ -100,26 +100,30 @@ public class TestEDIPath {
 		m = parser.parse(lx);
 		assertNotNull(m);
 //		
-//		BGN~11^12^13~ 07141005162 ~040714~1003$
+//		BGN~11~ 07141005162 ~040714~1003$
 //		DMG~D8~19880208~F~~<RET<R5^<RET<E1.01~~~~~$
-//		MSG~test1$
-//		MSG~test2<test3<test4$
+//		MSG~test1^test-rep$
+//		MSG~test2<test3<test4~test5$
 		
+		// Simple path
 		assertEquals(m.getTextAt(EDIPath.of("GS")), "GS");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.1")), "D8");
 		
+		// Segment accessor
 		assertEquals(m.getTextAt(EDIPath.of("MSG[1]")), "MSG");
 		assertEquals(m.getTextAt(EDIPath.of("MSG[2]")), "MSG");
-		assertEquals(m.getTextAt(EDIPath.of("MSG[1].1")), "test1");
+		
+		// Repetition accessor
+		assertEquals(m.getTextAt(EDIPath.of("MSG[1].1[1]")), "test1");
+		assertEquals(m.getTextAt(EDIPath.of("MSG[1].1[2]")), "test-rep");
+		
+		// Sub-field accessor
 		assertEquals(m.getTextAt(EDIPath.of("MSG[2].1.1")), "test2");
 		assertEquals(m.getTextAt(EDIPath.of("MSG[2].1.2")), "test3");
 		assertEquals(m.getTextAt(EDIPath.of("MSG[2].1.3")), "test4");
 		assertEquals(m.getTextAt(EDIPath.of("MSG[2].2")), "test5");
 		
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[1]")), "11");
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[2]")), "12");
-		assertEquals(m.getTextAt(EDIPath.of("BGN.1[3]")), "13");
-		
+		// Repeated composite field accessors
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].1")), "");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].2")), "RET");
 		assertEquals(m.getTextAt(EDIPath.of("DMG.5[1].3")), "R5");

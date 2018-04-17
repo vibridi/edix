@@ -72,10 +72,15 @@ public class EDIXMLWriter extends EDIWriter {
 				X12FunctionalGroup group = interchange.getFunctionalGroupt(i);
 				
 				writer.writeStartElement("FunctionalGroup");
-				writer.writeAttribute("code", group.getGroupHeaderCode());				// GS.1
-				writer.writeAttribute("controlNumber", group.getGroupControlNumber());	// GS.6
-				writer.writeAttribute("agency", group.getResponsibleAgencyCode());		// GS.7
-				writer.writeAttribute("version", group.getVersionIdCode());				// GS.8
+				writer.writeAttribute("code", group.getGroupHeaderCode());								// GS.1
+				writer.writeAttribute("controlNumber", group.getGroupControlNumber());					// GS.6
+				
+				appendElement(writer, "ApplicationSenderCode", group.getApplicationSenderCode()); 		// GS.2
+				appendElement(writer, "ApplicationReceiverCode", group.getApplicationReceiverCode());	// GS.3
+				appendElement(writer, "Date", group.getDate());											// GS.4
+				appendElement(writer, "Time", group.getTime());											// GS.5
+				appendElement(writer, "ResponsibleAgency", group.getResponsibleAgencyCode());			// GS.7
+				appendElement(writer, "VersionIdCode", group.getVersionIdCode());						// GS.8
 				
 				for(int j = 0; j < group.size(); j++) {
 					X12TransactionSet set = group.getTransactionSet(j);

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interchange standard="ANSI_X12">
+	<InterchangeControlHeader terminator="$" type="ISA">
+		<AuthorizationInformationQualifier>00</AuthorizationInformationQualifier>
+		<AuthorizationInformation/>
+		<SecurityInformationQualifier>00</SecurityInformationQualifier>
+		<SecurityInformation/>
+		<InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+		<SenderId>04000          </SenderId>
+		<InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+		<ReceiverId>58401          </ReceiverId>
+		<Date format="yyMMdd">040714</Date>
+		<Time format="HHmm">1003</Time>
+		<RepetitionSeparator>^</RepetitionSeparator>
+		<VersionNumber>00402</VersionNumber>
+		<ControlNumber>000038449</ControlNumber>
+		<AckRequested>0</AckRequested>
+		<TestIndicator>P</TestIndicator>
+		<SubDelimiter>&lt;</SubDelimiter>
+	</InterchangeControlHeader>
+	<FunctionalGroup code="AG" controlNumber="38327">
+		<ApplicationSenderCode>04000</ApplicationSenderCode>
+		<ApplicationReceiverCode>58401</ApplicationReceiverCode>
+		<Date>040714</Date>
+		<Time>1003</Time>
+		<ResponsibleAgency>X</ResponsibleAgency>
+		<VersionIdCode>004020CHRY</VersionIdCode>	
+		<TransactionSet code="824" controlNumber="000042460" description="Application Advice">
+			<Segment id="BGN">
+				<Field id="01">11</Field>
+				<Field id="02">07141005162 </Field>
+				<Field id="03">040714</Field>
+				<Field id="04">1003</Field>
+			</Segment>
+			<Segment id="DMG">
+				<Field id="01">D8</Field>
+				<Field id="02">19880208</Field>
+				<Field id="03">F</Field>
+				<Field id="04"/>
+				<Field id="05" repeated="true">
+					<Field id="01">
+						<Field id="01"/>
+						<Field id="02">RET</Field>
+						<Field id="03">R5</Field>
+					</Field>
+					<Field id="02">
+						<Field id="01"/>
+						<Field id="02">RET</Field>
+						<Field id="03">E1.01</Field>
+					</Field>
+				</Field>
+				<Field id="06"/>
+				<Field id="07"/>
+				<Field id="08"/>
+				<Field id="09"/>
+				<Field id="10"/>
+			</Segment>
+			<Segment id="MSG">
+				<Field id="01" repeated="true">
+					<Field id="01">test1</Field>
+					<Field id="02">test-rep</Field>
+				</Field>
+			</Segment>
+			<Segment id="MSG">
+				<Field id="01">
+					<Field id="01">test2</Field>
+					<Field id="02">test3</Field>
+					<Field id="03">test4</Field>
+				</Field>
+				<Field id="02">test5</Field>
+			</Segment>
+		</TransactionSet>
+	</FunctionalGroup>
+</Interchange>
