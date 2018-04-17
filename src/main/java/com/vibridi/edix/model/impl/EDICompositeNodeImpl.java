@@ -1,6 +1,5 @@
 package com.vibridi.edix.model.impl;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -144,7 +143,7 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 	@Override
 	public void appendRepetition(EDINode repetition) {
 		if(repetitionSeparator.isEmpty())
-			throw new IllegalStateException("Adding a repetition but repetition separator is unspecified.");
+			throw new IllegalStateException("Adding a repetition but repetition separator  wasn't specified.");
 		children.add(repetition);
 	}
 	

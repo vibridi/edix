@@ -132,6 +132,9 @@ public class EDIXMLWriter extends EDIWriter {
 			writer.writeCharacters(node.getTextContent());
 			return;
 		}
+		
+		if(((EDICompositeNode) node).isRepeated())
+			writer.writeAttribute("repeated", "true");
 
 		for(int i = 0; i < node.getChildren().size(); i++) {
 			writer.writeStartElement("Field");

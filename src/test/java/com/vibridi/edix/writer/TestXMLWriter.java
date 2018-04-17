@@ -56,21 +56,17 @@ public class TestXMLWriter {
 	
 	@Test
 	public void writeToTextComposite() throws Exception {
-		String interchange = TestResources.getAsString("test-interchange-sub.edi");
-		EDILexer lx = TestResources.getAsLexer("test-interchange-sub.edi");		
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
-		assertNotNull(parser);
+		// String interchange = TestResources.getAsString("test-interchange-sub.edi");
 		
-		EDIMessage m = parser.parse(lx);
-		assertNotNull(m);
+		EDIMessage m = TestResources.getAsMessage("test-interchange-rep.edi");		
 		
-		EDIWriter w = EDIFactory.newWriter(EDIFormat.PLAIN_TEXT, m);
-		w.setPrettyPrint(true);
+		EDIWriter w = EDIFactory.newWriter(EDIFormat.XML, m);
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		w.write(out, "UTF-8");
 		
-		assertEquals(interchange, out.toString().trim());
+		out.writeTo(System.out);
+		
 	}
 	
 	@Test
