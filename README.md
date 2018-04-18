@@ -20,6 +20,8 @@ EDIX is currently a work in progress, whose development has the secondary goal t
 TODOs:
 - TA1 acks
 - ISB/ISE segments support
+- BDS parsing
+- manage LE segments
 
 
 ## How do I use this anyway?
