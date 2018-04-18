@@ -102,7 +102,7 @@ public class LoopMatcher {
 							: data);
 			}
 			
-			if(data.context.equals(currentLoopPath)) {
+			if(currentLoopPath.startsWith(data.context)) {
 				return new LoopMatch(data);
 			}
 		}

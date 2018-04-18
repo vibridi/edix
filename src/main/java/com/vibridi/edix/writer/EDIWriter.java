@@ -44,6 +44,7 @@ public abstract class EDIWriter {
 		walk(delegate, message.getRoot());
 	}
 	
+	// TODO probably move to somewhere else
 	private void walk(NodeWalker delegate, EDICompositeNode node) throws IOException {
 		delegate.processNode(node);
 		

@@ -53,11 +53,13 @@ public enum LoopDescriptorManager {
 			}
 		}
 		
-		LoopMatcher matcher = versions.get(versions);
-		if(matcher == null)
-			matcher = versions.get("all");
+		String key = versions.keySet()
+				.stream()
+				.filter(k -> k.contains(version))
+				.findFirst()
+				.orElse("all");
 		
-		return matcher;
+		return versions.get(key);
 	}
 	
 	private Map<String,LoopMatcher> loadDescriptors(EDIStandard std, String transaction) throws IOException {
@@ -101,6 +103,7 @@ public enum LoopDescriptorManager {
 	
 	private LoopDescriptor parseLoopData(JsonNode node) {
 		String name = node.get("name").asText();
+		String description = textOrDefault(node.get("description"), "");
 		int nesting = node.get("nestingLevel").asInt();
 		String ctx = node.get("context").asText();
 		JsonNode array = node.get("except");
@@ -112,7 +115,13 @@ public enum LoopDescriptorManager {
 		if(array != null)
 			array.forEach(s -> exceptions.add(s.asText()));
 		
-		return new LoopDescriptor(name, nesting, ctx, exceptions); 
+		return new LoopDescriptor(name, description, nesting, ctx, exceptions); 
+	}
+	
+	private String textOrDefault(JsonNode node, String dft) {
+		if(node == null)
+			return dft;
+		return node.asText();
 	}
 	
 }

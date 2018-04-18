@@ -10,6 +10,8 @@ public interface EDILoop {
 	public boolean isLeaf();
 	
 	public String getName();
+	public String getPath();
+	public String getDescription();
 	public int nestingLevel();
 	
 	public EDILoop getParent();

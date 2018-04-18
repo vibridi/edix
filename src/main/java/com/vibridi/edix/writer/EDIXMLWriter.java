@@ -1,13 +1,18 @@
 package com.vibridi.edix.writer;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.events.Attribute;
+
+import org.w3c.dom.Document;
 
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
@@ -101,12 +106,25 @@ public class EDIXMLWriter extends EDIWriter {
 			
 			writer.writeEndElement(); 			// Interchange
 			writer.writeEndDocument();
+			writer.close();
 			
 		} catch(XMLStreamException e) {
 			throw new IOException(e);
 		}
-		
-
+	}
+	
+	public Document writeToDOM(String characterSet) throws Exception {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		write(out, characterSet);
+		return DocumentBuilderFactory.newInstance()
+			.newDocumentBuilder()
+			.parse(new ByteArrayInputStream(out.toByteArray()));
+	}
+	
+	public String writeToString(String characterSet) throws Exception {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		write(out, characterSet);
+		return new String(out.toByteArray(), characterSet);
 	}
 	
 	private void writeLoop(XMLStreamWriter writer, EDILoop loop) throws XMLStreamException {
@@ -124,6 +142,9 @@ public class EDIXMLWriter extends EDIWriter {
 		} else {
 			writer.writeStartElement("Loop");
 			writer.writeAttribute("id", loop.getName());
+			if(!loop.getDescription().isEmpty())
+				writer.writeAttribute("description", loop.getDescription());
+			
 			writeSegment(writer, loop.getSegment());
 			for(int i = 0; i < loop.getChildren().size(); i++) {
 				writeLoop(writer, loop.getChildren().get(i));

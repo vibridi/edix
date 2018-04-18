@@ -1,19 +1,23 @@
 package com.vibridi.edix.parser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
+import com.vibridi.edix.EDIFactory;
+import com.vibridi.edix.EDIFactory.EDIFormat;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.loop.EDILoop;
 import com.vibridi.edix.loop.LoopDescriptorManager;
 import com.vibridi.edix.loop.LoopMatcher;
 import com.vibridi.edix.loop.impl.EDILoopNode;
-import com.vibridi.edix.model.impl.x12.X12Interchange;
-import com.vibridi.edix.model.impl.x12.X12TransactionSet;
+import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class TestLoop {
 
@@ -36,8 +40,8 @@ public class TestLoop {
 		assertEquals(ld.sizeOf("L5"), 1);
 		assertEquals(ld.sizeOf("P1"), 0);
 		assertEquals(ld.get("N1", 0).name, "N1");
-		assertEquals(ld.get("N1", 0).level, 1);
-		assertEquals(ld.get("N1", 0).context, "*");
+		assertEquals(ld.get("N1", 0).level, 2);
+		assertEquals(ld.get("N1", 0).context, "/LX");
 		assertEquals(ld.get("L1", 0).name, "L1");
 		assertEquals(ld.get("L1", 0).level, 3);
 		assertEquals(ld.get("L1", 0).context, "*");
@@ -110,6 +114,14 @@ public class TestLoop {
 		assertTrue(root.getChildren().get(6).isLeaf());
 		assertEquals(root.getChildren().get(7).getSegment().getName(), "NTE");
 		assertTrue(root.getChildren().get(7).isLeaf());
+	}
+	
+	@Test
+	public void testPrint() throws Exception {
+		EDIMessage m = TestResources.getAsMessage("transactions-x12/110.edi");
+		EDIXMLWriter w = (EDIXMLWriter) EDIFactory.newWriter(EDIFormat.XML, m);
+		String xml = w.writeToString("UTF-8");
+		System.out.println(xml);
 	}
 	
 }

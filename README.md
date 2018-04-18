@@ -17,6 +17,11 @@ EDIX especially wants to be open for extension, so that you can transform X12 in
 
 EDIX is currently a work in progress, whose development has the secondary goal to acquire know-how about EDI standards. It is by no means a finished product, but hopefully it will be.
 
+TODOs:
+- TA1 acks
+- ISB/ISE segments support
+
+
 ## How do I use this anyway?
 
 For now, don't. It isn't ready. Though you can clone the repository and do whatever you normally do with cloned repositories. Just be aware that the code is being worked on. There aren't many Javadocs, package and class names might be messy or obsolete and functionality missing. 

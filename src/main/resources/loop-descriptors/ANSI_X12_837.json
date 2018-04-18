@@ -4,112 +4,103 @@
 	"versions": {
 		"all": {
 			"loops": {
-				"CLM": [{
-						"name": "2300",
-						"nestingLevel": 2,
-						"context": "/2000/2300"
-					}, {
-						"name": "2300",
-						"nestingLevel": 2,
-						"context": "/2000"
-					}
-				],
-				"CR7": [{
-						"name": "2305",
-						"nestingLevel": 3,
-						"context": "/2000/2300/2305"
-					}, {
-						"name": "2305",
-						"nestingLevel": 3,
-						"context": "/2000/2300"
-					}
-				],
+				"NM1" : [{
+						"name" : "2330",
+						"description" : "Other Information",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310F"
+				},{
+						"name" : "2330",
+						"description" : "Other Information",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2330"
+				},{
+						"name" : "2310F",
+						"description" : "Ambulance Drop-off Location",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310E"
+				},{
+						"name" : "2310E",
+						"description" : "Ambulance Pick-up Location",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310D"
+				},{
+						"name" : "2310D",
+						"description" : "Supervising Provider Name",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310C"
+				},{
+						"name" : "2310C",
+						"description" : "Service Facility Location",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310B"
+				},{
+						"name" : "2310B",
+						"description" : "Rendering Provider Name",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300/2310A"
+				},{
+						"name" : "2310A",
+						"description" : "Referring Provider Name",
+						"nestingLevel" : 3,
+						"context" : "/2000C/2300"
+				},{
+						"name" : "2010BB",
+						"description" : "Payer Name",
+						"nestingLevel" : 2,
+						"context" : "/2000B/2010BA"
+				},{
+						"name" : "2010BA",
+						"description" : "Subscriber Name",
+						"nestingLevel" : 2,
+						"context" : "/2000B"
+				},{
+						"name" : "2010AA",
+						"description" : "Billing Provider Name",
+						"nestingLevel" : 2,
+						"context" : "/2000A"
+				},{
+						"name" : "1000B",
+						"description" : "Receiver Name",
+						"nestingLevel" : 1,
+						"context" : "/1000A"
+				},{
+						"name" : "1000A",
+						"description" : "Submitter Information",
+						"nestingLevel" : 1,
+						"context" : "/"
+				}],
+				
 				"HL": [{
-						"name": "2000",
+						"name": "2000C",
+						"description" : "Patient Hierarchical Level",
 						"nestingLevel": 1,
+						"context": "/2000B/2010BB"
+				},{
+						"name": "2000B",
+						"description" : "Subscriber Hierarchical Level",
+						"nestingLevel": 1,
+						"context": "/2000A/2010AA"
+				},{
+						"name": "2000A",
+						"description" : "Billing Provider Hierarchical Level",
+						"nestingLevel": 1,
+						"context": "*"
+				}],
+			
+				"CLM" : [{
+						"name": "2300",
+						"description" : "Claim Information",
+						"nestingLevel": 2,
 						"context": "*"
 					}
 				],
-				"LQ": [{
-						"name": "2440",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400/2440"
-					}, {
-						"name": "2440",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400"
-					}
-				],
-				"LX": [{
+								
+				"LX": [ {
 						"name": "2400",
+						"description" : "Service Line",
 						"nestingLevel": 3,
-						"context": "/2000/2300/2400"
-					}, {
-						"name": "2400",
-						"nestingLevel": 3,
-						"context": "/2000/2300"
-					}
-				],
-				"NM1": [{
-						"name": "2330",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2320/2330"
-					}, {
-						"name": "2420",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400/2420"
-					}, {
-						"name": "2310",
-						"nestingLevel": 3,
-						"context": "/2000/2300/2310"
-					}, {
-						"name": "2330",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2320"
-					}, {
-						"name": "2420",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400"
-					}, {
-						"name": "2010",
-						"nestingLevel": 2,
-						"context": "/2000/2010"
-					}, {
-						"name": "2310",
-						"nestingLevel": 3,
-						"context": "/2000/2300"
-					}, {
-						"name": "2010",
-						"nestingLevel": 2,
-						"context": "/2000"
-					}, {
-						"name": "1000",
-						"nestingLevel": 1,
 						"context": "*"
-					}
-				],
-				"SBR": [{
-						"name": "2320",
-						"nestingLevel": 3,
-						"context": "/2000/2300/2320"
-					}, {
-						"name": "2320",
-						"nestingLevel": 3,
-						"context": "/2000/2300"
-					}, {
-						"name": ".",
-						"nestingLevel": 1,
-						"context": "/2000"
-					}
-				],
-				"SVD": [{
-						"name": "2430",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400/2430"
-					}, {
-						"name": "2430",
-						"nestingLevel": 4,
-						"context": "/2000/2300/2400"
 					}
 				]
 			}

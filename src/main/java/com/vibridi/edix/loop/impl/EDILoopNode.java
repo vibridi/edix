@@ -15,7 +15,7 @@ public class EDILoopNode implements EDILoop {
 	private EDICompositeNode segment;
 	
 	public EDILoopNode(EDICompositeNode headSegment, EDILoopNode parent) {
-		this(new LoopDescriptor("", 0, ""), headSegment, parent);
+		this(LoopDescriptor.EMPTY_DESCRIPTOR, headSegment, parent);
 	}
 	
 	public EDILoopNode(LoopDescriptor data, EDICompositeNode headSegment, EDILoopNode parent) {
@@ -27,15 +27,23 @@ public class EDILoopNode implements EDILoop {
 	
 	@Override
 	public String toString() {
-		if(parent == null)
+		return getPath();
+	}
+	
+	@Override
+	public String getPath() {
+		if(isRoot())
 			return "/";
-		
-		return parent.toString() + getName() + "/";
+		String s = parent.getPath();
+		if(s.equals("/"))
+			return s.concat(getName());
+		else 
+			return s.concat("/").concat(getName());
 	}
 	
 	@Override
 	public boolean isRoot() {
-		return segment == null;
+		return parent == null;
 	}
 	
 	@Override
@@ -82,6 +90,11 @@ public class EDILoopNode implements EDILoop {
 	@Override
 	public String getName() {
 		return data.name;
+	}
+	
+	@Override
+	public String getDescription() {
+		return data.description == null ? "" : data.description;
 	}
 
 	@Override

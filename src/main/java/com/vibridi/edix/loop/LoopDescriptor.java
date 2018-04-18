@@ -21,20 +21,20 @@ import java.util.StringJoiner;
  */
 public class LoopDescriptor {
 	
+	public static final LoopDescriptor EMPTY_DESCRIPTOR = new LoopDescriptor("", "", 0, "", new HashSet<>());
+	
 	public static final String CURRENT_LOOP = ".";
 	public static final String ANY_CONTEXT = "*";
 	
 	public final String name;
+	public final String description;
 	public final int level;
 	public final String context;
 	public final Set<String> exceptions;
 	
-	public LoopDescriptor(String name, int level, String context) {
-		this(name, level, context, new HashSet<>());
-	}
-	
-	public LoopDescriptor(String name, int level, String context, Set<String> exceptions) {
+	public LoopDescriptor(String name, String description, int level, String context, Set<String> exceptions) {
 		this.name = name;
+		this.description = description;
 		this.level = level;
 		this.context = context;
 		this.exceptions = exceptions;

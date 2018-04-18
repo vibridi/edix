@@ -34,15 +34,16 @@ public class X12TransactionSet {
 		this.idCode = this.st.getChild(0).getTextContent();
 		this.controlNumber = this.st.getChild(1).getTextContent();
 		
-		this.se = (EDICompositeNode) segments.get(segments.size() - 1);
+		this.se = segments.get(segments.size() - 1);
 		if(!"SE".equals(se.getName()))
 			throw new EDISyntaxException("Transaction set last segment isn't SE");
 		
 		if(!st.getChild(1).getTextContent().equals(se.getChild(1).getTextContent()))
 			throw new EDISyntaxException("ST02 and SE02 (transaction control code) don't match");
 		
+		// Includes ST and SE themselves
 		if(Integer.parseInt(se.getChild(0).getTextContent()) != segments.size())
-			throw new EDISyntaxException("SE01 doesn't match number of segments.");
+			throw new EDISyntaxException("SE01 doesn't match number of segments: " + segments.size()); // TODO check size
 		
 		this.segments = segments.subList(1, segments.size() - 1);
 		

@@ -3,21 +3,20 @@
 	"description": "Air Freight Details and Invoice",
 	"versions": {
 		"all": {
-			"loops": {
-				"N1": [{
-						"name": "N1",
-						"nestingLevel": 1,
-						"context": "*"
-					}, {
+			"loops": {			
+				"N1" : [{
 						"name": "N1",
 						"nestingLevel": 2,
 						"context": "/LX"
-					}
-				],
+					}, {
+						"name": "N1",
+						"nestingLevel": 1,
+						"context": "/"
+				}],
 				"LX": [{
 						"name": "LX",
 						"nestingLevel": 1,
-						"context": "*"
+						"context": "/"
 					}
 				],
 				"L5": [{
