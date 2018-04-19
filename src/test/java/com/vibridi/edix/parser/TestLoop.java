@@ -41,10 +41,10 @@ public class TestLoop {
 		assertEquals(ld.sizeOf("P1"), 0);
 		assertEquals(ld.get("N1", 0).name, "N1");
 		assertEquals(ld.get("N1", 0).level, 2);
-		assertEquals(ld.get("N1", 0).context, "/LX");
+		assertEquals(ld.get("N1", 0).startingSegment, "/LX");
 		assertEquals(ld.get("L1", 0).name, "L1");
 		assertEquals(ld.get("L1", 0).level, 3);
-		assertEquals(ld.get("L1", 0).context, "*");
+		assertEquals(ld.get("L1", 0).startingSegment, "*");
 	}
 	
 	@Test

@@ -11,12 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vibridi.edix.EDIFactory;
 import com.vibridi.edix.EDIStandard;
 
 public enum LoopDescriptorManager {
 	instance;
 	
-	private final Map<String,Map<String,LoopMatcher>> cache; // < transactionSet < version, loopMatcher > >  
+	private static final String BASE_PATH = "/loop-descriptors/";
+	
+	private final Map<String,Map<String,EDILoop>> cache; // < transactionSet < version, rootLoop > >  
 	private final ObjectMapper om;
 	
 	private LoopDescriptorManager() {
@@ -31,7 +34,7 @@ public enum LoopDescriptorManager {
 	 * @return The appropriate loop matcher instance
 	 * @throws IOException If it fails to load the resource
 	 */
-	public LoopMatcher forTransaction(EDIStandard std, String transaction) throws IOException {
+	public EDILoop forTransaction(EDIStandard std, String transaction) throws IOException {
 		return forTransaction(std, transaction, "all");
 	}
 	/**
@@ -41,8 +44,8 @@ public enum LoopDescriptorManager {
 	 * @return The appropriate loop matcher instance
 	 * @throws IOException If it fails to load the resource
 	 */
-	public LoopMatcher forTransaction(EDIStandard std, String transaction, String version) throws IOException {
-		Map<String,LoopMatcher> versions = cache.get(transaction);
+	public EDILoop forTransaction(EDIStandard std, String transaction, String version) throws IOException {
+		Map<String,EDILoop> versions = cache.get(transaction);
 		if(versions == null) {
 			synchronized(cache) {
 				versions = cache.get(transaction);
@@ -62,61 +65,66 @@ public enum LoopDescriptorManager {
 		return versions.get(key);
 	}
 	
-	private Map<String,LoopMatcher> loadDescriptors(EDIStandard std, String transaction) throws IOException {
+	private Map<String,EDILoop> loadDescriptors(EDIStandard std, String transaction) throws IOException {
 		InputStream in = loadFrom(String.format("%s_%s.json", std.name(), transaction));
 		JsonNode n = om.readTree(in);
 		
 		assert(transaction.equals(n.get("transactionSet").asText()));
 		
-		Map<String,LoopMatcher> map = new HashMap<>();
-		
-		String desc = n.get("description").asText();
-		
+		Map<String,EDILoop> map = new HashMap<>();
+				
 		JsonNode versions = n.get("versions");
 		Iterator<String> versionNames = versions.fieldNames();
 		while(versionNames.hasNext()) {
 			String versionName = versionNames.next();
-			JsonNode version = versions.get(versionName);
-			
-			LoopMatcher ld = new LoopMatcher(transaction, desc);	
-			JsonNode jsonLoops = version.get("loops");
-			Iterator<String> fields = jsonLoops.fieldNames();
-			
-			while(fields.hasNext()) {
-				String name = fields.next();
-				JsonNode array = jsonLoops.get(name);
-				
-				for(int i = 0; i < array.size(); i++) {	
-					ld.addLoopData(name, parseLoopData(array.get(i)));
-				}			
-			}
-			
-			map.put(versionName, ld);
+			JsonNode version = versions.get(versionName);			
+			EDILoop mainLoop = parseDescriptor(null, version);
+			map.put(versionName, mainLoop);
 		}
 	
 		return map;
 	}
 	
 	private InputStream loadFrom(String fileName) throws IOException {
-		return LoopDescriptorManager.class.getResourceAsStream("/loop-descriptors/" + fileName);
+		return LoopDescriptorManager.class.getResourceAsStream(BASE_PATH + fileName);
 	}
 	
-	private LoopDescriptor parseLoopData(JsonNode node) {
-		String name = node.get("name").asText();
-		String description = textOrDefault(node.get("description"), "");
-		int nesting = node.get("nestingLevel").asInt();
-		String ctx = node.get("context").asText();
-		JsonNode array = node.get("except");
+	private EDILoop parseDescriptor(EDILoop parent, JsonNode node) {
 		
-		if(!ctx.equals("*") && array != null)
-			throw new IllegalStateException("May specify exceptions only to * contexts");
+		String name = textOrDefault(node.get("name"), "");
+		String desc = textOrDefault(node.get("description"), "");
+		String startingSegment = textOrDefault(node.get("startingSegment"), "");
 		
-		Set<String> exceptions = new HashSet<>();
-		if(array != null)
-			array.forEach(s -> exceptions.add(s.asText()));
+		Set<String> segments = new HashSet<>();
+		if(node.has("segments"))
+			node.get("segments").forEach(jn -> segments.add(jn.textValue()));
 		
-		return new LoopDescriptor(name, description, nesting, ctx, exceptions); 
+		EDILoop loop = EDIFactory.newLoop(new LoopDescriptor(name, desc, startingSegment, segments), parent);
+		
+		if(node.has("loops")) {
+			JsonNode jsonLoops = node.get("loops");
+			for(int i = 0; i < jsonLoops.size(); i++)
+				loop.addChild(parseDescriptor(loop, jsonLoops.get(i)));
+		}
+		return loop;
 	}
+	
+//	private LoopDescriptor parseLoopData(JsonNode node) {
+//		String name = node.get("name").asText();
+//		String description = textOrDefault(node.get("description"), "");
+//		int nesting = node.get("nestingLevel").asInt();
+//		String ctx = node.get("context").asText();
+//		JsonNode array = node.get("except");
+//		
+//		if(!ctx.equals("*") && array != null)
+//			throw new IllegalStateException("May specify exceptions only to * contexts");
+//		
+//		Set<String> exceptions = new HashSet<>();
+//		if(array != null)
+//			array.forEach(s -> exceptions.add(s.asText()));
+//		
+//		return new LoopDescriptor(name, description, nesting, ctx, exceptions); 
+//	}
 	
 	private String textOrDefault(JsonNode node, String dft) {
 		if(node == null)

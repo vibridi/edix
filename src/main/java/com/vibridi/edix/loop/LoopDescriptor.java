@@ -1,6 +1,7 @@
 package com.vibridi.edix.loop;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 
@@ -21,31 +22,28 @@ import java.util.StringJoiner;
  */
 public class LoopDescriptor {
 	
-	public static final LoopDescriptor EMPTY_DESCRIPTOR = new LoopDescriptor("", "", 0, "", new HashSet<>());
+	public static final LoopDescriptor EMPTY_DESCRIPTOR = new LoopDescriptor("", "", "", new HashSet<>());
 	
 	public static final String CURRENT_LOOP = ".";
 	public static final String ANY_CONTEXT = "*";
 	
 	public final String name;
 	public final String description;
-	public final int level;
-	public final String context;
-	public final Set<String> exceptions;
+	public final Optional<String> startingSegment;
+	public final Set<String> segments;
 	
-	public LoopDescriptor(String name, String description, int level, String context, Set<String> exceptions) {
+	public LoopDescriptor(String name, String description, String startingSegment, Set<String> segments) {
 		this.name = name;
 		this.description = description;
-		this.level = level;
-		this.context = context;
-		this.exceptions = exceptions;
+		this.startingSegment = Optional.ofNullable(startingSegment).filter(s -> !s.isEmpty());
+		this.segments = segments;
 	}
 	
 	@Override
 	public String toString() {
 		StringJoiner sj = new StringJoiner(", ", "[", "]");
 		sj.add(name);
-		sj.add(Integer.toString(level));
-		sj.add(context);
+		sj.add(startingSegment.orElse(""));
 		return sj.toString();
 	}
 }

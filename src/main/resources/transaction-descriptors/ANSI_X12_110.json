@@ -1,0 +1,35 @@
+{
+	"transactionSet": "110",
+	"versions": {
+		"all": {
+			"description": "Air Freight Details and Invoice",
+			"segments": [ "B3", "B3A", "C2", "C3", "ITD", "L3", "ACS", "NTE" ],
+			"loops": [{
+					"name": "N1",
+					"startingSegment": "N1",
+					"segments": [ "N2", "N3", "N4", "N9", "PER" ]
+				}, {
+					"name": "LX",
+					"startingSegment": "LX",
+					"segments": [ "P1", "R1", "POD", "V9", "RMT", "G47", "NTE" ],
+					"loops": [{
+							"name": "N1",
+							"startingSegment": "N1",
+							"segments": [ "N2", "N3", "N4", "N9", "PER" ]
+						}, {
+							"name": "L5",
+							"description": "Description",
+							"startingSegment": "L5",
+							"segments": [ "L0", "L4", "L10", "SL1" ]
+						}, {
+							"name": "L1",
+							"description": "Rates and Charges",
+							"startingSegment": "L1",
+							"segments": [ "C3" ]
+						}
+					]
+				}
+			]
+		}
+	}
+}

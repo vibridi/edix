@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PushbackReader;
 import java.util.Objects;
 
+import com.vibridi.edix.loop.EDILoop;
+import com.vibridi.edix.loop.LoopDescriptor;
+import com.vibridi.edix.loop.impl.EDILoopNode;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.writer.EDIPlainWriter;
 import com.vibridi.edix.writer.EDIWriter;
@@ -58,5 +61,8 @@ public class EDIFactory {
 		}		
 	}
 	
+	public static EDILoop newLoop(LoopDescriptor descriptor, EDILoop parent) {
+		return new EDILoopNode(descriptor, parent);
+	}
 	
 }

@@ -21,11 +21,10 @@ public class X12TransactionSet {
 	private String controlNumber;
 	private String description;
 	private List<EDICompositeNode> segments;
-	private EDILoopNode root;
+	private EDILoop root;
 
 	public X12TransactionSet(X12FunctionalGroup group, List<EDICompositeNode> segments) throws EDISyntaxException {
 		this.group = group;
-		this.root = new EDILoopNode(null, null);
 		
 		this.st = segments.get(0);
 		if(!"ST".equals(st.getName()))
@@ -47,13 +46,50 @@ public class X12TransactionSet {
 		
 		this.segments = segments.subList(1, segments.size() - 1);
 		
-		LoopMatcher ld = getLoopMatcher();
-		this.description = ld.getDescription();
+		// LoopMatcher matcher = getLoopMatcher(); // TODO remove
+		// this.description = matcher.getDescription(); // TODO get instead from root.getDescription()
 		
-		EDILoop currentLoop = root;
+		EDILoop currentLoop = root = newLoopTree();
 		for(EDICompositeNode seg : this.segments) {
 			
-			LoopMatch test = ld.findMatch(seg, currentLoop.toString());
+			// if HL 
+			// 		process
+			// else
+			
+			// CYCLE_START
+			if(currentLoop.allowsSegment(seg.getName())) {
+				currentLoop.addSegment(seg);
+				
+			}
+			
+			// if ld.canContainSegment(seg, currentLoop)
+			// 		currentLoop.addSegment(seg)
+			// 		if(is LE)
+			//			currentLoop = currentLoop.getParent();
+			// 		else
+			//			next segment
+			
+			// can't contain segment
+			// are we inside valid loop?
+			// no:
+			// 		then must be a terminal node
+			// 		next segment
+			// yes:
+			// 		if ld.canContainLoop(seg, currentLoop)
+			//			currentLoop.addLoop(seg)
+			//			currentLoop = new loop
+			// 			next segment
+			// 		otherwise
+			// 			are we at top level
+			// 			yes:
+			// 				throw
+			// 			no:
+			// 				then it might be a sibling loop
+			// 				currentLoop = currentLoop.getParent()
+			//				repeat CYCLE_START
+			
+			
+			LoopMatch test = null; // matcher.findMatch(seg, currentLoop.toString());
 			
 			if(!test.matches) {
 				currentLoop.addSegment(seg);
@@ -99,7 +135,7 @@ public class X12TransactionSet {
 		return description;
 	}
 	
-	public EDILoopNode getMainLoop() {
+	public EDILoop getMainLoop() {
 		return root;
 	}
 	
@@ -107,7 +143,16 @@ public class X12TransactionSet {
 		return group;
 	}
 	
-	private LoopMatcher getLoopMatcher() {
+//	private LoopMatcher getLoopMatcher() {
+//		try {
+//			return LoopDescriptorManager.instance
+//					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
+//		} catch (IOException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
+
+	private EDILoop newLoopTree() {
 		try {
 			return LoopDescriptorManager.instance
 					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
@@ -115,5 +160,5 @@ public class X12TransactionSet {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 }
