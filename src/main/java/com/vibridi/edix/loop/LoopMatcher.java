@@ -64,7 +64,7 @@ public class LoopMatcher {
 			return Optional.ofNullable(null);
 		
 		for(LoopDescriptor data : candidates) {
-			if(data.context.equals("*") || data.context.equals(currentLoop.toString()))
+			if(data.startingSegment.equals("*") || data.startingSegment.equals(currentLoop.toString()))
 				return Optional.of(new EDILoopNode(data, seg, currentLoop));
 		}
 		
@@ -77,11 +77,11 @@ public class LoopMatcher {
 			return false;
 		
 		for(LoopDescriptor data : candidates) {
-			if(data.context.equals("*")) {
-				return !data.exceptions.contains(currentLoopPath);
+			if(data.startingSegment.equals("*")) {
+				return !data.segments.contains(currentLoopPath);
 			}
 			
-			if(data.context.equals(currentLoopPath)) {
+			if(data.startingSegment.equals(currentLoopPath)) {
 				return true;
 			}
 		}
@@ -95,19 +95,27 @@ public class LoopMatcher {
 			return new LoopMatch(null);
 		
 		for(LoopDescriptor data : candidates) {
-			if(data.context.equals(LoopDescriptor.ANY_CONTEXT)) {
+			if(data.startingSegment.equals(LoopDescriptor.ANY_CONTEXT)) {
 				return new LoopMatch(
-						data.exceptions.contains(currentLoopPath) 
+						data.segments.contains(currentLoopPath) 
 							? null 
 							: data);
 			}
 			
-			if(currentLoopPath.startsWith(data.context)) {
+			if(currentLoopPath.startsWith(data.startingSegment)) {
 				return new LoopMatch(data);
 			}
 		}
 		
 		return new LoopMatch(null);
+	}
+	
+	public boolean admitsSegment(EDICompositeNode seg, String currentLoopPath) {
+		
+		// loopDescriptor.find(currentLoopPath) 
+		// currentLoop.getAllowedSegments().contains(seg);
+		
+		return false;
 	}
 	
 }

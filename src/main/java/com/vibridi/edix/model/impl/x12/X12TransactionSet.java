@@ -59,15 +59,10 @@ public class X12TransactionSet {
 			// CYCLE_START
 			if(currentLoop.allowsSegment(seg.getName())) {
 				currentLoop.addSegment(seg);
-				
+				if(seg.getName().equals("LE"))
+					currentLoop = currentLoop.getParent();
+				// next segment
 			}
-			
-			// if ld.canContainSegment(seg, currentLoop)
-			// 		currentLoop.addSegment(seg)
-			// 		if(is LE)
-			//			currentLoop = currentLoop.getParent();
-			// 		else
-			//			next segment
 			
 			// can't contain segment
 			// are we inside valid loop?
@@ -75,6 +70,12 @@ public class X12TransactionSet {
 			// 		then must be a terminal node
 			// 		next segment
 			// yes:
+			
+			if(currentLoop.allowsLoop(seg.getName())) {
+				
+				
+			}
+			
 			// 		if ld.canContainLoop(seg, currentLoop)
 			//			currentLoop.addLoop(seg)
 			//			currentLoop = new loop
