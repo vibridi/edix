@@ -14,42 +14,51 @@ import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.loop.EDILoop;
 import com.vibridi.edix.loop.LoopDescriptorManager;
-import com.vibridi.edix.loop.LoopMatcher;
 import com.vibridi.edix.loop.impl.EDILoopNode;
+import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.model.impl.EDICompositeNodeImpl;
 import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class TestLoop {
 
 	@Test
 	public void testLoopDescriptorManager() throws IOException {
-		LoopMatcher ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
+		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
 		assertNotNull(ld);
-		assertEquals(ld.getTransaction(), "110");
-		assertEquals(ld.getDescription(), "Air Freight Details and Invoice");
+		assertTrue(ld.isRoot());
+		assertEquals(ld.getName(), "110");
+		assertEquals(ld.getDescription().get(), "Air Freight Details and Invoice");
 	}
 	
 	@Test
-	public void testLoopMatcher() throws IOException {
-		LoopMatcher ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
-		assertEquals(ld.getNames().size(), 5);
-		assertEquals(ld.sizeOf("N1"), 2);
-		assertEquals(ld.sizeOf("LX"), 1);
-		assertEquals(ld.sizeOf("L1"), 1);
-		assertEquals(ld.sizeOf("L3"), 1);
-		assertEquals(ld.sizeOf("L5"), 1);
-		assertEquals(ld.sizeOf("P1"), 0);
-		assertEquals(ld.get("N1", 0).name, "N1");
-		assertEquals(ld.get("N1", 0).level, 2);
-		assertEquals(ld.get("N1", 0).startingSegment, "/LX");
-		assertEquals(ld.get("L1", 0).name, "L1");
-		assertEquals(ld.get("L1", 0).level, 3);
-		assertEquals(ld.get("L1", 0).startingSegment, "*");
+	public void testLoopDescriptorVersion() throws IOException {
+		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "278");
+		assertNotNull(ld);
+		assertTrue(ld.isRoot());
+		assertEquals(ld.getName(), "278");
+		assertEquals(ld.getDescription().get(), "Health Care Services Review Information");
+	}
+	
+	@Test
+	public void testLoopDescriptor() throws IOException {
+		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
+		assertEquals(ld.getChildren().size(), 0);
+		assertTrue(ld.allowsSegment("B3"));
+		assertTrue(ld.allowsSegment("B3A"));
+		assertTrue(ld.allowsSegment("C2"));
+		assertTrue(ld.allowsSegment("C3"));
+		assertTrue(ld.allowsSegment("ITD"));
+		assertTrue(ld.allowsSegment("L3"));
+		assertTrue(ld.allowsSegment("ACS"));
+		assertTrue(ld.allowsSegment("NTE"));
+		assertTrue(ld.allowsLoop("N1"));
+		assertTrue(ld.allowsLoop("LX"));
 	}
 	
 	@Test
 	public void testLoopTree() throws Exception {
-		EDILoopNode root = 
+		EDILoop root = 
 		TestResources.getAsX12Interchange("transactions-x12/110.edi")
 			.getFunctionalGroupt(0)
 			.getTransactionSet(0)
@@ -58,18 +67,17 @@ public class TestLoop {
 		assertTrue(root instanceof EDILoopNode);
 		
 		// Test ST leaves
-		assertEquals(root.getChildren().get(0).getSegment().getName(), "B3");
-		assertTrue(root.getChildren().get(0).isLeaf());
-		assertEquals(root.getChildren().get(1).getSegment().getName(), "B3A");
-		assertTrue(root.getChildren().get(1).isLeaf());
+		assertEquals(root.getChildren().get(0).getName(), "B3");
+		assertTrue(root.getChildren().get(0).isTerminal());
+		assertEquals(root.getChildren().get(1).getName(), "B3A");
+		assertTrue(root.getChildren().get(1).isTerminal());
 		
 		// Test ST level 1 loops
 		EDILoop n1 = root.getChildren().get(2);
 		assertTrue(n1 instanceof EDILoopNode);
 		assertEquals(n1.getName(), "N1");
-		assertEquals(n1.nestingLevel(), 1);
-		assertEquals(n1.getChildren().size(), 4);
-		assertTrue(n1.getChildren().get(0).isLeaf());
+		assertEquals(n1.getChildren().size(), 5);
+		assertTrue(n1.getChildren().get(0).isTerminal());
 		
 		n1 = root.getChildren().get(3);
 		assertTrue(n1 instanceof EDILoopNode);
@@ -82,38 +90,33 @@ public class TestLoop {
 		EDILoop lx = root.getChildren().get(5);
 		assertTrue(lx instanceof EDILoopNode);
 		assertEquals(lx.getName(), "LX");
-		assertEquals(lx.nestingLevel(), 1);
 		
-		// Test loop starting segment is stored in the loop node itself
-		assertEquals(lx.getSegment().getName(), "LX");
+		// Test loop starting segment is loop node's first child
+		assertEquals(lx.getChildren().get(0).getName(), "LX");
 		
 		// Test ST level 2 loops
-		EDILoop l5 = lx.getChildren().get(3);
+		EDILoop l5 = lx.getChildren().get(4);
 		assertTrue(l5 instanceof EDILoopNode);
 		assertEquals(l5.getName(), "L5");
-		assertEquals(l5.nestingLevel(), 2);
-		assertTrue(l5.getChildren().get(5).isLeaf());
-		assertEquals(l5.getChildren().get(5).getName(), "SL1");
+		assertTrue(l5.getChildren().get(4).isTerminal());
+		assertEquals(l5.getChildren().get(6).getName(), "SL1");
 		
-		// Test ST level 3 loops
-		EDILoop l1 = l5.getChildren().get(6);
+		EDILoop l1 = lx.getChildren().get(5);
 		assertTrue(l1 instanceof EDILoopNode);
 		assertEquals(l1.getName(), "L1");
-		assertEquals(l1.nestingLevel(), 3);
 		
 		// Test loop with only one segment
-		assertTrue(l1.getChildren().isEmpty());
+		assertTrue(l1.getChildren().size() == 1);
 		
-		l1 = l5.getChildren().get(7);
+		l1 = lx.getChildren().get(6);
 		assertTrue(l1 instanceof EDILoopNode);
 		assertEquals(l1.getName(), "L1");
-		assertEquals(l1.nestingLevel(), 3);
 		
 		// Test ST leaves after deeply nested loops
-		assertEquals(root.getChildren().get(6).getSegment().getName(), "L3");
-		assertTrue(root.getChildren().get(6).isLeaf());
-		assertEquals(root.getChildren().get(7).getSegment().getName(), "NTE");
-		assertTrue(root.getChildren().get(7).isLeaf());
+		assertEquals(root.getChildren().get(6).getName(), "L3");
+		assertTrue(root.getChildren().get(6).isTerminal());
+		assertEquals(root.getChildren().get(7).getName(), "NTE");
+		assertTrue(root.getChildren().get(7).isTerminal());
 	}
 	
 	@Test

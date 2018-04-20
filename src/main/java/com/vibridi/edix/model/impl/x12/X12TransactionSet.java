@@ -1,16 +1,14 @@
 package com.vibridi.edix.model.impl.x12;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.loop.EDILoop;
-import com.vibridi.edix.loop.LoopDescriptor;
 import com.vibridi.edix.loop.LoopDescriptorManager;
-import com.vibridi.edix.loop.LoopMatcher;
-import com.vibridi.edix.loop.LoopMatcher.LoopMatch;
-import com.vibridi.edix.loop.impl.EDILoopNode;
 import com.vibridi.edix.model.EDICompositeNode;
 
 public class X12TransactionSet {
@@ -22,6 +20,7 @@ public class X12TransactionSet {
 	private String description;
 	private List<EDICompositeNode> segments;
 	private EDILoop root;
+	private Map<String,EDILoop> hloops;
 
 	public X12TransactionSet(X12FunctionalGroup group, List<EDICompositeNode> segments) throws EDISyntaxException {
 		this.group = group;
@@ -44,84 +43,72 @@ public class X12TransactionSet {
 		if(Integer.parseInt(se.getChild(0).getTextContent()) != segments.size())
 			throw new EDISyntaxException("SE01 doesn't match number of segments: " + segments.size()); // TODO check size
 		
-		this.segments = segments.subList(1, segments.size() - 1);
+		this.segments = segments.subList(1, segments.size() - 1);		
+		this.hloops = new HashMap<>();
+		this.root = newLoopTree();
+		this.description = root.getDescription().orElse("");
 		
-		// LoopMatcher matcher = getLoopMatcher(); // TODO remove
-		// this.description = matcher.getDescription(); // TODO get instead from root.getDescription()
-		
-		EDILoop currentLoop = root = newLoopTree();
+		EDILoop currentLoop = root;
 		for(EDICompositeNode seg : this.segments) {
 			
-			// if HL 
-			// 		process
-			// else
-			
-			// CYCLE_START
-			if(currentLoop.allowsSegment(seg.getName())) {
-				currentLoop.addSegment(seg);
-				if(seg.getName().equals("LE"))
-					currentLoop = currentLoop.getParent();
-				// next segment
-			}
-			
-			// can't contain segment
-			// are we inside valid loop?
-			// no:
-			// 		then must be a terminal node
-			// 		next segment
-			// yes:
-			
-			if(currentLoop.allowsLoop(seg.getName())) {
-				
-				
-			}
-			
-			// 		if ld.canContainLoop(seg, currentLoop)
-			//			currentLoop.addLoop(seg)
-			//			currentLoop = new loop
-			// 			next segment
-			// 		otherwise
-			// 			are we at top level
-			// 			yes:
-			// 				throw
-			// 			no:
-			// 				then it might be a sibling loop
-			// 				currentLoop = currentLoop.getParent()
-			//				repeat CYCLE_START
-			
-			
-			LoopMatch test = null; // matcher.findMatch(seg, currentLoop.toString());
-			
-			if(!test.matches) {
-				currentLoop.addSegment(seg);
-				continue;
-			}
-			
-			// Finally we check the nesting level.
-			// Case 1: this loop descriptor has a greater nesting level than the current loop
-			// 		Then: start a new loop under this one.
-			// Case 2: this loop descriptor has a same or smaller nesting level than the current loop
-			// 		Then: close the current loop and return to the appropriate tree node
-			if(test.data.level > currentLoop.nestingLevel()) {
-				currentLoop = currentLoop.newChild(test.data, seg);
-				
-			} else {
-				// Walk the tree up until the nesting level indicated by this descriptor
-				// We actually retrieve the parent of the wanted nesting level, so we can add a new segment to it.
-				currentLoop = currentLoop.getAncestor(test.data.level);
-				
-				// If the descriptor's name is the special character '.' ... 
-				if(test.data.name.equals(LoopDescriptor.CURRENT_LOOP)) {
-					// ...we stay in the current loop. 
-					// This means the descriptor was used to break out of the ongoing loop
-					currentLoop.addSegment(seg);
-					
-				} else {
-					// Otherwise we start a new loop.
-					currentLoop = currentLoop.newChild(test.data, seg);
-				}
-			}
+			currentLoop = seg.getName().equals("HL") 
+				? processHL(currentLoop, seg)
+				: processSegment(currentLoop, seg);
 		}
+	}
+	
+	private EDILoop processHL(EDILoop currentLoop, EDICompositeNode seg) throws EDISyntaxException {
+		String id = seg.getChild(0).getTextContent();
+        String parentId = seg.getChild(1).getTextContent();
+        
+        if(hloops.containsKey(id))
+        	throw new EDISyntaxException("Duplicate HL segment: " + seg.toString());
+        
+        if(!parentId.isEmpty()) {
+        	if(!hloops.containsKey(parentId))
+        		throw new EDISyntaxException("Can't find parent HL for segment: " + seg.toString());
+        	currentLoop = hloops.get(parentId).appendHL(seg);
+        	
+        } else {                	
+        	// A head HL can only be child of ST or a non-HL loop
+        	// It's enough to set HL as one of the ST main loops, and ensure it never appears as direct child 
+        	// of another HL loop
+        	
+        	if(!currentLoop.allowsLoop(seg.getName()))
+        		throw new EDISyntaxException(
+        				String.format("HL segment [%s] has no specifications at path %s", 
+        						seg.toString(), 
+        						currentLoop.getPath()));
+        	
+        	currentLoop = currentLoop.appendHL(seg);
+        	
+        }
+        
+        hloops.put(id, currentLoop);
+        return currentLoop;
+	}
+	
+	private EDILoop processSegment(EDILoop currentLoop, EDICompositeNode seg) throws EDISyntaxException {
+		if(currentLoop == null)
+			throw new EDISyntaxException("No specification for current segment: " + seg.getName());
+		
+		if(currentLoop.allowsSegment(seg.getName())) {
+			currentLoop.appendSegment(seg);
+			return seg.getName().equals("LE") ? currentLoop.getParent() : currentLoop;
+		}
+			
+		// can't contain segment
+		// are we inside valid loop?
+		// no:
+		// 		then must be a terminal node, even though it should never be the case
+		// 		next segment
+		// yes:
+		
+		if(currentLoop.allowsLoop(seg.getName())) {
+			return currentLoop.appendLoop(seg);
+		}
+		
+		return processSegment(currentLoop.getParent(), seg);
 	}
 	
 	public String getIdCode() {
@@ -155,8 +142,7 @@ public class X12TransactionSet {
 
 	private EDILoop newLoopTree() {
 		try {
-			return LoopDescriptorManager.instance
-					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
+			return LoopDescriptorManager.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

@@ -127,11 +127,9 @@ public class EDIXMLWriter extends EDIWriter {
 		return new String(out.toByteArray(), characterSet);
 	}
 	
-	private void writeLoop(XMLStreamWriter writer, EDILoop loop) throws XMLStreamException {
-		EDICompositeNode seg = loop.getSegment();
-		
-		if(loop.isLeaf()) {	
-			writeSegment(writer, seg);
+	private void writeLoop(XMLStreamWriter writer, EDILoop loop) throws XMLStreamException {		
+		if(loop.isTerminal()) {	
+			writeSegment(writer, loop.getSegmentContent());
 			return;
 		}
 		
@@ -142,10 +140,10 @@ public class EDIXMLWriter extends EDIWriter {
 		} else {
 			writer.writeStartElement("Loop");
 			writer.writeAttribute("id", loop.getName());
-			if(!loop.getDescription().isEmpty())
-				writer.writeAttribute("description", loop.getDescription());
 			
-			writeSegment(writer, loop.getSegment());
+			if(loop.getDescription().isPresent())
+				writer.writeAttribute("description", loop.getDescription().get());
+			
 			for(int i = 0; i < loop.getChildren().size(); i++) {
 				writeLoop(writer, loop.getChildren().get(i));
 			}

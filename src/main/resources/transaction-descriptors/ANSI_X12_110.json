@@ -2,6 +2,7 @@
 	"transactionSet": "110",
 	"versions": {
 		"all": {
+			"name" : "110",
 			"description": "Air Freight Details and Invoice",
 			"segments": [ "B3", "B3A", "C2", "C3", "ITD", "L3", "ACS", "NTE" ],
 			"loops": [{

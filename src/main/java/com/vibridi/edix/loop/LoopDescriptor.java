@@ -1,9 +1,9 @@
 package com.vibridi.edix.loop;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Optional;
+import java.util.Map;
 import java.util.Set;
-import java.util.StringJoiner;
 
 /**
  * Describes an EDI loop. 
@@ -22,28 +22,64 @@ import java.util.StringJoiner;
  */
 public class LoopDescriptor {
 	
-	public static final LoopDescriptor EMPTY_DESCRIPTOR = new LoopDescriptor("", "", "", new HashSet<>());
+	private final String name;
+	private String description;
+	private String levelCode;
+	private String startingSegment;
+	private Set<String> allowedSegments;
+	private Map<String, LoopDescriptor> allowedLoops;			// < name, descriptor >	
 	
-	public static final String CURRENT_LOOP = ".";
-	public static final String ANY_CONTEXT = "*";
-	
-	public final String name;
-	public final String description;
-	public final Optional<String> startingSegment;
-	public final Set<String> segments;
-	
-	public LoopDescriptor(String name, String description, String startingSegment, Set<String> segments) {
+	public LoopDescriptor(String name) {
 		this.name = name;
-		this.description = description;
-		this.startingSegment = Optional.ofNullable(startingSegment).filter(s -> !s.isEmpty());
-		this.segments = segments;
+		this.allowedSegments = new HashSet<>();
+		this.allowedLoops = new HashMap<>();
 	}
 	
-	@Override
-	public String toString() {
-		StringJoiner sj = new StringJoiner(", ", "[", "]");
-		sj.add(name);
-		sj.add(startingSegment.orElse(""));
-		return sj.toString();
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
+	public String getLevelCode() {
+		return levelCode;
+	}
+
+	public String getStartingSegment() {
+		return startingSegment;
+	}
+
+	public Set<String> getAllowedSegments() {
+		return allowedSegments;
+	}
+
+	public Map<String, LoopDescriptor> getAllowedLoops() {
+		return allowedLoops;
+	}
+	
+	public LoopDescriptor getDescriptor(String name) {
+		return allowedLoops.get(name);
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public void setLevelCode(String levelCode) {
+		this.levelCode = levelCode;
+	}
+
+	public void setStartingSegment(String startingSegment) {
+		this.startingSegment = startingSegment;
+	}
+	
+	public void addAllowedSegment(String allowedSegment) {
+		this.allowedSegments.add(allowedSegment);
+	}
+	
+	public void addAllowedLoop(LoopDescriptor descriptor) {
+		this.allowedLoops.put(descriptor.name, descriptor);
 	}
 }

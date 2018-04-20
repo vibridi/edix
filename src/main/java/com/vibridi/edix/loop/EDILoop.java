@@ -8,24 +8,24 @@ import com.vibridi.edix.model.EDICompositeNode;
 public interface EDILoop {
 
 	public boolean isRoot();
-	public boolean isLeaf();
+	public boolean isTerminal();
+	
+	public String getPath();
+	public String getName();
+	public Optional<String> getDescription();
+	public Optional<String> getStartingSegment();
 	
 	public boolean allowsSegment(String segmentTag);
 	public boolean allowsLoop(String segmentTag);
 	
-	public String getName();
-	public String getPath();
-	public String getDescription();
-	//public int nestingLevel();
-	public Optional<String> getStartingSegment();
-	
 	public EDILoop getParent();
-	public EDILoop getAncestor(int upToNestingLevel);
-	public EDICompositeNode getSegment();
-	
-	public void addSegment(EDICompositeNode segment);
-	public void addChild(EDILoop loop);
-	public EDILoop newChild(LoopDescriptor descriptor, EDICompositeNode segment);
-	
 	public List<EDILoop> getChildren();
+	public EDICompositeNode getSegmentContent();
+	
+	public void appendSegment(EDICompositeNode segment);
+	public EDILoop appendLoop(EDICompositeNode segment);
+	public EDILoop appendHL(EDICompositeNode segment);
+	
+	
+	
 }

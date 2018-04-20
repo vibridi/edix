@@ -1,34 +1,30 @@
 package com.vibridi.edix.loop.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import com.vibridi.edix.loop.EDILoop;
-import com.vibridi.edix.loop.LoopDescriptor;
-import com.vibridi.edix.model.EDICompositeNode;
 
-public class EDILoopNode implements EDILoop {
+public abstract class EDILoopNode implements EDILoop {
 	
-	private LoopDescriptor data;
-	
-//	public final String name;
-//	public final String description;
-//	public final Optional<String> startingSegment;
-//	public final Set<String> segments;
-	
+	private String name;
 	private EDILoop parent;
-	private List<EDILoop> children;
-	private Set<String> allowedLoopTags;
-	private EDICompositeNode segment;
 	
-	public EDILoopNode(LoopDescriptor data, EDILoop parent) {
-		this.data = data;
+	// build a complete tree with all nodes: structure children
+	// every node can store one segment
+	// nodes can be marked as white (segment) or blue (loops)
+	// later print only nodes with the segment
+	// if white, print as segment, if blue print as loop with segment as first child.
+	
+	// loop, needs id, description
+	// segment always needed.
+	
+	// Actual children
+	// This tree is populated at construction time. Later we will print only nodes that have a segment
+	
+	
+	// always needed
+	
+	public EDILoopNode(String name, EDILoop parent) {
+		this.name = name;
 		this.parent = parent;
-		this.children = new ArrayList<>();
-		this.allowedLoopTags = new HashSet<>();
 	}
 	
 	@Override
@@ -53,87 +49,22 @@ public class EDILoopNode implements EDILoop {
 	}
 	
 	@Override
-	public boolean isLeaf() {
-		// TODO see if there's a better way. Anyway it depends on the main loop setSegment()
-		return false;
-	}
-	
-	@Override
 	public EDILoop getParent() {
 		return parent;
 	}
 	
-	@Override
-	public EDILoop getAncestor(int upToNestingLevel) {
-		EDILoop ancestor = this;
-		for(int j = nestingLevel(); j >= upToNestingLevel; j--) {
-			ancestor = ancestor.getParent();
-		}
-		return ancestor;
-	}
-	
-	@Override
-	public boolean allowsSegment(String segmentTag) {
-		return data.segments.contains(segmentTag);
-	}
-	
-	@Override
-	public EDICompositeNode getSegment() {
-		return segment;
-	}
-	
-	@Override
-	public void addSegment(EDICompositeNode segment) {
-		if(!allowsSegment(segment.getName()))
-			throw new IllegalArgumentException("Segment not allowed in context: " + this.getPath());
-		addChild(new EDILoopLeaf(segment, this));
-	}
-	
-	@Override
-	public boolean allowsLoop(String segmentTag) {
-		return allowedLoopTags.contains(segmentTag);
-	}
-	
-	@Override
-	public void addChild(EDILoop loop) {
-		loop.getStartingSegment().ifPresent(allowedLoopTags::add);
-		children.add(loop);
-	}
-	
-	@Override
-	public EDILoop newChild(EDICompositeNode segment) {
-		
-		
-		EDILoop child = new EDILoopNode(descriptor, segment, this);
-		addChild(child);
-		return child;
-	}
-	
-	@Override
-	public String getName() {
-		return data.name;
-	}
-	
-	@Override
-	public String getDescription() {
-		return data.description == null ? "" : data.description;
-	}
-	
-	@Override
-	public Optional<String> getStartingSegment() {
-		return data.startingSegment;
-	}
-
 //	@Override
-//	public int nestingLevel() {
-//		if(parent == null)
-//			return 0;	
-//		return parent.nestingLevel() + 1;
+//	public EDILoop getAncestor(int upToNestingLevel) {
+//		EDILoop ancestor = this;
+//		for(int j = nestingLevel(); j >= upToNestingLevel; j--) {
+//			ancestor = ancestor.getParent();
+//		}
+//		return ancestor;
 //	}
 	
 	@Override
-	public List<EDILoop> getChildren() {
-		return new ArrayList<>(children);
+	public String getName() {
+		return name;
 	}
-	
+
 }
