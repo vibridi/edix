@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Interchange standard="ANSI_X12">
+    <InterchangeControlHeader terminator="$" type="ISA">
+        <AuthorizationInformationQualifier>00</AuthorizationInformationQualifier>
+        <AuthorizationInformation/>
+        <SecurityInformationQualifier>01</SecurityInformationQualifier>
+        <SecurityInformation>PASSWORD00</SecurityInformation>
+        <InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+        <SenderId>X03400000000108</SenderId>
+        <InterchangeIdQualifier>ZZ</InterchangeIdQualifier>
+        <ReceiverId>X00450000001001</ReceiverId>
+        <Date format="yyMMdd">060424</Date>
+        <Time format="HHmm">1244</Time>
+        <RepetitionSeparator>^</RepetitionSeparator>
+        <VersionNumber>00501</VersionNumber>
+        <ControlNumber>000000017</ControlNumber>
+        <AckRequested>1</AckRequested>
+        <TestIndicator>T</TestIndicator>
+        <SubDelimiter>&gt;</SubDelimiter>
+    </InterchangeControlHeader>
+    <FunctionalGroup code="HI" controlNumber="17">
+        <ApplicationSenderCode>PARTICIPANTID</ApplicationSenderCode>
+        <ApplicationReceiverCode>PAYER123</ApplicationReceiverCode>
+        <Date>20060424</Date>
+        <Time>1244</Time>
+        <ResponsibleAgency>X</ResponsibleAgency>
+        <VersionIdCode>005010X217</VersionIdCode>
+        <TransactionSet code="278" controlNumber="1234" description="Health Care Services Review Information">
+            <Segment id="BHT">
+                <Field id="01">0007</Field>
+                <Field id="02">13</Field>
+                <Field id="03">123</Field>
+                <Field id="04">20060424</Field>
+                <Field id="05">1244</Field>
+            </Segment>
+            <Loop description="Utilization Management Organization (UMO) Detail" id="2000A">
+                <Segment id="HL">
+                    <Field id="01">1</Field>
+                    <Field id="02"/>
+                    <Field id="03">20</Field>
+                    <Field id="04">1</Field>
+                </Segment>
+                <Loop description="Utilization Management Organization (UMO) Name" id="2010A">
+                    <Segment id="NM1">
+                        <Field id="01">PR</Field>
+                        <Field id="02">2</Field>
+                        <Field id="03">AETNA 1234560010</Field>
+                        <Field id="04"/>
+                        <Field id="05"/>
+                        <Field id="06"/>
+                        <Field id="07"/>
+                        <Field id="08">PI</Field>
+                        <Field id="09">PAYER123</Field>
+                    </Segment>
+                </Loop>
+                <Loop description="Requester Detail" id="2000B">
+                    <Segment id="HL">
+                        <Field id="01">2</Field>
+                        <Field id="02">1</Field>
+                        <Field id="03">21</Field>
+                        <Field id="04">1</Field>
+                    </Segment>
+                    <Loop description="Requester Name" id="2010B">
+                        <Segment id="NM1">
+                            <Field id="01">1P</Field>
+                            <Field id="02">1</Field>
+                            <Field id="03">POPDELL</Field>
+                            <Field id="04">ROBERT</Field>
+                            <Field id="05"/>
+                            <Field id="06"/>
+                            <Field id="07"/>
+                            <Field id="08">24</Field>
+                            <Field id="09">4376557IM</Field>
+                        </Segment>
+                        <Segment id="PER">
+                            <Field id="01">IC</Field>
+                            <Field id="02"/>
+                            <Field id="03">TE</Field>
+                            <Field id="04">6515551212</Field>
+                            <Field id="05">FX</Field>
+                            <Field id="06">6513332222</Field>
+                        </Segment>
+                    </Loop>
+                    <Loop description="Subscriber Detail" id="2000C">
+                        <Segment id="HL">
+                            <Field id="01">3</Field>
+                            <Field id="02">2</Field>
+                            <Field id="03">22</Field>
+                            <Field id="04">1</Field>
+                        </Segment>
+                        <Loop description="Subscriber Name" id="2010C">
+                            <Segment id="NM1">
+                                <Field id="01">IL</Field>
+                                <Field id="02">1</Field>
+                                <Field id="03">SMITH</Field>
+                                <Field id="04">SARA</Field>
+                                <Field id="05"/>
+                                <Field id="06"/>
+                                <Field id="07"/>
+                                <Field id="08">MI</Field>
+                                <Field id="09">352584768003G</Field>
+                            </Segment>
+                            <Segment id="N4">
+                                <Field id="01">KANSAS CITY</Field>
+                                <Field id="02">MO</Field>
+                                <Field id="03">64108</Field>
+                            </Segment>
+                            <Segment id="DMG">
+                                <Field id="01">D8</Field>
+                                <Field id="02">19560414</Field>
+                                <Field id="03">F</Field>
+                            </Segment>
+                        </Loop>
+                        <Loop description="Patient Event Detail" id="2000E">
+                            <Segment id="HL">
+                                <Field id="01">4</Field>
+                                <Field id="02">3</Field>
+                                <Field id="03">EV</Field>
+                                <Field id="04">1</Field>
+                            </Segment>
+                            <Segment id="UM">
+                                <Field id="01">HS</Field>
+                                <Field id="02">I</Field>
+                                <Field id="03">88</Field>
+                            </Segment>
+                            <Segment id="PWK">
+                                <Field id="01">04</Field>
+                                <Field id="02">EL</Field>
+                                <Field id="03"/>
+                                <Field id="04"/>
+                                <Field id="05">AC</Field>
+                                <Field id="06">JONP56789001</Field>
+                            </Segment>
+                            <Loop description="Service Detail" id="2000F">
+                                <Segment id="HL">
+                                    <Field id="01">5</Field>
+                                    <Field id="02">4</Field>
+                                    <Field id="03">SS</Field>
+                                    <Field id="04">0</Field>
+                                </Segment>
+                                <Segment id="SV1">
+                                    <Field id="01">
+                                        <Field id="01">N4</Field>
+                                        <Field id="02">0173042304</Field>
+                                    </Field>
+                                </Segment>
+                                <Segment id="MSG">
+                                    <Field id="01">Oxistat Cream, 1%, 60 gram tube</Field>
+                                </Segment>
+                            </Loop>
+                        </Loop>
+                    </Loop>
+                </Loop>
+            </Loop>
+        </TransactionSet>
+    </FunctionalGroup>
+</Interchange>

@@ -218,7 +218,7 @@ public class X12Interchange {
 		return groups.get(gs06);
 	}
 	
-	public X12FunctionalGroup getFunctionalGroupt(int i) {
+	public X12FunctionalGroup getFunctionalGroup(int i) {
 		return new ArrayList<>(groups.values()).get(i);
 	}
 	

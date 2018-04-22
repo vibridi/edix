@@ -14,17 +14,16 @@ import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.loop.EDILoop;
 import com.vibridi.edix.loop.LoopDescriptorManager;
+import com.vibridi.edix.loop.impl.EDILoopContainer;
 import com.vibridi.edix.loop.impl.EDILoopNode;
-import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDIMessage;
-import com.vibridi.edix.model.impl.EDICompositeNodeImpl;
 import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class TestLoop {
 
 	@Test
 	public void testLoopDescriptorManager() throws IOException {
-		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
+		EDILoop ld = newLoopTree("110");
 		assertNotNull(ld);
 		assertTrue(ld.isRoot());
 		assertEquals(ld.getName(), "110");
@@ -33,7 +32,7 @@ public class TestLoop {
 	
 	@Test
 	public void testLoopDescriptorVersion() throws IOException {
-		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "278");
+		EDILoop ld = newLoopTree("278", "0000501");
 		assertNotNull(ld);
 		assertTrue(ld.isRoot());
 		assertEquals(ld.getName(), "278");
@@ -42,8 +41,7 @@ public class TestLoop {
 	
 	@Test
 	public void testLoopDescriptor() throws IOException {
-		EDILoop ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, "110");
-		assertEquals(ld.getChildren().size(), 0);
+		EDILoop ld = newLoopTree("110");
 		assertTrue(ld.allowsSegment("B3"));
 		assertTrue(ld.allowsSegment("B3A"));
 		assertTrue(ld.allowsSegment("C2"));
@@ -60,7 +58,7 @@ public class TestLoop {
 	public void testLoopTree() throws Exception {
 		EDILoop root = 
 		TestResources.getAsX12Interchange("transactions-x12/110.edi")
-			.getFunctionalGroupt(0)
+			.getFunctionalGroup(0)
 			.getTransactionSet(0)
 		 	.getMainLoop();
 		
@@ -120,11 +118,92 @@ public class TestLoop {
 	}
 	
 	@Test
+	public void testHierarchicalLoop() throws Exception {
+		EDILoop root = 
+		TestResources.getAsX12Interchange("transactions-x12/278.edi")
+			.getFunctionalGroup(0)
+			.getTransactionSet(0)
+		 	.getMainLoop();
+		
+		assertEquals(root.getChildren().size(), 2);
+		
+		EDILoop hl = root.getChildren().get(1);
+		assertEquals(hl.getName(), "2000A");
+		assertEquals(hl.getSegmentContent(), hl.getChildren().get(0).getSegmentContent());
+		assertEquals(hl.getSegmentContent().getChild(2).getTextContent(), "20");
+		assertEquals(hl.getChildren().size(), 3);
+		assertEquals(hl.getChildren().get(1).getName(), "2010A");
+		
+		hl = hl.getChildren().get(2);
+		assertEquals(hl.getName(), "2000B");
+		assertEquals(hl.getSegmentContent().getChild(2).getTextContent(), "21");
+		assertEquals(hl.getChildren().size(), 3);
+		assertEquals(hl.getChildren().get(1).getName(), "2010B");
+		
+		hl = hl.getChildren().get(2);
+		assertEquals(hl.getName(), "2000C");
+		assertEquals(hl.getSegmentContent().getChild(2).getTextContent(), "22");
+		assertEquals(hl.getChildren().size(), 3);
+		
+		EDILoop nm1 = hl.getChildren().get(1);
+		assertEquals(nm1.getName(), "2010C");
+		assertEquals(nm1.getChildren().get(0).getName(), "NM1");
+		assertEquals(nm1.getChildren().get(1).getName(), "N4");
+		assertEquals(nm1.getChildren().get(2).getName(), "DMG");
+		
+		assertEquals(nm1.getPath(), "/2000A/2000B/2000C/2010C");
+		
+		hl = hl.getChildren().get(2);
+		assertEquals(hl.getName(), "2000E");
+		assertEquals(hl.getSegmentContent().getChild(2).getTextContent(), "EV");
+		assertEquals(hl.getChildren().size(), 4);
+		
+		hl = hl.getChildren().get(3);
+		assertEquals(hl.getName(), "2000F");
+		assertEquals(hl.getSegmentContent().getChild(2).getTextContent(), "SS");
+		assertEquals(hl.getChildren().size(), 3);
+		
+		EDILoop msg = hl.getChildren().get(2);
+		assertEquals(msg.getPath(), "/2000A/2000B/2000C/2000E/2000F/MSG");
+	}
+	
+	@Test
+	public void testAmbiguousLoops() throws Exception {
+		EDILoop root = 
+		TestResources.getAsX12Interchange("transactions-x12/275.edi")
+			.getFunctionalGroup(0)
+			.getTransactionSet(0)
+		 	.getMainLoop();
+		
+		assertEquals(root.getChildren().size(), 5);
+		
+		EDILoop nm1 = root.getChildren().get(1);
+		assertEquals(nm1.getName(), "1000C");
+		
+		nm1 = root.getChildren().get(2);
+		assertEquals(nm1.getName(), "1000A");
+		
+		nm1 = root.getChildren().get(3);
+		assertEquals(nm1.getName(), "1000D");
+	}
+	
+	@Test
 	public void testPrint() throws Exception {
-		EDIMessage m = TestResources.getAsMessage("transactions-x12/110.edi");
+		EDIMessage m = TestResources.getAsMessage("transactions-x12/278.edi");
 		EDIXMLWriter w = (EDIXMLWriter) EDIFactory.newWriter(EDIFormat.XML, m);
 		String xml = w.writeToString("UTF-8");
 		System.out.println(xml);
 	}
+	
+	private EDILoop newLoopTree(String transaction) throws IOException {
+		return new EDILoopContainer(LoopDescriptorManager.instance
+				.forTransaction(EDIStandard.ANSI_X12, transaction), null);
+	}
+	
+	private EDILoop newLoopTree(String transaction, String version) throws IOException {
+		return new EDILoopContainer(LoopDescriptorManager.instance
+				.forTransaction(EDIStandard.ANSI_X12, transaction, version), null);
+	}
+	
 	
 }

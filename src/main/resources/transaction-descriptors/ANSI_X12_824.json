@@ -1,0 +1,41 @@
+{
+	"transactionSet": "824",
+	"versions": {
+		"all": {
+			"name" : "824",
+			"description": "Application Advice",
+			"segments": [ "BGN" ],
+			"loops": [{
+					"name": "N1",
+					"description": "Name",
+					"startingSegment": "N1",
+					"segments": [ "N2", "N3", "N4", "REF", "PER" ]
+				}, {
+					"name": "OTI",
+					"description": "Original Transaction Identification",
+					"startingSegment": "OTI",
+					"segments": [ "REF", "DTM", "PER", "AMT", "QTY", "C001", "N1", "NM1" ],
+					"loops": [{
+							"name": "TED",
+							"description": "Technical Error Description",
+							"startingSegment": "TED",
+							"segments": [ "CTX", "NTE", "RED" ]
+						}, {
+							"name": "LM",
+							"description": "Code Source Information",
+							"startingSegment": "LM",
+							"segments": [ "L0", "L4", "L10", "SL1" ],
+							"loops": [{
+									"name": "LQ",
+									"description": "Industry Code",
+									"startingSegment": "LQ",
+									"segments": [ "RED" ]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

@@ -74,7 +74,7 @@ public class EDIXMLWriter extends EDIWriter {
 			writer.writeEndElement();			// InterchangeControlHeader
 			
 			for(int i = 0; i < interchange.size(); i++) {
-				X12FunctionalGroup group = interchange.getFunctionalGroupt(i);
+				X12FunctionalGroup group = interchange.getFunctionalGroup(i);
 				
 				writer.writeStartElement("FunctionalGroup");
 				writer.writeAttribute("code", group.getGroupHeaderCode());								// GS.1

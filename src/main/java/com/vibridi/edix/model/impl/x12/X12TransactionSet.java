@@ -8,7 +8,9 @@ import java.util.Map;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.loop.EDILoop;
+import com.vibridi.edix.loop.LoopDescriptor;
 import com.vibridi.edix.loop.LoopDescriptorManager;
+import com.vibridi.edix.loop.impl.EDILoopContainer;
 import com.vibridi.edix.model.EDICompositeNode;
 
 public class X12TransactionSet {
@@ -73,7 +75,7 @@ public class X12TransactionSet {
         	// A head HL can only be child of ST or a non-HL loop
         	// It's enough to set HL as one of the ST main loops, and ensure it never appears as direct child 
         	// of another HL loop
-        	
+        			
         	if(!currentLoop.allowsLoop(seg.getName()))
         		throw new EDISyntaxException(
         				String.format("HL segment [%s] has no specifications at path %s", 
@@ -81,7 +83,6 @@ public class X12TransactionSet {
         						currentLoop.getPath()));
         	
         	currentLoop = currentLoop.appendHL(seg);
-        	
         }
         
         hloops.put(id, currentLoop);
@@ -94,16 +95,11 @@ public class X12TransactionSet {
 		
 		if(currentLoop.allowsSegment(seg.getName())) {
 			currentLoop.appendSegment(seg);
-			return seg.getName().equals("LE") ? currentLoop.getParent() : currentLoop;
+			if(seg.getName().equals("LE")) 	// Loop End
+				return currentLoop.getParent();
+			return currentLoop;
 		}
 			
-		// can't contain segment
-		// are we inside valid loop?
-		// no:
-		// 		then must be a terminal node, even though it should never be the case
-		// 		next segment
-		// yes:
-		
 		if(currentLoop.allowsLoop(seg.getName())) {
 			return currentLoop.appendLoop(seg);
 		}
@@ -130,21 +126,14 @@ public class X12TransactionSet {
 	public X12FunctionalGroup getFunctionalGroup() {
 		return group;
 	}
-	
-//	private LoopMatcher getLoopMatcher() {
-//		try {
-//			return LoopDescriptorManager.instance
-//					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
-//		} catch (IOException e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
 
 	private EDILoop newLoopTree() {
 		try {
-			return LoopDescriptorManager.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
+			LoopDescriptor ld = LoopDescriptorManager.instance
+					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
+			return new EDILoopContainer(ld, null);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("Can't build the loop descriptor tree.", e);
 		}
 	}
 	

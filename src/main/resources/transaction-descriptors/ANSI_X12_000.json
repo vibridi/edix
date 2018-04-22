@@ -1,0 +1,10 @@
+{
+	"transactionSet": "000",
+	"versions": {
+		"all": {
+			"name" : "000",
+			"description": "Dummy Descriptor",
+			"segments": [ "BGN", "BHT", "DMG", "MSG" ]
+		}
+	}
+}

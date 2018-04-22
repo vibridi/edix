@@ -3,6 +3,7 @@ package com.vibridi.edix.loop;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Set;
  * start of a new loop at any path.</li>
  * <li>except: list of exceptions to the wildcard context
  * </ul>
- * 
+ * TODO rewrite this
  * @author gabriele.vaccari
  *
  */
@@ -24,15 +25,17 @@ public class LoopDescriptor {
 	
 	private final String name;
 	private String description;
-	private String levelCode;
+	private String code;
 	private String startingSegment;
 	private Set<String> allowedSegments;
-	private Map<String, LoopDescriptor> allowedLoops;			// < name, descriptor >	
+	private Map<String, LoopDescriptor> allowedLoops;			// < name, descriptor >
+	private boolean hasHLDescriptors;
 	
 	public LoopDescriptor(String name) {
 		this.name = name;
 		this.allowedSegments = new HashSet<>();
 		this.allowedLoops = new HashMap<>();
+		this.hasHLDescriptors = false;
 	}
 	
 	public String getName() {
@@ -43,8 +46,8 @@ public class LoopDescriptor {
 		return description;
 	}
 	
-	public String getLevelCode() {
-		return levelCode;
+	public String getCode() {
+		return code;
 	}
 
 	public String getStartingSegment() {
@@ -59,27 +62,61 @@ public class LoopDescriptor {
 		return allowedLoops;
 	}
 	
-	public LoopDescriptor getDescriptor(String name) {
-		return allowedLoops.get(name);
+	/**
+	 * Retrieves a loop descriptor previously stored with an {@code addAllowedLoop} call. 
+	 * @param descriptorKey The key is the name of the loop's starting segment, example <code>N1, LX</code>. <br>
+	 * In case of ambiguity, the key takes the form form <code>segmentName_code</code>, example <code>HL_20</code>.
+	 * @return
+	 */
+	public LoopDescriptor getDescriptor(String descriptorKey) {
+		return allowedLoops.get(descriptorKey);
 	}
 	
-	public void setDescription(String description) {
+	public boolean hasHLDescriptors() {
+		return hasHLDescriptors;
+	}
+	
+	public boolean isAmbiguous(String segmentTag) {
+		return allowedLoops.keySet()
+				.stream()
+				.filter(k -> k.startsWith(segmentTag))
+				.count() > 1;
+	}
+	
+	protected void setDescription(String description) {
+		Objects.requireNonNull(description);
 		this.description = description;
 	}
 	
-	public void setLevelCode(String levelCode) {
-		this.levelCode = levelCode;
+	protected void setCode(String code) {
+		Objects.requireNonNull(code);
+		this.code = code;
 	}
 
-	public void setStartingSegment(String startingSegment) {
+	protected void setStartingSegment(String startingSegment) {
+		Objects.requireNonNull(startingSegment);
 		this.startingSegment = startingSegment;
 	}
 	
-	public void addAllowedSegment(String allowedSegment) {
+	protected void addAllowedSegment(String allowedSegment) {
 		this.allowedSegments.add(allowedSegment);
 	}
 	
-	public void addAllowedLoop(LoopDescriptor descriptor) {
-		this.allowedLoops.put(descriptor.name, descriptor);
+	/**
+	 * Adds this loop descriptor to the list of allowed descriptors. 
+	 * @param descriptor
+	 */
+	protected void addAllowedLoop(LoopDescriptor descriptor) {
+		String key = descriptor.getStartingSegment();
+		if(key.isEmpty())
+			throw new IllegalArgumentException("Adding a loop descriptor that doesn't specify a starting segment");
+		
+		if(key.equals("HL"))
+			this.hasHLDescriptors = true;
+		
+		if(!descriptor.getCode().isEmpty())
+			key = key.concat("_").concat(descriptor.code);
+		
+		this.allowedLoops.put(key, descriptor);
 	}
 }

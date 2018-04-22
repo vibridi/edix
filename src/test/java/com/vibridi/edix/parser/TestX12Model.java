@@ -18,7 +18,7 @@ public class TestX12Model {
 
 	@Test
 	public void createX12Interchange() throws Exception {
-		EDILexer lx = TestResources.getAsLexer("test-interchange-bin.edi");
+		EDILexer lx = TestResources.getAsLexer("validation-x12/full-envelope.edi");
 		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
@@ -62,7 +62,7 @@ public class TestX12Model {
 		assertEquals(g.size(), 1);
 		X12TransactionSet s = g.getTransactionSet("1234");
 		assertNotNull(s);
-		assertEquals(s.getIdCode(), "278");
+		assertEquals(s.getIdCode(), "000");
 		assertEquals(s.getControlNumber(), "1234");
 		
 		g = x12.getFunctionalGroup("18");
@@ -70,7 +70,7 @@ public class TestX12Model {
 		assertEquals(g.size(), 1);
 		s = g.getTransactionSet("1235");
 		assertNotNull(s);
-		assertEquals(s.getIdCode(), "275");
+		assertEquals(s.getIdCode(), "000");
 		assertEquals(s.getControlNumber(), "1235");
 	}
 	

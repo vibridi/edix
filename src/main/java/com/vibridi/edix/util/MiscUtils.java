@@ -2,6 +2,8 @@ package com.vibridi.edix.util;
 
 import java.util.function.Predicate;
 
+import com.vibridi.edix.model.EDICompositeNode;
+
 public class MiscUtils {
 
 	@SafeVarargs
@@ -18,5 +20,27 @@ public class MiscUtils {
 		return args[args.length - 1];
 	}
 	
+	
+	public static String getDescriptorKey(EDICompositeNode segment) {
+		String name = segment.getName();
+		String code = null;
+		switch(name) {
+		case "HL":
+			code = segment.getChild(2).getTextContent();
+			break;
+		
+		case "NM1":
+			code = segment.getChild(0).getTextContent();
+			break;
+		
+		default:
+			// do nothing
+			break;
+		}
+		
+		return code != null
+				? String.format("%s_%s", name, code)
+				: name;
+	}
 	
 }

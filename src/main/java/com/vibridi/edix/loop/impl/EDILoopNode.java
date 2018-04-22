@@ -19,9 +19,6 @@ public abstract class EDILoopNode implements EDILoop {
 	// Actual children
 	// This tree is populated at construction time. Later we will print only nodes that have a segment
 	
-	
-	// always needed
-	
 	public EDILoopNode(String name, EDILoop parent) {
 		this.name = name;
 		this.parent = parent;

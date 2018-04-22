@@ -32,7 +32,7 @@
 					"name": "2000A",
 					"description" : "Utilization Management Organization (UMO) Detail",
 					"startingSegment": "HL",
-					"levelCode" : "20",
+					"code" : "20",
 					"segments": [ "AAA"	],
 					"loops": [{
 							"name": "2010A",
@@ -45,13 +45,82 @@
 					"name": "2000B",
 					"description" : "Requester Detail",
 					"startingSegment": "HL",
-					"levelCode" : "21",
+					"code" : "21",
 					"segments": [ "PWK"	],
 					"loops": [{
 							"name": "2010B",
 							"description" : "Requester Name",
 							"startingSegment": "NM1",
 							"segments": [ "REF", "N3", "N4", "PER", "AAA", "PRV" ]
+						}
+					]
+				},{
+					"name": "2000C",
+					"description" : "Subscriber Detail",
+					"startingSegment": "HL",
+					"code" : "22",
+					"segments": [ "PWK"	],
+					"loops": [{
+							"name": "2010C",
+							"description" : "Subscriber Name",
+							"startingSegment": "NM1",
+							"segments": [ "REF", "N3", "N4", "AAA", "DMG", "INS" ]
+						}
+					]
+				},{
+					"name": "2000D",
+					"description" : "Dependent Detail",
+					"startingSegment": "HL",
+					"code" : "23",
+					"segments": [ "PWK"	],
+					"loops": [{
+							"name": "2010D",
+							"description" : "Dependent Name",
+							"startingSegment": "NM1",
+							"segments": [ "REF", "N3", "N4", "AAA", "DMG", "INS" ]
+						}
+					]
+				},{
+					"name": "2000E",
+					"description" : "Patient Event Detail",
+					"startingSegment": "HL",
+					"code" : "EV",
+					"segments": [ 
+						"TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", 
+						"HSD", "CRC", "CL1", "CR1", "CR2", "CR5", "CR6", 
+						"PWK", "MSG" 
+					],
+					"loops": [{
+							"name": "2010EA",
+							"description" : "Patient Event Provider Name",
+							"startingSegment": "NM1",
+							"segments": [ "REF", "N3", "N4", "PER", "AAA", "PRV" ]
+						},{
+							"name": "2010EB",
+							"description" : "Patient Event Transport Information",
+							"startingSegment": "NM1",
+							"segments": [ "N3", "N4" ]
+						},{
+							"name": "2010EC",
+							"description" : "Patient Event Other UMO Name",
+							"startingSegment": "NM1",
+							"segments": [ "REF", "DTP", "N3", "N4", "AAA" ]
+						}
+					]
+				},{
+					"name": "2000F",
+					"description" : "Service Detail",
+					"startingSegment": "HL",
+					"code" : "SS",
+					"segments": [ 
+						"TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", 
+						"SV1", "SV2", "SV3", "TOO", "HSD", "PWK", "MSG" 
+					],
+					"loops": [{
+							"name": "2010F",
+							"description" : "Service Provider Name",
+							"startingSegment": "NM1",
+							"segments": [ "REF", "N3", "N4", "PER", "PRV" ]
 						}
 					]
 				}

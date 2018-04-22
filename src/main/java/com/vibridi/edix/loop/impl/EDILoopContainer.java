@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
+import com.vibridi.edix.error.ErrorMessages;
 import com.vibridi.edix.loop.EDILoop;
 import com.vibridi.edix.loop.LoopDescriptor;
 import com.vibridi.edix.model.EDICompositeNode;
+import com.vibridi.edix.util.MiscUtils;
 
 public class EDILoopContainer extends EDILoopNode {
 
@@ -27,14 +30,24 @@ public class EDILoopContainer extends EDILoopNode {
 		return sj.toString();
 	}
 	
+//	@Override
+//	public EDILoop copyStructure() {
+//		EDILoopContainer copy = new EDILoopContainer(descriptor, this.getParent());
+//		for(EDILoop child : children)
+//			copy.appendChild(child.copyStructure());
+//		return copy;
+//	}
+	
 	@Override
 	public boolean allowsSegment(String segmentTag) {
 		return descriptor.getAllowedSegments().contains(segmentTag);
 	}
 	
 	@Override
-	public boolean allowsLoop(String segmentTag) {
-		return descriptor.getAllowedLoops().keySet().contains(segmentTag);
+	public boolean allowsLoop(String loopTag) {
+		return descriptor.getAllowedLoops().keySet()
+				.stream()
+				.anyMatch(k -> k.startsWith(loopTag));
 	}
 
 	@Override
@@ -46,13 +59,21 @@ public class EDILoopContainer extends EDILoopNode {
 	
 	@Override
 	public EDILoop appendLoop(EDICompositeNode segment) {
-		if(!allowsLoop(segment.getName()))
+		String key = segment.getName();
+		if(!allowsLoop(key))
 			throw new IllegalArgumentException(String.format(
 					"This loop %s doesn't allow the loop %s",
 					this.toString(),
 					segment.getName()));
 		
-		LoopDescriptor d = descriptor.getDescriptor(segment.getName());
+		if(descriptor.isAmbiguous(key))
+			key = MiscUtils.getDescriptorKey(segment);
+		
+		LoopDescriptor d = descriptor.getDescriptor(key);
+		
+		if(d == null)
+			throw new IllegalStateException(String.format(ErrorMessages.LOOP_DESCRIPTOR_MISSING, key));
+		
 		EDILoopContainer loop = new EDILoopContainer(d, this);
 		loop.appendSegment(segment);
 		appendChild(loop);
@@ -61,15 +82,33 @@ public class EDILoopContainer extends EDILoopNode {
 	
 	@Override
 	public EDILoop appendHL(EDICompositeNode segment) {
-		// If this is a HL too, just copy the descriptor
-		if(this.getChildren().get(0).getName().equals("HL")) {
-			EDILoopContainer hl = new EDILoopContainer(descriptor, this);
-			hl.appendSegment(segment);
-			appendChild(hl);
-			return hl;
-		}
+		String key = segment.getName();
 		
-		return appendLoop(segment);
+		if(!key.equals("HL"))
+			throw new IllegalArgumentException("Segment is not HL");
+		
+		// HL segments are usually appended to other hierarchical loop instances, 
+		// but generally they don't specify HL loop descriptors themselves. 
+		// Therefore we must walk the tree up until we find a container that does have HL descriptors.
+		EDILoopContainer hlContainer = this;
+		while(hlContainer != null && !hlContainer.descriptor.hasHLDescriptors())
+			hlContainer = (EDILoopContainer) hlContainer.getParent();
+		
+		if(hlContainer == null)
+			throw new IllegalStateException("Cannot find a suitable HL container from this path: " + this.getPath());
+		
+		if(hlContainer.descriptor.isAmbiguous(key))
+			key = MiscUtils.getDescriptorKey(segment);		
+		
+		LoopDescriptor hlDescriptor = hlContainer.descriptor.getDescriptor(key);
+		
+		if(hlDescriptor == null)
+			throw new IllegalStateException(String.format(ErrorMessages.LOOP_DESCRIPTOR_MISSING, key));
+		
+		EDILoopContainer hl = new EDILoopContainer(hlDescriptor, this);
+		hl.appendSegment(segment);
+		appendChild(hl);
+		return hl;
 	}
 	
 	private void appendChild(EDILoop loop) {
