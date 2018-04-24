@@ -58,9 +58,9 @@ public class EDIXMLWriter extends EDIWriter {
 			appendElement(writer, "AuthorizationInformation", interchange.getAuthInfo());
 			appendElement(writer, "SecurityInformationQualifier", interchange.getSecurityInfoQualifier());
 			appendElement(writer, "SecurityInformation", interchange.getSecurityInfo());
-			appendElement(writer, "InterchangeIdQualifier", interchange.getInterchangeIdQualifier());
+			appendElement(writer, "InterchangeIdQualifier", interchange.getISAField(5));
 			appendElement(writer, "SenderId", interchange.getSenderId());
-			appendElement(writer, "InterchangeIdQualifier", interchange.getInterchangeIdQualifier());
+			appendElement(writer, "InterchangeIdQualifier", interchange.getISAField(7));
 			appendElement(writer, "ReceiverId", interchange.getReceiverId());
 			appendElement(writer, "Date", interchange.getDate(), evf.createAttribute("format", "yyMMdd"));
 			appendElement(writer, "Time", interchange.getTime(), evf.createAttribute("format", "HHmm"));

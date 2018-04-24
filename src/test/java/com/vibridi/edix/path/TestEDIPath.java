@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.vibridi.edix.EDIRegistry;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.error.EDIPathException;
@@ -96,7 +95,7 @@ public class TestEDIPath {
 	@Test
 	public void ediPathUsage() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("test-interchange-rep.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		m = parser.parse(lx);
 		assertNotNull(m);
 //		

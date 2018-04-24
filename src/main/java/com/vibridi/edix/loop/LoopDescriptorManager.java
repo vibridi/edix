@@ -97,12 +97,16 @@ public enum LoopDescriptorManager {
 		String name = textOrDefault(node.get("name"), "");
 		String desc = textOrDefault(node.get("description"), "");
 		String startingSegment = textOrDefault(node.get("startingSegment"), "");
-		String code = textOrDefault(node.get("code"), "");
 		
 		LoopDescriptor ld = new LoopDescriptor(name);
 		ld.setDescription(desc);
 		ld.setStartingSegment(startingSegment);
-		ld.setCode(code);
+		
+		if(node.has("codes")) {
+			JsonNode codes = node.get("codes");
+			for(int i = 0; i < codes.size(); i++)
+				ld.addCode(codes.get(i).asText());
+		}
 		
 		if(node.has("segments"))
 			node.get("segments").forEach(jn -> ld.addAllowedSegment(jn.textValue()));

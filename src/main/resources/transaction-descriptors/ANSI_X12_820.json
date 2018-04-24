@@ -1,0 +1,293 @@
+{
+  "transactionSet" : "820",
+  "versions" : {
+    "all" : {
+      "name" : "820",
+      "description" : "Payment Order/Remittance Advice",
+      "segments" : [ "BPR", "BPS", "NTE", "TRN", "CUR", "REF", "DTM" ],
+      "loops" : [ {
+        "name" : "N1",
+        "description" : "Name",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "REF", "PER", "RDM", "DTM" ],
+        "loops" : [ ]
+      }, {
+        "name" : "ENT",
+        "description" : "Entity",
+        "startingSegment" : "ENT",
+        "segments" : [ ],
+        "loops" : [ {
+          "name" : "NM1",
+          "description" : "Individual or Organizational Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "N2", "N3", "N4", "REF", "PER" ],
+          "loops" : [ ]
+        }, {
+          "name" : "ADX",
+          "description" : "Adjustment",
+          "startingSegment" : "ADX",
+          "segments" : [ "NTE", "PER", "DTM" ],
+          "loops" : [ {
+            "name" : "REF",
+            "description" : "Reference Identification",
+            "startingSegment" : "REF",
+            "segments" : [ "DTM" ],
+            "loops" : [ ]
+          }, {
+            "name" : "IT1",
+            "description" : "Baseline Item Data (Invoice)",
+            "startingSegment" : "IT1",
+            "segments" : [ ],
+            "loops" : [ {
+              "name" : "REF",
+              "description" : "Reference Identification",
+              "startingSegment" : "REF",
+              "segments" : [ "DTM" ],
+              "loops" : [ ]
+            }, {
+              "name" : "SAC",
+              "description" : "Service, Promotion, Allowance, or Charg",
+              "startingSegment" : "SAC",
+              "segments" : [ "TXI" ],
+              "loops" : [ ]
+            }, {
+              "name" : "SLN",
+              "description" : "Subline Item Detail",
+              "startingSegment" : "SLN",
+              "segments" : [ ],
+              "loops" : [ {
+                "name" : "REF",
+                "description" : "Reference Identification",
+                "startingSegment" : "REF",
+                "segments" : [ "DTM" ],
+                "loops" : [ ]
+              }, {
+                "name" : "SAC",
+                "description" : "Service, Promotion, Allowance, or Charg",
+                "startingSegment" : "SAC",
+                "segments" : [ "TXI" ],
+                "loops" : [ ]
+              } ]
+            } ]
+          } ]
+        }, {
+          "name" : "RMR",
+          "description" : "Remittance Advice Accounts Receivable O",
+          "startingSegment" : "RMR",
+          "segments" : [ "NTE", "REF", "DTM" ],
+          "loops" : [ {
+            "name" : "IT1",
+            "description" : "Baseline Item Data (Invoice)",
+            "startingSegment" : "IT1",
+            "segments" : [ ],
+            "loops" : [ {
+              "name" : "REF",
+              "description" : "Reference Identification",
+              "startingSegment" : "REF",
+              "segments" : [ "DTM" ],
+              "loops" : [ ]
+            }, {
+              "name" : "SAC",
+              "description" : "Service, Promotion, Allowance, or Charg",
+              "startingSegment" : "SAC",
+              "segments" : [ "TXI", "TX1" ],
+              "loops" : [ ]
+            }, {
+              "name" : "SLN",
+              "description" : "Subline Item Detail",
+              "startingSegment" : "SLN",
+              "segments" : [ ],
+              "loops" : [ {
+                "name" : "REF",
+                "description" : "Reference Identification",
+                "startingSegment" : "REF",
+                "segments" : [ "DTM" ],
+                "loops" : [ ]
+              }, {
+                "name" : "SAC",
+                "description" : "Service, Promotion, Allowance, or Charg",
+                "startingSegment" : "SAC",
+                "segments" : [ "TXI" ],
+                "loops" : [ ]
+              } ]
+            } ]
+          }, {
+            "name" : "ADX",
+            "description" : "Adjustment",
+            "startingSegment" : "ADX",
+            "segments" : [ "NTE", "PER", "DTM" ],
+            "loops" : [ {
+              "name" : "REF",
+              "description" : "Reference Identification",
+              "startingSegment" : "REF",
+              "segments" : [ "DTM" ],
+              "loops" : [ ]
+            }, {
+              "name" : "IT1",
+              "description" : "Baseline Item Data (Invoice)",
+              "startingSegment" : "IT1",
+              "segments" : [ ],
+              "loops" : [ {
+                "name" : "REF",
+                "description" : "Reference Identification",
+                "startingSegment" : "REF",
+                "segments" : [ "DTM" ],
+                "loops" : [ ]
+              }, {
+                "name" : "SAC",
+                "description" : "Service, Promotion, Allowance, or Charg",
+                "startingSegment" : "SAC",
+                "segments" : [ "TXI" ],
+                "loops" : [ ]
+              }, {
+                "name" : "SLN",
+                "description" : "Subline Item Detail",
+                "startingSegment" : "SLN",
+                "segments" : [ ],
+                "loops" : [ {
+                  "name" : "REF",
+                  "description" : "Reference Identification",
+                  "startingSegment" : "REF",
+                  "segments" : [ "DTM" ],
+                  "loops" : [ ]
+                }, {
+                  "name" : "SAC",
+                  "description" : "Service, Promotion, Allowance, or Charg",
+                  "startingSegment" : "SAC",
+                  "segments" : [ "TXI" ],
+                  "loops" : [ ]
+                } ]
+              } ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "name" : "TXP",
+        "description" : "Tax Payment",
+        "startingSegment" : "TXP",
+        "segments" : [ "TXI" ],
+        "loops" : [ ]
+      }, {
+        "name" : "DED",
+        "description" : "Deductions",
+        "startingSegment" : "DED",
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "LX",
+        "description" : "Assigned Number",
+        "startingSegment" : "LX",
+        "segments" : [ "REF", "TRN" ],
+        "loops" : [ {
+          "name" : "NM1",
+          "description" : "Individual or Organizational Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "G53" ],
+          "loops" : [ {
+            "name" : "AIN",
+            "description" : "Income",
+            "startingSegment" : "AIN",
+            "segments" : [ "QTY", "DTP" ],
+            "loops" : [ ]
+          }, {
+            "name" : "PEN",
+            "description" : "Pension Information",
+            "startingSegment" : "PEN",
+            "segments" : [ "AMT", "DTP" ],
+            "loops" : [ {
+              "name" : "INV",
+              "description" : "Investment Vehicle Selection",
+              "startingSegment" : "INV",
+              "segments" : [ "DTP" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "name" : "N9",
+        "description" : "Reference Identification",
+        "startingSegment" : "N9",
+        "segments" : [ ],
+        "loops" : [ {
+          "name" : "AMT",
+          "description" : "Monetary Amount",
+          "startingSegment" : "AMT",
+          "segments" : [ "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "N1",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "REF" ],
+          "loops" : [ {
+            "name" : "EMS",
+            "description" : "Employment Position",
+            "startingSegment" : "EMS",
+            "segments" : [ "ATN", "AIN", "PYD" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      }, {
+        "name" : "RYL",
+        "description" : "Royalty Payment",
+        "startingSegment" : "RYL",
+        "segments" : [ ],
+        "loops" : [ {
+          "name" : "NM1",
+          "description" : "Individual or Organizational Name",
+          "startingSegment" : "NM1",
+          "segments" : [ ],
+          "loops" : [ {
+            "name" : "LOC",
+            "description" : "Location",
+            "startingSegment" : "LOC",
+            "segments" : [ ],
+            "loops" : [ {
+              "name" : "PID",
+              "description" : "Product/Item Description",
+              "startingSegment" : "PID",
+              "segments" : [ "DTM" ],
+              "loops" : [ {
+                "name" : "PCT",
+                "description" : "Percent Amounts",
+                "startingSegment" : "PCT",
+                "segments" : [ "QTY" ],
+                "loops" : [ {
+                  "name" : "AMT",
+                  "description" : "Monetary Amount",
+                  "startingSegment" : "AMT",
+                  "segments" : [ "ADX" ],
+                  "loops" : [ ]
+                } ]
+              } ]
+            } ]
+          }, {
+            "name" : "ASM",
+            "description" : "Amount and Settlement Method",
+            "startingSegment" : "ASM",
+            "segments" : [ "ADX" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      }, {
+        "name" : "LS",
+        "description" : "Detail Loop",
+        "startingSegment" : "LS",
+        "segments" : [ "LE" ],
+        "loops" : [ {
+          "name" : "N1",
+          "description" : "N1",
+          "startingSegment" : "N1",
+          "segments" : [ ],
+          "loops" : [ {
+            "name" : "RMT",
+            "description" : "RMT",
+            "startingSegment" : "RMT",
+            "segments" : [ "CUR", "REF", "DTM" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

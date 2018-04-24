@@ -3,9 +3,13 @@ package com.vibridi.edix;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.PushbackReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
+import com.vibridi.edix.lexer.AnsiLexer;
+import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.model.EDIMessage;
 
 public abstract class EDIReader implements Closeable {
@@ -14,10 +18,12 @@ public abstract class EDIReader implements Closeable {
 	
 	protected PushbackReader source;
 	protected EDIStandard standard;
+	protected EDILexer lexer;
 	
 	public EDIReader(PushbackReader source) throws IOException {
 		this.source = source;
 		this.standard = detectStandard();
+		this.lexer = EDILexer.newInstance(this.standard, this.source);
 	}
 	
 	public abstract EDIMessage read() throws EDISyntaxException, IOException;
@@ -28,6 +34,10 @@ public abstract class EDIReader implements Closeable {
 			throw new RuntimeException(ErrorMessages.LOOK_AHEAD_FAILED.toString());
 		source.unread(buf);
 		return EDIStandard.of(new String(buf));
+	}
+	
+	public EDILexer getLexer() throws EDISyntaxException, IOException {
+		return lexer;
 	}
 	
 	public void setStandard(EDIStandard standard) {

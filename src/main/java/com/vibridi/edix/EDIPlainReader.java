@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.PushbackReader;
 
 import com.vibridi.edix.error.EDISyntaxException;
-import com.vibridi.edix.lexer.EDILexer;
 import com.vibridi.edix.model.EDIMessage;
+import com.vibridi.edix.parser.EDIParser;
 
 public class EDIPlainReader extends EDIReader {
 
@@ -15,11 +15,7 @@ public class EDIPlainReader extends EDIReader {
 	
 	@Override
 	public EDIMessage read() throws EDISyntaxException, IOException {
-		EDILexer lexer = EDIRegistry.newLexer(standard);
-		lexer.setSource(source);
-		
-		return EDIRegistry.newParser(standard)
-				.parse(lexer);
+		return EDIParser.newInstance(standard).parse(lexer);
 	}
 	
 }

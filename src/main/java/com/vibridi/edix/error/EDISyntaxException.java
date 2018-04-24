@@ -20,11 +20,13 @@
 
 package com.vibridi.edix.error;
 
+import java.io.IOException;
+
 /**
  * An exception thrown during EDI parsing when invalid EDI syntax, structure,
  * or content is encountered.
  */
-public class EDISyntaxException extends Exception {
+public class EDISyntaxException extends IOException {
 	
 	//public class IncorrectNumberOfISAFieldsException extends EDISyntaxException {};
 	

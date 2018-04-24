@@ -1,10 +1,12 @@
 package com.vibridi.edix.parser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.vibridi.edix.EDIRegistry;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.error.EDISyntaxException;
@@ -18,8 +20,8 @@ public class TestX12Model {
 
 	@Test
 	public void createX12Interchange() throws Exception {
-		EDILexer lx = TestResources.getAsLexer("validation-x12/full-envelope.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDILexer lx = TestResources.getAsLexer("test-interchange-bin.edi");
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		assertNotNull(m);
 		
@@ -62,7 +64,7 @@ public class TestX12Model {
 		assertEquals(g.size(), 1);
 		X12TransactionSet s = g.getTransactionSet("1234");
 		assertNotNull(s);
-		assertEquals(s.getIdCode(), "000");
+		assertEquals(s.getIdCode(), "278");
 		assertEquals(s.getControlNumber(), "1234");
 		
 		g = x12.getFunctionalGroup("18");
@@ -70,23 +72,23 @@ public class TestX12Model {
 		assertEquals(g.size(), 1);
 		s = g.getTransactionSet("1235");
 		assertNotNull(s);
-		assertEquals(s.getIdCode(), "000");
+		assertEquals(s.getIdCode(), "275");
 		assertEquals(s.getControlNumber(), "1235");
 	}
 	
 	@Test
 	public void validateX12() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/full-pass.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		assertNotNull(x12);
 	}
 	
-	@Test(expected = EDISyntaxException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void validateX12NoISA() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-isa.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -96,7 +98,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12NoIEA() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-iea.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -106,7 +108,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12WrongIEA() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/wrong-iea.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -116,7 +118,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12NoGS() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-gs.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -126,7 +128,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12NoGE() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-ge.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -136,7 +138,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12NoST() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-st.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -146,7 +148,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12NoSE() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/no-se.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -156,7 +158,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12WrongGS() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/wrong-ge.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);
@@ -166,7 +168,7 @@ public class TestX12Model {
 	@Test(expected = EDISyntaxException.class)
 	public void validateX12WrongSE() throws Exception {
 		EDILexer lx = TestResources.getAsLexer("validation-x12/wrong-se.edi");
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		EDIMessage m = parser.parse(lx);
 		X12Interchange x12 = new X12Interchange(m);
 		eat(x12);

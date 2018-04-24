@@ -1,13 +1,9 @@
 package com.vibridi.edix;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PushbackReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -54,14 +50,12 @@ public class TestResources {
 	
 	public static EDILexer getAsLexer(String fileName) throws Exception {
 		InputStream in = getAsStream(fileName);
-		EDILexer lexer = EDIRegistry.newLexer(EDIStandard.ANSI_X12);
-		assertNotNull(lexer);
-		return lexer.setSource(new PushbackReader(new InputStreamReader(in), 256));
+		return EDIFactory.newReader(in).getLexer();
 	}
 	
 	public static EDIMessage getAsMessage(String fileName) throws Exception {
 		EDILexer lx = TestResources.getAsLexer(fileName);
-		EDIParser parser = EDIRegistry.newParser(EDIStandard.ANSI_X12);
+		EDIParser parser = EDIParser.newInstance(EDIStandard.ANSI_X12);
 		return parser.parse(lx);
 	}
 	

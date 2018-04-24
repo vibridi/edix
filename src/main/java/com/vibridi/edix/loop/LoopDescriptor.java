@@ -25,8 +25,8 @@ public class LoopDescriptor {
 	
 	private final String name;
 	private String description;
-	private String code;
 	private String startingSegment;
+	private Set<String> codes;
 	private Set<String> allowedSegments;
 	private Map<String, LoopDescriptor> allowedLoops;			// < name, descriptor >
 	private boolean hasHLDescriptors;
@@ -36,6 +36,7 @@ public class LoopDescriptor {
 		this.allowedSegments = new HashSet<>();
 		this.allowedLoops = new HashMap<>();
 		this.hasHLDescriptors = false;
+		this.codes = new HashSet<>();
 	}
 	
 	public String getName() {
@@ -46,8 +47,8 @@ public class LoopDescriptor {
 		return description;
 	}
 	
-	public String getCode() {
-		return code;
+	public Set<String> getCodes() {
+		return codes;
 	}
 
 	public String getStartingSegment() {
@@ -88,9 +89,9 @@ public class LoopDescriptor {
 		this.description = description;
 	}
 	
-	protected void setCode(String code) {
-		Objects.requireNonNull(code);
-		this.code = code;
+	protected void addCode(String code) {
+		if(code != null && !code.isEmpty())
+			codes.add(code);
 	}
 
 	protected void setStartingSegment(String startingSegment) {
@@ -114,9 +115,14 @@ public class LoopDescriptor {
 		if(key.equals("HL"))
 			this.hasHLDescriptors = true;
 		
-		if(!descriptor.getCode().isEmpty())
-			key = key.concat("_").concat(descriptor.code);
+		if(!descriptor.getCodes().isEmpty()) {
+			for(String c : descriptor.getCodes())
+				this.allowedLoops.put(key.concat("_").concat(c), descriptor);
+			
+		} else {
+			this.allowedLoops.put(key, descriptor);
+		}
+			
 		
-		this.allowedLoops.put(key, descriptor);
 	}
 }

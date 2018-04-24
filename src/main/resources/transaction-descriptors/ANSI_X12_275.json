@@ -1,104 +1,109 @@
 {
-	"transactionSet": "275",
-	"versions": {
-		"all": {
-			"name" : "275",
-			"description": "Patient Information",
-			"segments": [ "BGN", "DTM", "TRN" ],
-			"loops": [{
-					"name": "1000A",
-					"description": "Transaction Receiver",
-					"startingSegment": "NM1",
-					"code": "40",
-					"segments": [ "PER" ]
-				},{
-					"name": "1000B",
-					"description": "Submitter Information",
-					"startingSegment": "NM1",
-					"code": "41"
-				},{
-					"name": "1000C",
-					"description": "Service Provider Information",
-					"startingSegment": "NM1",
-					"code": "1P",
-					"segments": [ "REF" ]
-				},{
-					"name": "1000D",
-					"description": "Patient Name",
-					"startingSegment": "NM1",
-					"code": "QC",
-					"segments": [ "REF", "DTP" ]
-				},{
-					"name": "2000A",
-					"description": "Assigned Number",
-					"startingSegment": "LX",
-					"segments": [ "TRN", "STC", "REF", "NM1", "PRV" ],
-					"loops": [{
-							"name": "2100",
-							"description": "Date or Time or Period",
-							"startingSegment": "DTP",
-							"segments": [ "CAT", "PID" ],
-							"loops": [{
-									"name": "2110B",
-									"description": "Electronic Format Identification",
-									"startingSegment": "EFI",
-									"segments": [ "BIN" ]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		
-		"501": {
-			"name" : "275",
-			"description": "Patient Information",
-			"segments": [ "BGN", "DTM", "TRN" ],
-			"loops": [{
-					"name": "1000A",
-					"description": "Transaction Receiver",
-					"startingSegment": "NM1",
-					"code": "PR",
-					"segments": [ "PER" ]
-				},{
-					"name": "1000B",
-					"description": "Submitter Information",
-					"startingSegment": "NM1",
-					"code": "X3"
-				},{
-					"name": "1000C",
-					"description": "Service Provider Information",
-					"startingSegment": "NM1",
-					"code": "1P",
-					"segments": [ "REF" ]
-				},{
-					"name": "1000D",
-					"description": "Patient Name",
-					"startingSegment": "NM1",
-					"code": "IL",
-					"segments": [ "REF", "DTP" ]
-				},{
-					"name": "2000A",
-					"description": "Assigned Number",
-					"startingSegment": "LX",
-					"segments": [ "TRN", "STC", "REF", "NM1", "PRV" ],
-					"loops": [{
-							"name": "2100",
-							"description": "Date or Time or Period",
-							"startingSegment": "DTP",
-							"segments": [ "CAT", "PID" ],
-							"loops": [{
-									"name": "2110B",
-									"description": "Electronic Format Identification",
-									"startingSegment": "EFI",
-									"segments": [ "BIN" ]
-								}
-							]
-						}
-					]
-				}
-			]
-		}
-	}
+  "transactionSet" : "275",
+  "versions" : {
+    "all" : {
+      "name" : "275",
+      "description" : "Patient Information",
+      "segments" : [ "BGN", "DTM", "TRN" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "TRANSACTION RECEIVER",
+        "startingSegment" : "NM1",
+        "codes" : [ "40" ],
+        "segments" : [ "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "SUBMITTER INFORMATION",
+        "startingSegment" : "NM1",
+        "codes" : [ "41" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000C",
+        "description" : "SERVICE PROVIDER INFORMATION",
+        "startingSegment" : "NM1",
+        "codes" : [ "1P" ],
+        "segments" : [ "REF" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000D",
+        "description" : "PATIENT NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "QC" ],
+        "segments" : [ "REF", "DTP" ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000A",
+        "description" : "ASSIGNED NUMBER",
+        "startingSegment" : "LX",
+        "segments" : [ "TRN", "STC", "REF", "NM1", "PRV", "REF" ],
+        "loops" : [ {
+          "name" : "2100",
+          "description" : "Date or Time or Period",
+          "startingSegment" : "DTP",
+          "segments" : [ "CAT", "PID" ],
+          "loops" : [ {
+            "name" : "2110B",
+            "description" : "ELECTRONIC FORMAT IDENTIFICATION",
+            "startingSegment" : "EFI",
+            "segments" : [ "BIN" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    },
+    "501" : {
+      "name" : "275",
+      "description" : "Patient Information",
+      "segments" : [ "BGN", "DTM", "TRN" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "TRANSACTION RECEIVER",
+        "startingSegment" : "NM1",
+        "codes" : [ "PR" ],
+        "segments" : [ "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "SUBMITTER INFORMATION",
+        "startingSegment" : "NM1",
+        "codes" : [ "X3" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000C",
+        "description" : "SERVICE PROVIDER INFORMATION",
+        "startingSegment" : "NM1",
+        "codes" : [ "1P" ],
+        "segments" : [ "REF" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000D",
+        "description" : "PATIENT NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "IL" ],
+        "segments" : [ "REF", "DTP" ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000A",
+        "description" : "ASSIGNED NUMBER",
+        "startingSegment" : "LX",
+        "segments" : [ "TRN", "STC", "REF", "NM1", "PRV", "REF" ],
+        "loops" : [ {
+          "name" : "2100",
+          "description" : "Date or Time or Period",
+          "startingSegment" : "DTP",
+          "segments" : [ "CAT", "PID" ],
+          "loops" : [ {
+            "name" : "2110B",
+            "description" : "ELECTRONIC FORMAT IDENTIFICATION",
+            "startingSegment" : "EFI",
+            "segments" : [ "BIN" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    }
+  }
 }

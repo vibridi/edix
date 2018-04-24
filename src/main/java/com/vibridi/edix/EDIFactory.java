@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PushbackReader;
 import java.util.Objects;
 
+import org.apache.commons.io.input.BOMInputStream;
+
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.writer.EDIPlainWriter;
 import com.vibridi.edix.writer.EDIWriter;
@@ -19,27 +21,32 @@ public class EDIFactory {
 	}
 	
 	private static final int MAX_PUSHBACK = 256;
+	
+	public static EDIReader newReader(InputStream in) throws IOException {
+		return newReader(EDIFormat.PLAIN_TEXT, in);
+	}
 
 	public static EDIReader newReader(EDIFormat sourceFormat, InputStream in) throws IOException {
 		Objects.requireNonNull(in);
 		EDIReader reader = null;
-		PushbackReader source = new PushbackReader(new InputStreamReader(in), MAX_PUSHBACK);
+		
+		PushbackReader source = wrap(in);
 		
 		switch(sourceFormat) {
 		case PLAIN_TEXT:
 			reader = new EDIPlainReader(source);
 			break;
-			
+
 		case XML:
 			reader = new EDIXMLReader(source);
 			break;
-			
+
 		default:
 			throw new IllegalStateException("Unsupported EDI format: " + sourceFormat);	
-			
+
 		}		
-		
 		return reader;
+		
 	}
 	
 	
@@ -58,4 +65,7 @@ public class EDIFactory {
 		}		
 	}
 	
+	public static PushbackReader wrap(InputStream in) {
+		return new PushbackReader(new InputStreamReader(new BOMInputStream(in)), MAX_PUSHBACK);
+	}
 }

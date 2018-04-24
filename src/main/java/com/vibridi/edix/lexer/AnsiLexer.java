@@ -1,6 +1,7 @@
 package com.vibridi.edix.lexer;
 
 import java.io.IOException;
+import java.io.PushbackReader;
 import java.io.StreamTokenizer;
 
 import com.vibridi.edix.EDIStandard;
@@ -9,7 +10,7 @@ import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.error.ErrorMessages;
 
 public class AnsiLexer extends EDILexer {
-	
+
 	public static final int ISA_LENGTH = 106;
 	
 	// Positions are 0-indexed
@@ -18,6 +19,10 @@ public class AnsiLexer extends EDILexer {
 	public static final int SUB_DELIMITER_POS = 104;
 	public static final int TERMINATOR_POS = 105;
 
+	public AnsiLexer(PushbackReader source) throws IOException {
+		super(source);
+	}
+	
 	@Override
 	public EDIStandard getStandard() {
 		return EDIStandard.ANSI_X12;
@@ -36,7 +41,7 @@ public class AnsiLexer extends EDILexer {
 	public void findControlCharacters(TokenType[] controlCharacters) throws EDISyntaxException, IOException {
 
 		// No release character is supported for ANSI X.12
-
+		
 		char[] buf = new char[ISA_LENGTH];
 		if(source.read(buf) < ISA_LENGTH)
 			throw new EDISyntaxException(ErrorMessages.INCOMPLETE_X12.toString());

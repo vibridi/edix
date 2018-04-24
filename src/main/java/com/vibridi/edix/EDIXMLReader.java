@@ -10,7 +10,6 @@ public class EDIXMLReader extends EDIReader {
 
 	public EDIXMLReader(PushbackReader source) throws IOException {
 		super(source);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

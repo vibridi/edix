@@ -187,14 +187,6 @@ public class TestLoop {
 		assertEquals(nm1.getName(), "1000D");
 	}
 	
-	@Test
-	public void testPrint() throws Exception {
-		EDIMessage m = TestResources.getAsMessage("transactions-x12/278.edi");
-		EDIXMLWriter w = (EDIXMLWriter) EDIFactory.newWriter(EDIFormat.XML, m);
-		String xml = w.writeToString("UTF-8");
-		System.out.println(xml);
-	}
-	
 	private EDILoop newLoopTree(String transaction) throws IOException {
 		return new EDILoopContainer(LoopDescriptorManager.instance
 				.forTransaction(EDIStandard.ANSI_X12, transaction), null);

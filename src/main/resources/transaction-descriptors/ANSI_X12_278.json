@@ -1,130 +1,122 @@
 {
-	"transactionSet": "278",
-	"versions": {
-		"all": {
-			"name" : "278",
-			"description": "Health Care Services Review Information",
-			"segments": [ "BHT" ],
-			"loops": [{
-					"name": "HL",
-					"startingSegment": "HL",
-					"segments": [ 
-						"TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", 
-						"HSD", "CRC", "CL1", "CR1", "CR2", "CR4", "CR5", 
-						"CR6", "CR7", "CR8", "PWK", "MSG" 
-					],
-					"loops": [{
-							"name": "NM1",
-							"description" : "Individual or Organizational Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N2", "N3", "N4", "PER", "AAA", "PRV", "DMG", "INS", "DTP" ]
-						}
-					]
-				}
-			]
-		}, 
-		
-		"501" : {
-			"name" : "278",
-			"description": "Health Care Services Review Information",
-			"segments": [ "BHT" ],
-			"loops": [{
-					"name": "2000A",
-					"description" : "Utilization Management Organization (UMO) Detail",
-					"startingSegment": "HL",
-					"code" : "20",
-					"segments": [ "AAA"	],
-					"loops": [{
-							"name": "2010A",
-							"description" : "Utilization Management Organization (UMO) Name",
-							"startingSegment": "NM1",
-							"segments": [ "PER", "AAA" ]
-						}
-					]
-				},{
-					"name": "2000B",
-					"description" : "Requester Detail",
-					"startingSegment": "HL",
-					"code" : "21",
-					"segments": [ "PWK"	],
-					"loops": [{
-							"name": "2010B",
-							"description" : "Requester Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N3", "N4", "PER", "AAA", "PRV" ]
-						}
-					]
-				},{
-					"name": "2000C",
-					"description" : "Subscriber Detail",
-					"startingSegment": "HL",
-					"code" : "22",
-					"segments": [ "PWK"	],
-					"loops": [{
-							"name": "2010C",
-							"description" : "Subscriber Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N3", "N4", "AAA", "DMG", "INS" ]
-						}
-					]
-				},{
-					"name": "2000D",
-					"description" : "Dependent Detail",
-					"startingSegment": "HL",
-					"code" : "23",
-					"segments": [ "PWK"	],
-					"loops": [{
-							"name": "2010D",
-							"description" : "Dependent Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N3", "N4", "AAA", "DMG", "INS" ]
-						}
-					]
-				},{
-					"name": "2000E",
-					"description" : "Patient Event Detail",
-					"startingSegment": "HL",
-					"code" : "EV",
-					"segments": [ 
-						"TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", 
-						"HSD", "CRC", "CL1", "CR1", "CR2", "CR5", "CR6", 
-						"PWK", "MSG" 
-					],
-					"loops": [{
-							"name": "2010EA",
-							"description" : "Patient Event Provider Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N3", "N4", "PER", "AAA", "PRV" ]
-						},{
-							"name": "2010EB",
-							"description" : "Patient Event Transport Information",
-							"startingSegment": "NM1",
-							"segments": [ "N3", "N4" ]
-						},{
-							"name": "2010EC",
-							"description" : "Patient Event Other UMO Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "DTP", "N3", "N4", "AAA" ]
-						}
-					]
-				},{
-					"name": "2000F",
-					"description" : "Service Detail",
-					"startingSegment": "HL",
-					"code" : "SS",
-					"segments": [ 
-						"TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", 
-						"SV1", "SV2", "SV3", "TOO", "HSD", "PWK", "MSG" 
-					],
-					"loops": [{
-							"name": "2010F",
-							"description" : "Service Provider Name",
-							"startingSegment": "NM1",
-							"segments": [ "REF", "N3", "N4", "PER", "PRV" ]
-						}
-					]
-				}
-			]
-		}
-	}
+  "transactionSet" : "278",
+  "versions" : {
+    "all" : {
+      "name" : "278",
+      "description" : "Health Care Services Review Information",
+      "segments" : [ "BHT" ],
+      "loops" : [ {
+        "name" : "HL",
+        "description" : "Hierarchical Level",
+        "startingSegment" : "HL",
+        "segments" : [ "TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", "HSD", "CRC", "CL1", "CR1", "CR2", "CR4", "CR5", "CR6", "CR7", "CR8", "PWK", "MSG" ],
+        "loops" : [ {
+          "name" : "NM1",
+          "description" : "Individual or Organizational Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "N2", "N3", "N4", "PER", "AAA", "PRV", "DMG", "INS", "DTP" ],
+          "loops" : [ ]
+        } ]
+      } ]
+    },
+    "501" : {
+      "name" : "278",
+      "description" : "Health Care Services Review Information",
+      "segments" : [ "BHT" ],
+      "loops" : [ {
+        "name" : "2000A",
+        "description" : "Utilization Management Organization (UMO) Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "20" ],
+        "segments" : [ "AAA" ],
+        "loops" : [ {
+          "name" : "2010A",
+          "description" : "Utilization Management Organization (UMO) Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "PER", "AAA" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000B",
+        "description" : "Requester Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "21" ],
+        "segments" : [ "PWK" ],
+        "loops" : [ {
+          "name" : "2010B",
+          "description" : "Requester Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "N3", "N4", "PER", "PRV", "AAA" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000C",
+        "description" : "Subscriber Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "22" ],
+        "segments" : [ "PWK" ],
+        "loops" : [ {
+          "name" : "2010C",
+          "description" : "Subscriber Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "N3", "N4", "AAA", "DMG", "INS" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000D",
+        "description" : "Dependent Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "23" ],
+        "segments" : [ "PWK" ],
+        "loops" : [ {
+          "name" : "2010D",
+          "description" : "Dependent Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "N3", "N4", "AAA", "DMG", "INS" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000E",
+        "description" : "Patient Event Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "EV" ],
+        "segments" : [ "TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", "HSD", "CRC", "CL1", "CR1", "CR2", "CR5", "CR6", "PWK", "MSG" ],
+        "loops" : [ {
+          "name" : "2010EA",
+          "description" : "Patient Event Provider Name",
+          "startingSegment" : "NM1",
+          "codes" : [ "71", "72", "73", "77", "AAJ", "DD", "DK", "DN", "FA", "G3", "P3", "QB", "QV", "SJ" ],
+          "segments" : [ "REF", "N3", "N4", "PER", "AAA", "PRV" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010EB",
+          "description" : "Patient Event Transport Information",
+          "startingSegment" : "NM1",
+          "codes" : [ "45", "FS", "ND", "PW", "R3" ],
+          "segments" : [ "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010EC",
+          "description" : "Patient Event Other UMO Name",
+          "startingSegment" : "NM1",
+          "codes" : [ "00", "CA", "GG" ],
+          "segments" : [ "REF", "DTP", "N3", "N4", "AAA" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000F",
+        "description" : "Service Detail",
+        "startingSegment" : "HL",
+        "codes" : [ "SS" ],
+        "segments" : [ "TRN", "AAA", "UM", "HCR", "REF", "DTP", "HI", "SV1", "SV2", "SV3", "TOO", "HSD", "PWK", "MSG" ],
+        "loops" : [ {
+          "name" : "2010F",
+          "description" : "Service Provider Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "REF", "N3", "N4", "PER", "PRV" ],
+          "loops" : [ ]
+        } ]
+      } ]
+    }
+  }
 }
