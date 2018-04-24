@@ -59,6 +59,14 @@ public class X12TransactionSet {
 		}
 	}
 	
+	/**
+	 * Segments contained in this document. The number matches SE.1
+	 * @return value of SE.1
+	 */
+	public int size() {
+		return segments.size() + 2;
+	}
+	
 	private EDILoop processHL(EDILoop currentLoop, EDICompositeNode seg) throws EDISyntaxException {
 		String id = seg.getChild(0).getTextContent();
         String parentId = seg.getChild(1).getTextContent();

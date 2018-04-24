@@ -1,10 +1,13 @@
 package com.vibridi.edix.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
@@ -13,13 +16,33 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-
 public class XMLUtils {
 	
 	private static Map<String,XPathExpression> expressionsCache;
 
 	static {
 		expressionsCache = new HashMap<String, XPathExpression>();
+	}
+	
+	/**
+	 * Takes the XML string and produces a Document object
+	 * @param xml XML text
+	 * @return the DOM representation of the given string
+	 * @throws XMLException if the transformation fails
+	 */
+	public static Document stringToDocument(String xml) throws IOException {
+		if (xml == null || xml.trim().length() == 0)
+			return null;
+
+		try {
+			Document xmlDoc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+					.parse(new ByteArrayInputStream(xml.getBytes()));
+			xmlDoc.normalize();
+			return xmlDoc;
+
+		} catch(Exception e) {
+			throw new IOException(e);
+		}
 	}
 	
 	/**

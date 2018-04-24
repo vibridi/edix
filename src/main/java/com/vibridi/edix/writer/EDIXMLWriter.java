@@ -53,7 +53,10 @@ public class EDIXMLWriter extends EDIWriter {
 			writer.writeStartElement("InterchangeControlHeader");
 			writer.writeAttribute("type", message.getRoot().getChild(0).getName());
 			writer.writeAttribute("terminator", getControlCharacter(message.getControlCharacters(), TokenType.TERMINATOR));
-						
+			writer.writeAttribute("delimiter", getControlCharacter(message.getControlCharacters(), TokenType.DELIMITER));
+			writer.writeAttribute("subDelimiter", getControlCharacter(message.getControlCharacters(), TokenType.SUB_DELIMITER));
+			writer.writeAttribute("controlNumber", interchange.getControlNumber());
+			
 			appendElement(writer, "AuthorizationInformationQualifier", interchange.getAuthInfoQualifier());
 			appendElement(writer, "AuthorizationInformation", interchange.getAuthInfo());
 			appendElement(writer, "SecurityInformationQualifier", interchange.getSecurityInfoQualifier());
@@ -79,21 +82,25 @@ public class EDIXMLWriter extends EDIWriter {
 				writer.writeStartElement("FunctionalGroup");
 				writer.writeAttribute("code", group.getGroupHeaderCode());								// GS.1
 				writer.writeAttribute("controlNumber", group.getGroupControlNumber());					// GS.6
+				writer.writeAttribute("size", Integer.toString(group.size()));							// GE.1
 				
+				appendElement(writer, "Code", group.getGroupHeaderCode());								// GS.1
 				appendElement(writer, "ApplicationSenderCode", group.getApplicationSenderCode()); 		// GS.2
 				appendElement(writer, "ApplicationReceiverCode", group.getApplicationReceiverCode());	// GS.3
 				appendElement(writer, "Date", group.getDate());											// GS.4
 				appendElement(writer, "Time", group.getTime());											// GS.5
+				appendElement(writer, "ControlNumber", group.getGroupControlNumber());					// GS.6
 				appendElement(writer, "ResponsibleAgency", group.getResponsibleAgencyCode());			// GS.7
 				appendElement(writer, "VersionIdCode", group.getVersionIdCode());						// GS.8
 				
 				for(int j = 0; j < group.size(); j++) {
 					X12TransactionSet set = group.getTransactionSet(j);
 					
-					writer.writeStartElement("TransactionSet");
+					writer.writeStartElement("Transaction");
 					writer.writeAttribute("code", set.getIdCode());						// ST.1
 					writer.writeAttribute("description", set.getDescription());
 					writer.writeAttribute("controlNumber", set.getControlNumber());		// ST.2
+					writer.writeAttribute("size", Integer.toString(set.size()));		// SE.1
 					
 					writeLoop(writer, set.getMainLoop());
 					

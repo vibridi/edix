@@ -51,6 +51,10 @@ public class X12FunctionalGroup {
 			throw new EDISyntaxException("GE01 doesn't match number of transaction sets.");
 	}
 	
+	/**
+	 * Transaction sets contained in this functional group. The number matches GE.1
+	 * @return Value of GE.1
+	 */
 	public int size() {
 		return sets.size();
 	}

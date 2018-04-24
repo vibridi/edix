@@ -54,7 +54,7 @@ public class SpecConverter {
 			vobj.put("description", desc);
 			
 			Node rootn = d.getElementsByTagName("TransactionSpecification").item(0);
-			doStuff(vobj, (Element) rootn);
+			convert(vobj, (Element) rootn);
 			om.writerWithDefaultPrettyPrinter().writeValue(f, root);
 		}
 		
@@ -70,10 +70,10 @@ public class SpecConverter {
 		vobj.put("description", desc);
 		
 		Node rootn = d.getElementsByTagName("TransactionSpecification").item(0);
-		doStuff(vobj, (Element) rootn);
+		convert(vobj, (Element) rootn);
 	}
 
-	public static void doStuff(ObjectNode vobj, Element el) throws Exception {		
+	public static void convert(ObjectNode vobj, Element el) throws Exception {		
 		Node fc = el.getFirstChild();
 		ArrayNode an = vobj.putArray("segments");
 		ArrayNode al = vobj.putArray("loops");
@@ -94,7 +94,7 @@ public class SpecConverter {
 						ArrayNode codes = loop.putArray("codes");
 						codes.add(e.getAttribute("LevelCode"));
 					}
-					doStuff(loop, e);
+					convert(loop, e);
 				}
 				
 				if(e.getNodeName().equals("Loop")) {
@@ -114,7 +114,7 @@ public class SpecConverter {
 						
 					}
 					
-					doStuff(loop, e);
+					convert(loop, e);
 				}
 			}   
 
