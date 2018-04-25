@@ -1,9 +1,10 @@
 # Log file
 *.log
 
-target/
-bin/
+/target/
+/bin/
 
+.DS_Store
 .settings/
 .project
 .classpath
