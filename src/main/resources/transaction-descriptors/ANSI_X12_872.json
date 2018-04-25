@@ -1,0 +1,83 @@
+{
+  "transactionSet" : "872",
+  "versions" : {
+    "all" : {
+      "name" : "872",
+      "description" : "Residential Mortgage Insurance Application",
+      "segments" : [ "BGN", "N1" ],
+      "loops" : [ {
+        "name" : "LX",
+        "description" : "Assigned Number",
+        "startingSegment" : "LX",
+        "segments" : [ "N1", "REF" ],
+        "loops" : [ {
+          "name" : "LRQ",
+          "description" : "Mortgage Characteristics Requested",
+          "startingSegment" : "LRQ",
+          "segments" : [ "LN1", "PRD", "MIC", "PER", "REF", "PEX", "RLD", "PAY", "RAT" ],
+          "loops" : [ {
+            "name" : "SCM",
+            "description" : "Credit Score Model",
+            "startingSegment" : "SCM",
+            "segments" : [ "SCS" ],
+            "loops" : [ ]
+          }, {
+            "name" : "NX1",
+            "description" : "Property or Entity Identification",
+            "startingSegment" : "NX1",
+            "segments" : [ "NX2" ],
+            "loops" : [ {
+              "name" : "PAS",
+              "description" : "Property Appraisal Summary",
+              "startingSegment" : "PAS",
+              "segments" : [ "N1", "PER", "MSG" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "IN1",
+            "description" : "Individual Identification",
+            "startingSegment" : "IN1",
+            "segments" : [ "IN2", "YNQ", "DMG", "MSG", "N10", "BFS" ],
+            "loops" : [ {
+              "name" : "SCM",
+              "description" : "Credit Score Model",
+              "startingSegment" : "SCM",
+              "segments" : [ "SCS" ],
+              "loops" : [ ]
+            }, {
+              "name" : "NX1",
+              "description" : "Property or Entity Identification",
+              "startingSegment" : "NX1",
+              "segments" : [ "NX2", "N10", "ARS" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "REA",
+            "description" : "Real Estate Property Information",
+            "startingSegment" : "REA",
+            "segments" : [ "AMT" ],
+            "loops" : [ ]
+          }, {
+            "name" : "MCD",
+            "description" : "Mortgage Closing Data",
+            "startingSegment" : "MCD",
+            "segments" : [ "AMT" ],
+            "loops" : [ ]
+          }, {
+            "name" : "BUY",
+            "description" : "Loan Buydown",
+            "startingSegment" : "BUY",
+            "segments" : [ "TBA" ],
+            "loops" : [ ]
+          }, {
+            "name" : "PRJ",
+            "description" : "Multifamily Housing Project",
+            "startingSegment" : "PRJ",
+            "segments" : [ "PER" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

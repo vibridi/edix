@@ -1,0 +1,107 @@
+{
+  "transactionSet" : "204",
+  "versions" : {
+    "all" : {
+      "name" : "204",
+      "description" : "Motor Carrier Load Tender",
+      "segments" : [ "B2", "B2A", "C3", "L11", "G62", "MS3", "L3" ],
+      "loops" : [ {
+        "name" : "0050",
+        "description" : "Bill of Lading Handling Requirements",
+        "startingSegment" : "AT5",
+        "segments" : [ "RTT", "C3", "PLD", "LH6", "NTE" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0100",
+        "description" : "Party Identification",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "L11", "G61" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0200",
+        "description" : "Equipment Details",
+        "startingSegment" : "N7",
+        "segments" : [ "N7A", "N7B", "MEA", "M7" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0300",
+        "description" : "Stop-off Details",
+        "startingSegment" : "S5",
+        "segments" : [ "L11", "G62", "AT8", "LAD" ],
+        "loops" : [ {
+          "name" : "0305",
+          "description" : "Bill of Lading Handling Requirements",
+          "startingSegment" : "AT5",
+          "segments" : [ "RTT", "C3", "PLD", "NTE" ],
+          "loops" : [ ]
+        }, {
+          "name" : "0310",
+          "description" : "Party Identification",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "G61" ],
+          "loops" : [ ]
+        }, {
+          "name" : "0320",
+          "description" : "Description, Marks and Numbers",
+          "startingSegment" : "L5",
+          "segments" : [ "AT8" ],
+          "loops" : [ {
+            "name" : "0323",
+            "description" : "Bill of Lading Handling Requirements",
+            "startingSegment" : "AT5",
+            "segments" : [ "RTT", "C3", "L11", "MEA", "PER", "L4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "0325",
+            "description" : "Contact",
+            "startingSegment" : "G61",
+            "segments" : [ "L11", "LH6" ],
+            "loops" : [ {
+              "name" : "0330",
+              "description" : "Hazardous Identification Information",
+              "startingSegment" : "LH1",
+              "segments" : [ "LH2", "LH3", "LFH", "LEP", "LH4", "LHT" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        }, {
+          "name" : "0350",
+          "description" : "Order Information Detail",
+          "startingSegment" : "OID",
+          "segments" : [ "G62", "LAD" ],
+          "loops" : [ {
+            "name" : "0360",
+            "description" : "Description, Marks and Numbers",
+            "startingSegment" : "L5",
+            "segments" : [ "AT8", "L4" ],
+            "loops" : [ {
+              "name" : "0365",
+              "description" : "Contact",
+              "startingSegment" : "G61",
+              "segments" : [ "L11", "LH6" ],
+              "loops" : [ {
+                "name" : "0370",
+                "description" : "Hazardous Identification Information",
+                "startingSegment" : "LH1",
+                "segments" : [ "LH2", "LH3", "LFH", "LEP", "LH4", "LHT" ],
+                "loops" : [ ]
+              } ]
+            } ]
+          } ]
+        }, {
+          "name" : "0380",
+          "description" : "Equipment Details",
+          "startingSegment" : "N7",
+          "segments" : [ "N7A", "N7B", "MEA", "M7" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "1000",
+        "description" : "Transaction Set Line Number",
+        "startingSegment" : "LX",
+        "segments" : [ "L4" ],
+        "loops" : [ ]
+      } ]
+    }
+  }
+}

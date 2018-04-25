@@ -1,0 +1,120 @@
+{
+  "transactionSet" : "856",
+  "versions" : {
+    "all" : {
+      "name" : "856",
+      "description" : "Advance Ship Notice",
+      "segments" : [ "BSN", "DTM", "CTT" ],
+      "loops" : [ {
+        "name" : "SHIPMENT",
+        "description" : "SHIPMENT",
+        "startingSegment" : "HL",
+        "codes" : [ "S" ],
+        "segments" : [ "LIN", "SN1", "SLN", "PRF", "PO4", "PID", "MEA", "PKW", "PKG", "TD1", "TD5", "TD3", "TD4", "REF", "PER", "DTM", "FOB" ],
+        "loops" : [ {
+          "name" : "BT",
+          "description" : "Bill-To-Party",
+          "startingSegment" : "N1",
+          "codes" : [ "BT" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "IC",
+          "description" : "Intermedicate Consignee",
+          "startingSegment" : "N1",
+          "codes" : [ "IC" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SU",
+          "description" : "Supplier",
+          "startingSegment" : "N1",
+          "codes" : [ "SU" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "ST",
+          "description" : "Ship To",
+          "startingSegment" : "N1",
+          "codes" : [ "ST" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SF",
+          "description" : "Ship From",
+          "startingSegment" : "N1",
+          "codes" : [ "SF" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SE",
+          "description" : "Selling Party",
+          "startingSegment" : "N1",
+          "codes" : [ "SE" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "BY",
+          "description" : "Buying Party",
+          "startingSegment" : "N1",
+          "codes" : [ "BY" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SAC",
+          "description" : "Service, Promotion, Allowance, or Charge",
+          "startingSegment" : "SAC",
+          "segments" : [ "CUR" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "ORDER",
+        "description" : "ORDER",
+        "startingSegment" : "HL",
+        "codes" : [ "O" ],
+        "segments" : [ "PRF", "PID", "REF" ],
+        "loops" : [ {
+          "name" : "SAC",
+          "description" : "Service, Promotion, Allowance, or Charge",
+          "startingSegment" : "SAC",
+          "segments" : [ "CUR" ],
+          "loops" : [ ]
+        }, {
+          "name" : "BY",
+          "description" : "Buying Party",
+          "startingSegment" : "N1",
+          "codes" : [ "BY" ],
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "FOB" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "TARE",
+        "description" : "TARE",
+        "startingSegment" : "HL",
+        "codes" : [ "T" ],
+        "segments" : [ "MAN" ],
+        "loops" : [ ]
+      }, {
+        "name" : "PACK",
+        "description" : "PACK",
+        "startingSegment" : "HL",
+        "codes" : [ "P" ],
+        "segments" : [ "MAN" ],
+        "loops" : [ ]
+      }, {
+        "name" : "ITEM",
+        "description" : "ITEM",
+        "startingSegment" : "HL",
+        "codes" : [ "I" ],
+        "segments" : [ "LIN", "SN1", "SLN", "PRF", "PO4", "PID", "MEA", "PKW", "PKG", "TD1", "TD5", "TD3", "TD4", "REF", "CUR", "V1", "PER" ],
+        "loops" : [ {
+          "name" : "LOAD",
+          "description" : "LOAD DETAIL",
+          "startingSegment" : "CLD",
+          "segments" : [ "REF", "DTP" ],
+          "loops" : [ ]
+        } ]
+      } ]
+    }
+  }
+}

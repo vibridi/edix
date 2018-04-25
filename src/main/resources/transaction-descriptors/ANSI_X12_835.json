@@ -1,0 +1,81 @@
+{
+  "transactionSet" : "835",
+  "versions" : {
+    "all" : {
+      "name" : "835",
+      "description" : "Health Care Claim Payment/Advice",
+      "segments" : [ "BPR", "TRN", "CUR", "REF", "DTM", "PLB" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "PAYER IDENTIFICATION",
+        "startingSegment" : "N1",
+        "codes" : [ "PR" ],
+        "segments" : [ "N3", "N4", "REF", "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "PAYEE IDENTIFICATION",
+        "startingSegment" : "N1",
+        "codes" : [ "PE" ],
+        "segments" : [ "N3", "N4", "REF" ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000",
+        "description" : "HEADER NUMBER",
+        "startingSegment" : "LX",
+        "segments" : [ "TS3", "TS2" ],
+        "loops" : [ {
+          "name" : "2100",
+          "description" : "CLAIM PAYMENT INFORMATION",
+          "startingSegment" : "CLP",
+          "segments" : [ "CAS", "NM1", "MIA", "MOA", "REF", "DTM", "PER", "AMT", "QTY" ],
+          "loops" : [ {
+            "name" : "2110",
+            "description" : "SERVICE PAYMENT INFORMATION",
+            "startingSegment" : "SVC",
+            "segments" : [ "DTM", "CAS", "REF", "REF", "AMT", "QTY", "LQ" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    },
+    "501" : {
+      "name" : "835",
+      "description" : "Health Care Claim Payment/Advice",
+      "segments" : [ "BPR", "TRN", "CUR", "REF", "DTM", "PLB" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "PAYER IDENTIFICATION",
+        "startingSegment" : "N1",
+        "codes" : [ "PR" ],
+        "segments" : [ "N3", "N4", "REF", "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "PAYEE IDENTFICATION",
+        "startingSegment" : "N1",
+        "codes" : [ "PE" ],
+        "segments" : [ "N3", "N4", "REF", "RDM" ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000",
+        "description" : "HEADER NUMBER",
+        "startingSegment" : "LX",
+        "segments" : [ "TS3", "TS2" ],
+        "loops" : [ {
+          "name" : "2100",
+          "description" : "CLAIM PAYMENT INFORMATION",
+          "startingSegment" : "CLP",
+          "segments" : [ "CAS", "NM1", "MIA", "MOA", "REF", "DTM", "PER", "AMT", "QTY" ],
+          "loops" : [ {
+            "name" : "2110",
+            "description" : "SERVICE PAYMENT INFORMATION",
+            "startingSegment" : "SVC",
+            "segments" : [ "DTM", "CAS", "REF", "REF", "AMT", "QTY", "LQ" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

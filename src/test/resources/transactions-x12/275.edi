@@ -10,68 +10,7 @@ TRN*1*JONP56789001$
 DTP*368*D8*20060331$
 CAT*AE*HL$
 EFI*05***************ASC$
-BIN*2623*<levelone xmlns="urn:hl7-org:v3/cda" xmlns:v3dt="urn:hl7-org:v3/v3dt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3/cda levelone_1.0.attachments.xsd">
-    <clinical_document_header>
-        <id EX="a123" RT="2.16.840.1.113883.3.933"/>
-        <document_type_cd V="99999-7" DN="Imidazole-Related Antifungals Attachment"/>
-        <origination_dttm V="2006-01-05"/>
-        <provider>
-            <provider.type_cd V="PRF"/>
-            <person>
-                <id EX="4376557IM" RT="2.16.840.1.113883.19.10.1"/>
-                <person_name>
-                    <nm>
-                        <v3dt:GIV V="Robert"/>
-                        <v3dt:MID V="J"/>
-                        <v3dt:FAM V="Podell"/>
-                        <v3dt:SFX V="MD"/>
-                    </nm>
-                    <person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/>
-                </person_name>
-            </person>
-        </provider>
-        <patient>
-            <patient.type_cd V="PATSBJ"/>
-            <person>
-                <id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/>
-                <person_name>
-                    <nm>
-                        <v3dt:GIV V="Sara"/>
-                        <v3dt:MID V="J"/>
-                        <v3dt:FAM V="Smith"/>
-                    </nm>
-                    <person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/>
-                </person_name>
-            </person>
-            <is_known_by>
-                <id EX="184569" RT="2.16.840.1.1138863.19.10.3"/>
-                <is_known_to>
-                    <id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/>
-                </is_known_to>
-            </is_known_by>
-        </patient>
-        <local_header descriptor="Att_ACN">
-            <local_attr name="attachment_control_number" value="XA728302"/>
-        </local_header>
-    </clinical_document_header>
-    <body>
-        <section>
-            <caption>PRESCRIBER INFORMATION</caption>
-            <paragraph>
-                <caption>PRESCRIBER INFORMATION, NAME</caption>
-                <content>Robert J. Popdell, MD</content>
-            </paragraph>
-            <paragraph>
-                <caption>PRESCRIBER INFORMATION, IDENTIFIER</caption>
-                <content>4376557IM</content>
-            </paragraph>
-            <paragraph>
-                <caption>PRESCRIBER INFORMATION, SPECIALTY TAXONOMY</caption>
-                <content>Hepatologist (207RI0008X)</content>
-            </paragraph>
-        </section>
-    </body>
-</levelone>$
+BIN*1657*<levelone xmlns="urn:hl7-org:v3/cda" xmlns:v3dt="urn:hl7-org:v3/v3dt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3/cda levelone_1.0.attachments.xsd"><clinical_document_header><id EX="a123" RT="2.16.840.1.113883.3.933"/><document_type_cd V="99999-7" DN="Imidazole-Related Antifungals Attachment"/><origination_dttm V="2006-01-05"/><provider><provider.type_cd V="PRF"/><person><id EX="4376557IM" RT="2.16.840.1.113883.19.10.1"/><person_name><nm><v3dt:GIV V="Robert"/><v3dt:MID V="J"/><v3dt:FAM V="Podell"/><v3dt:SFX V="MD"/></nm><person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/></person_name></person></provider><patient><patient.type_cd V="PATSBJ"/><person><id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/><person_name><nm><v3dt:GIV V="Sara"/><v3dt:MID V="J"/><v3dt:FAM V="Smith"/></nm><person_name.type_cd V="L" S="2.16.840.1.113883.12.200"/></person_name></person><is_known_by><id EX="184569" RT="2.16.840.1.1138863.19.10.3"/><is_known_to><id EX="352584768003G" RT="2.16.840.1.113883.19.10.2"/></is_known_to></is_known_by></patient><local_header descriptor="Att_ACN"><local_attr name="attachment_control_number" value="XA728302"/></local_header></clinical_document_header><body><section><caption>PRESCRIBER INFORMATION</caption><paragraph><caption>PRESCRIBER INFORMATION, NAME</caption><content>Robert J. Popdell, MD</content></paragraph><paragraph><caption>PRESCRIBER INFORMATION, IDENTIFIER</caption><content>4376557IM</content></paragraph><paragraph><caption>PRESCRIBER INFORMATION, SPECIALTY TAXONOMY</caption><content>Hepatologist (207RI0008X)</content></paragraph></section></body></levelone>$
 SE*12*1235$
 GE*1*18$
 IEA*1*000000017$

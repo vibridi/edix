@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<Interchange segment-terminator="$" element-separator="*" sub-element-separator="&gt;">
+  <ISA>
+    <!--Author Information Qualifier-->
+    <ISA01>00<!--No Authorization Information Present--></ISA01>
+    <!--Author Information-->
+    <ISA02>          </ISA02>
+    <!--Security Information Qualifer-->
+    <ISA03>00<!--No Security Information Present--></ISA03>
+    <!--Security Information-->
+    <ISA04>          </ISA04>
+    <!--Interchange ID Qualifier-->
+    <ISA05>16<!----></ISA05>
+    <!--Interchange Sender ID-->
+    <ISA06>102096559TEST  </ISA06>
+    <!--Interchange ID Qualifier-->
+    <ISA07>14<!--Duns Plus Suffix--></ISA07>
+    <!--Interchange Receiver ID-->
+    <ISA08>PARTNERTEST    </ISA08>
+    <!--Interchange Date-->
+    <ISA09>071214</ISA09>
+    <!--Interchange Time-->
+    <ISA10>1406</ISA10>
+    <!--Inter Control Standards Identifier-->
+    <ISA11>U<!--U.S. EDI Community of ASC X12, TDCC, and UCS--></ISA11>
+    <!--Inter Control Version Number-->
+    <ISA12>00040</ISA12>
+    <!--Inter Control Number-->
+    <ISA13>810000263</ISA13>
+    <!--Acknowlegment Requested-->
+    <ISA14>1<!--Interchange Acknowledgment Requested--></ISA14>
+    <!--Usage Indicator-->
+    <ISA15>T<!--Test Data--></ISA15>
+    <!--Component Element Separator-->
+    <ISA16>
+      <ISA1601 />
+      <ISA1602 />
+    </ISA16>
+  </ISA>
+  <FunctionGroup>
+    <GS>
+      <!--Functional Identifier Code-->
+      <GS01>RA<!--Payment Order/Remittance Advice (820)--></GS01>
+      <!--Application Sender's Code-->
+      <GS02>102096559TEST</GS02>
+      <!--Application Receiver's Code-->
+      <GS03>PARTNER</GS03>
+      <!--Date-->
+      <GS04>20071214</GS04>
+      <!--Time-->
+      <GS05>1406</GS05>
+      <!--Group Control Number-->
+      <GS06>810000263</GS06>
+      <!--Responsible Agency Code-->
+      <GS07>X<!--Accredited Standards Committee X12--></GS07>
+      <!--Version/Release/Industry Identifier Code-->
+      <GS08>004010</GS08>
+    </GS>
+    <Transaction ControlNumber="123456">
+      <ST>
+        <!--Transaction Set Identifier Code-->
+        <ST01>820</ST01>
+        <!--Transaction Set Control Number-->
+        <ST02>123456</ST02>
+      </ST>
+      <BPR>
+        <!--Transaction Handling Code-->
+        <BPR01>C<!--Payment Accompanies Remittance Advice--></BPR01>
+        <!--Monetary Amount-->
+        <BPR02>337.67</BPR02>
+        <!--Credit/Debit Flag Code-->
+        <BPR03>C<!--Credit--></BPR03>
+        <!--Payment Method Code-->
+        <BPR04>ACH<!--Automated Clearing House--></BPR04>
+        <!--Payment Format Code-->
+        <BPR05>CCP<!--Cash Concentration/Disbursement plus Addenda (820 with ACH to follow)--></BPR05>
+        <!--(DFI) ID Number Qualifier-->
+        <BPR06>01<!--ABA Transit Routing Number including Check Digits (9 digits)--></BPR06>
+        <!--(DFI) Identification Number-->
+        <BPR07>111111111</BPR07>
+        <!--Account Number Qualifier-->
+        <BPR08>03<!--Checking Account--></BPR08>
+        <!--Account Number-->
+        <BPR09>900555</BPR09>
+        <!--Originating Company Identifier-->
+        <BPR10>3999999999</BPR10>
+        <BPR11 />
+        <!--(DFI) ID Number Qualifier-->
+        <BPR12>01<!--ABA Transit Routing # w/ Check Digits (9 digits)--></BPR12>
+        <!--(DFI) Identification Number-->
+        <BPR13>222222222</BPR13>
+        <!--Account Number Qualifier-->
+        <BPR14>03<!--Checking Account--></BPR14>
+        <!--Account Number-->
+        <BPR15>900444</BPR15>
+        <!--Payment Effective Date-->
+        <BPR16>19990105</BPR16>
+        <!--Business Function Code-->
+        <BPR17>VEN<!--Vendor Payment--></BPR17>
+      </BPR>
+      <TRN>
+        <!--Trace Type Code-->
+        <TRN01>3<!--Financial Reassociation Trace Number--></TRN01>
+        <!--Reference Identification-->
+        <TRN02>888999</TRN02>
+        <!--Originating Company Identifier-->
+        <TRN03>3999999999</TRN03>
+      </TRN>
+      <DTM>
+        <!--Data/Time Qualifier-->
+        <DTM01>097<!--Transaction Creation--></DTM01>
+        <!--Date-->
+        <DTM02>19990102</DTM02>
+      </DTM>
+      <Loop LoopId="N1" Name="Name">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>41<!--Submitter--></N101>
+          <!--Name-->
+          <N102>XYZ Mortgage Company</N102>
+        </N1>
+      </Loop>
+      <Loop LoopId="N1" Name="Name">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>MH<!--Mortgage Insurer--></N101>
+          <!--Name-->
+          <N102>123 Mortgage Insurance Company</N102>
+          <!--Identification Code Qualifier-->
+          <N103>SI</N103>
+          <!--Identification Code-->
+          <N104>123</N104>
+        </N1>
+      </Loop>
+      <Loop LoopId="ENT" Name="Entity">
+        <ENT>
+          <!--AssignedNumber-->
+          <ENT01>01</ENT01>
+        </ENT>
+        <Loop LoopId="NM1" Name="Individual or Organizational Name">
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>BW<!--Borrower--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>Smith</NM103>
+            <!--Name First-->
+            <NM104>Gary</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>34<!--Social Security Number--></NM108>
+            <!--Identification Code-->
+            <NM109>111223333</NM109>
+          </NM1>
+          <N3>
+            <!--Address Information-->
+            <N301>888 Hollywood Drive</N301>
+          </N3>
+          <N4>
+            <!--City Name-->
+            <N401>Hollywood</N401>
+            <!--State or Provice Code-->
+            <N402>KY</N402>
+            <!--Postal Code-->
+            <N403>99555</N403>
+          </N4>
+        </Loop>
+        <Loop LoopId="RMR" Name="Remittance Advice Accounts Receivable O">
+          <RMR>
+            <!--Reference Identification Qualifier-->
+            <RMR01>ID<!--Insurance Certificate Number--></RMR01>
+            <!--Reference Identification-->
+            <RMR02>8889444</RMR02>
+            <!--Payment Action Code-->
+            <RMR03>PO<!--Payment on Account--></RMR03>
+            <!--Monetary Amount-->
+            <RMR04>236.00</RMR04>
+          </RMR>
+          <REF>
+            <!--Reference Identification Qualifier-->
+            <REF01>LD<!--Loan Number--></REF01>
+            <!--Reference Identification-->
+            <REF02>992222</REF02>
+          </REF>
+          <DTM>
+            <!--Data/Time Qualifier-->
+            <DTM01>143</DTM01>
+            <!--Date-->
+            <DTM02>19981230</DTM02>
+          </DTM>
+          <Loop LoopId="IT1" Name="Baseline Item Data (Invoice)">
+            <IT1>
+              <!--Assigned Identification-->
+              <IT101>8889444  </IT101>
+            </IT1>
+            <Loop LoopId="SAC" Name="Service, Promotion, Allowance, or Charg">
+              <SAC>
+                <!--Allowance or Charge Indicator-->
+                <SAC01>N<!--No Allowance or Change--></SAC01>
+                <!--Service, Promotion, Allowance or Charge Code-->
+                <SAC02>H850<!--Tax--></SAC02>
+              </SAC>
+              <TX1>
+                <!--Tax Type Code-->
+                <TX101>TX<!--All Taxes--></TX101>
+                <!--Monetary Amount-->
+                <TX102>3.54</TX102>
+                <!--Percent-->
+                <TX103>.015</TX103>
+              </TX1>
+            </Loop>
+          </Loop>
+        </Loop>
+      </Loop>
+      <Loop LoopId="ENT" Name="Entity">
+        <ENT>
+          <!--AssignedNumber-->
+          <ENT01>01</ENT01>
+        </ENT>
+        <Loop LoopId="NM1" Name="Individual or Organizational Name">
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>BW<!--Borrower--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>Washington</NM103>
+            <!--Name First-->
+            <NM104>John</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>34<!--Social Security Number--></NM108>
+            <!--Identification Code-->
+            <NM109>999999999</NM109>
+          </NM1>
+          <N3>
+            <!--Address Information-->
+            <N301>2830 Northwood Drive</N301>
+          </N3>
+          <N4>
+            <!--City Name-->
+            <N401>Greensboro</N401>
+            <!--State or Provice Code-->
+            <N402>NC</N402>
+            <!--Postal Code-->
+            <N403>27408</N403>
+          </N4>
+        </Loop>
+        <Loop LoopId="RMR" Name="Remittance Advice Accounts Receivable O">
+          <RMR>
+            <!--Reference Identification Qualifier-->
+            <RMR01>ID<!--Insurance Certificate Number--></RMR01>
+            <!--Reference Identification-->
+            <RMR02>66666789</RMR02>
+            <!--Payment Action Code-->
+            <RMR03>PO<!--Payment on Account--></RMR03>
+            <!--Monetary Amount-->
+            <RMR04>10167</RMR04>
+          </RMR>
+          <REF>
+            <!--Reference Identification Qualifier-->
+            <REF01>LD<!--Loan Number--></REF01>
+            <!--Reference Identification-->
+            <REF02>12345  </REF02>
+          </REF>
+          <DTM>
+            <!--Data/Time Qualifier-->
+            <DTM01>143</DTM01>
+            <!--Date-->
+            <DTM02>19981215</DTM02>
+          </DTM>
+        </Loop>
+      </Loop>
+      <SE>
+        <!--Number of Included Segments-->
+        <SE01>24</SE01>
+        <!--Transaction Set Control Number-->
+        <SE02>123456</SE02>
+      </SE>
+    </Transaction>
+    <GE>
+      <!--Number of Transaction Sets Included-->
+      <GE01>1</GE01>
+      <!--Group Control Number-->
+      <GE02>810000263</GE02>
+    </GE>
+  </FunctionGroup>
+  <IEA>
+    <!--Number of Included Functional Groups-->
+    <IEA01>1</IEA01>
+    <!--Interchange Control Number-->
+    <IEA02>810000263</IEA02>
+  </IEA>
+</Interchange>

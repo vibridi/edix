@@ -1,0 +1,372 @@
+{
+  "transactionSet" : "834",
+  "versions" : {
+    "all" : {
+      "name" : "834",
+      "description" : "Benefit Enrollment and Maintenance",
+      "segments" : [ "BGN", "REF", "DTP" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "SPONSOR NAME",
+        "startingSegment" : "N1",
+        "codes" : [ "P5" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "PAYER",
+        "startingSegment" : "N1",
+        "codes" : [ "IN" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000C",
+        "description" : "TPA/BROKER NAME",
+        "startingSegment" : "N1",
+        "codes" : [ "BO", "TV" ],
+        "segments" : [ ],
+        "loops" : [ {
+          "name" : "1100C",
+          "description" : "TPA/BROKER ACCOUNT INFORMATION",
+          "startingSegment" : "ACT",
+          "segments" : [ ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000",
+        "description" : "MEMBER LEVEL DETAIL",
+        "startingSegment" : "INS",
+        "segments" : [ "REF", "DTP" ],
+        "loops" : [ {
+          "name" : "2100A",
+          "description" : "MEMBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "74", "IL" ],
+          "segments" : [ "PER", "N3", "N4", "DMG", "ICM", "AMT", "HLH", "LUI" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100B",
+          "description" : "INCORRECT MEMBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "70" ],
+          "segments" : [ "DMG" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100C",
+          "description" : "MEMBER MAILING ADDRESS",
+          "startingSegment" : "NM1",
+          "codes" : [ "31" ],
+          "segments" : [ "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100D",
+          "description" : "MEMBER EMPLOYER",
+          "startingSegment" : "NM1",
+          "codes" : [ "ES" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100E",
+          "description" : "MEMBER SCHOOL",
+          "startingSegment" : "NM1",
+          "codes" : [ "M8" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100F",
+          "description" : "CUSTODIAL PARENT",
+          "startingSegment" : "NM1",
+          "codes" : [ "S3" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100G",
+          "description" : "RESPONSIBLE PERSON",
+          "startingSegment" : "NM1",
+          "codes" : [ "E1", "EI", "EXS", "GD", "J6", "QD" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2200",
+          "description" : "DISABILITY INFORMATION",
+          "startingSegment" : "DSB",
+          "segments" : [ "DTP" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "HEALTH COVERAGE",
+          "startingSegment" : "HD",
+          "segments" : [ "DTP", "AMT", "REF", "IDC" ],
+          "loops" : [ {
+            "name" : "2310",
+            "description" : "PROVIDER INFORMATION",
+            "startingSegment" : "LX",
+            "segments" : [ "NM1", "N1", "N2", "N3", "N4", "PER", "PRV", "DTP", "PLA" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "COORDINATION OF BENEFITS",
+            "startingSegment" : "COB",
+            "segments" : [ "REF", "N1", "N2", "N3", "N4", "DTP" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "2400",
+          "description" : "LIFE COVERAGE",
+          "startingSegment" : "LC",
+          "segments" : [ "AMT", "DTP", "REF" ],
+          "loops" : [ {
+            "name" : "2410",
+            "description" : "BENEFICIARY OR OWNER INFORMATION",
+            "startingSegment" : "BEN",
+            "segments" : [ "NM1", "N1", "N2", "N3", "N4", "DMG" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "2500",
+          "description" : "FLEXIBLE SPENDING ACCOUNT",
+          "startingSegment" : "FSA",
+          "segments" : [ "AMT", "DTP", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2600",
+          "description" : "RETIREMENT PRODUCT",
+          "startingSegment" : "RP",
+          "segments" : [ "DTP", "REF", "INV", "AMT", "QTY", "K3", "REL" ],
+          "loops" : [ {
+            "name" : "2610",
+            "description" : "INDIVIDUAL OR ORGANIZATION NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "" ],
+            "segments" : [ "N2", "DMG", "BEN", "REF" ],
+            "loops" : [ {
+              "name" : "2620",
+              "description" : "PROPERTY OR ENTITY IDENTIFICATION",
+              "startingSegment" : "NX1",
+              "segments" : [ "N3", "N4", "DTP" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2630",
+            "description" : "FINANCIAL CONTRIBUTION",
+            "startingSegment" : "FC",
+            "segments" : [ "DTP" ],
+            "loops" : [ {
+              "name" : "2640",
+              "description" : "INVESTMENT VEHICLE SELECTION",
+              "startingSegment" : "INV",
+              "segments" : [ "DTP", "QTY", "ENT", "REF", "AMT", "K3" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2650",
+            "description" : "INCOME",
+            "startingSegment" : "AIN",
+            "segments" : [ "QTY", "DTP" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    },
+    "501" : {
+      "name" : "834",
+      "description" : "Benefit Enrollment and Maintenance",
+      "segments" : [ "BGN", "REF", "DTP", "QTY" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "SPONSOR NAME",
+        "startingSegment" : "N1",
+        "codes" : [ "P5" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "PAYER",
+        "startingSegment" : "N1",
+        "codes" : [ "IN" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000C",
+        "description" : "TPA/BROKER NAME",
+        "startingSegment" : "N1",
+        "codes" : [ "BO", "TV" ],
+        "segments" : [ ],
+        "loops" : [ {
+          "name" : "1100C",
+          "description" : "TPA/BROKER ACCOUNT INFORMATION",
+          "startingSegment" : "ACT",
+          "segments" : [ ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000",
+        "description" : "MEMBER LEVEL DETAIL",
+        "startingSegment" : "INS",
+        "segments" : [ "REF", "DTP" ],
+        "loops" : [ {
+          "name" : "2100A",
+          "description" : "MEMBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "74", "IL" ],
+          "segments" : [ "PER", "N3", "N4", "DMG", "EC", "ICM", "AMT", "HLH", "LUI" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100B",
+          "description" : "INCORRECT MEMBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "70" ],
+          "segments" : [ "DMG" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100C",
+          "description" : "MEMBER MAILING ADDRESS",
+          "startingSegment" : "NM1",
+          "codes" : [ "31" ],
+          "segments" : [ "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100D",
+          "description" : "MEMBER EMPLOYER",
+          "startingSegment" : "NM1",
+          "codes" : [ "ES", "36" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100E",
+          "description" : "MEMBER SCHOOL",
+          "startingSegment" : "NM1",
+          "codes" : [ "M8" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100F",
+          "description" : "CUSTODIAL PARENT",
+          "startingSegment" : "NM1",
+          "codes" : [ "S3" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100G",
+          "description" : "RESPONSIBLE PERSON",
+          "startingSegment" : "NM1",
+          "codes" : [ "6Y", "9K", "E1", "EI", "GB", "EXS", "GD", "J6", "QD", "S1", "TZ", "X4" ],
+          "segments" : [ "PER", "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2100H",
+          "description" : "DROP OFF LOCATION",
+          "startingSegment" : "NM1",
+          "codes" : [ "45" ],
+          "segments" : [ "N3", "N4" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2200",
+          "description" : "DISABILITY INFORMATION",
+          "startingSegment" : "DSB",
+          "segments" : [ "DTP" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "HEALTH COVERAGE",
+          "startingSegment" : "HD",
+          "segments" : [ "DTP", "AMT", "REF", "IDC" ],
+          "loops" : [ {
+            "name" : "2310",
+            "description" : "PROVIDER INFORMATION",
+            "startingSegment" : "LX",
+            "segments" : [ "NM1", "N3", "N4", "PER", "PLA" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "COORDINATION OF BENEFITS",
+            "startingSegment" : "COB",
+            "segments" : [ "REF", "DTP" ],
+            "loops" : [ {
+              "name" : "2330",
+              "description" : "COORDINATION OF BENEFITS RELATED ENTITY",
+              "startingSegment" : "NM1",
+              "codes" : [ "36", "GW", "IN" ],
+              "segments" : [ "N3", "N4", "PER" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        }, {
+          "name" : "2400",
+          "description" : "LIFE COVERAGE",
+          "startingSegment" : "LC",
+          "segments" : [ "AMT", "DTP", "REF" ],
+          "loops" : [ {
+            "name" : "2410",
+            "description" : "BENEFICIARY OR OWNER INFORMATION",
+            "startingSegment" : "BEN",
+            "segments" : [ "NM1", "N1", "N2", "N3", "N4", "DMG" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "2500",
+          "description" : "FLEXIBLE SPENDING ACCOUNT",
+          "startingSegment" : "FSA",
+          "segments" : [ "AMT", "DTP", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2600",
+          "description" : "RETIREMENT PRODUCT",
+          "startingSegment" : "RP",
+          "segments" : [ "DTP", "REF", "INV", "AMT", "QTY", "K3", "REL" ],
+          "loops" : [ {
+            "name" : "2610",
+            "description" : "INDIVIDUAL OR ORGANIZATION NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "" ],
+            "segments" : [ "N2", "DMG", "BEN", "REF" ],
+            "loops" : [ {
+              "name" : "2620",
+              "description" : "PROPERTY OR ENTITY IDENTIFICATION",
+              "startingSegment" : "NX1",
+              "segments" : [ "N3", "N4", "DTP" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2630",
+            "description" : "FINANCIAL CONTRIBUTION",
+            "startingSegment" : "FC",
+            "segments" : [ "DTP" ],
+            "loops" : [ {
+              "name" : "2640",
+              "description" : "INVESTMENT VEHICLE SELECTION",
+              "startingSegment" : "INV",
+              "segments" : [ "DTP", "QTY", "ENT", "REF", "AMT", "K3" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2650",
+            "description" : "INCOME",
+            "startingSegment" : "AIN",
+            "segments" : [ "QTY", "DTP" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "2700",
+          "description" : "Additional Reporting Categories",
+          "startingSegment" : "LS",
+          "segments" : [ "LE" ],
+          "loops" : [ {
+            "name" : "2710",
+            "description" : "Member Reporting Categories",
+            "startingSegment" : "LX",
+            "segments" : [ ],
+            "loops" : [ {
+              "name" : "2750",
+              "description" : "Reporting Category",
+              "startingSegment" : "N1",
+              "codes" : [ "75" ],
+              "segments" : [ "REF", "DTP" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

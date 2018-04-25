@@ -25,7 +25,7 @@
 		<Time>1211</Time>
 		<ResponsibleAgency>T</ResponsibleAgency>
 		<VersionIdCode>004010</VersionIdCode>	
-		<TransactionSet code="110" controlNumber="000000001" description="Air Freight Details and Invoice">
+		<Transaction code="110" controlNumber="000000001" description="Air Freight Details and Invoice">
 			<Segment id="B3">
 				<Field id="01"/>
 				<Field id="02">88799686</Field>
@@ -273,6 +273,6 @@
 				<Field id="01">GEN</Field>
 				<Field id="02">XN 08879968600102458</Field>
 			</Segment>
-		</TransactionSet>
+		</Transaction>
 	</FunctionalGroup>
 </Interchange>

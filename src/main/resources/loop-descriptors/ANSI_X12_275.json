@@ -1,9 +1,0 @@
-{
-	"transactionSet": "275",
-	"description": "Patient Information",
-	"versions": {
-		"all": {
-			"loops": { }
-		}
-	}
-}

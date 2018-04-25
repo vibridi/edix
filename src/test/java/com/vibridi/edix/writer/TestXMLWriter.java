@@ -72,16 +72,16 @@ public class TestXMLWriter {
 		
 		// Assert ST XML representation
 		// Must test all ST fields, because they will be needed to read the XML back into a valid EDIMessage object
-		assertXPath("/Interchange/FunctionalGroup/TransactionSet/@code", docA, docB, "110");
-		assertXPath("/Interchange/FunctionalGroup/TransactionSet/@controlNumber", docA, docB, "000000001");
+		assertXPath("/Interchange/FunctionalGroup/Transaction/@code", docA, docB, "110");
+		assertXPath("/Interchange/FunctionalGroup/Transaction/@controlNumber", docA, docB, "000000001");
 		
 		// Assert document
-		assertXPath("//TransactionSet/Segment[@id='B3']/Field[@id='02']", docA, docB, "88799686");
-		assertXPath("//TransactionSet/Segment[@id='B3A']/Field[@id='01']", docA, docB, "SS");
-		assertXPath("//TransactionSet/Loop[@id='N1'][2]/Segment[@id='N1']/Field[@id='02']", docA, docB, "CUSTOMER NAME");
-		assertXPath("//TransactionSet/Loop[@id='N1'][3]/Segment[@id='N3']/Field[@id='02']", docA, docB, "ELECTRONICS CITY RD");
-		assertXPath("//TransactionSet/Loop[@id='LX']/Loop[@id='L5']/Segment[@id='L0']/Field[@id='04']", docA, docB, "99.5");
-		assertXPath("//TransactionSet//Loop[@id='L1'][3]/Segment[@id='L1']/Field[@id='08']", docA, docB, "WAR");
+		assertXPath("//Transaction/Segment[@id='B3']/Field[@id='02']", docA, docB, "88799686");
+		assertXPath("//Transaction/Segment[@id='B3A']/Field[@id='01']", docA, docB, "SS");
+		assertXPath("//Transaction/Loop[@id='N1'][2]/Segment[@id='N1']/Field[@id='02']", docA, docB, "CUSTOMER NAME");
+		assertXPath("//Transaction/Loop[@id='N1'][3]/Segment[@id='N3']/Field[@id='02']", docA, docB, "ELECTRONICS CITY RD");
+		assertXPath("//Transaction/Loop[@id='LX']/Loop[@id='L5']/Segment[@id='L0']/Field[@id='04']", docA, docB, "99.5");
+		assertXPath("//Transaction//Loop[@id='L1'][3]/Segment[@id='L1']/Field[@id='08']", docA, docB, "WAR");
 	}
 	
 	@Test
@@ -105,32 +105,32 @@ public class TestXMLWriter {
 		assertXPath("/Interchange/InterchangeControlHeader/SubDelimiter", docA, docB, "<");
 		
 		// Assert repeated field
-		Node n = (Node) XMLUtils.applyXPath(docB, "//TransactionSet/Segment[@id='DMG']/Field[@id='05']/@repeated", null, XPathConstants.NODE);
+		Node n = (Node) XMLUtils.applyXPath(docB, "//Transaction/Segment[@id='DMG']/Field[@id='05']/@repeated", null, XPathConstants.NODE);
 		assertNotNull(n);
 		assertEquals(n.getTextContent(), "true");
 		
 		// Assert empty first field of composite field (as in ~<RET<R5~)
 		// 													   ^ empty first field
-		assertXPath("//TransactionSet/Segment[@id='DMG']/Field[@id='05']/Field[@id='01']/Field[@id='01']", docA, docB, "");
+		assertXPath("//Transaction/Segment[@id='DMG']/Field[@id='05']/Field[@id='01']/Field[@id='01']", docA, docB, "");
 		
 		// Assert regular fields of composite field
-		assertXPath("//TransactionSet/Segment[@id='DMG']/Field[@id='05']/Field[@id='02']/Field[@id='03']", docA, docB, "E1.01");
+		assertXPath("//Transaction/Segment[@id='DMG']/Field[@id='05']/Field[@id='02']/Field[@id='03']", docA, docB, "E1.01");
 		
 		// Assert fields before and after the repeated field
-		assertXPath("//TransactionSet/Segment[@id='DMG']/Field[@id='04']", docA, docB, "");
-		assertXPath("//TransactionSet/Segment[@id='DMG']/Field[@id='06']", docA, docB, "");
+		assertXPath("//Transaction/Segment[@id='DMG']/Field[@id='04']", docA, docB, "");
+		assertXPath("//Transaction/Segment[@id='DMG']/Field[@id='06']", docA, docB, "");
 		
 		// Assert repeated field with simple text elements
-		assertXPath("//TransactionSet/Segment[@id='MSG'][1]/Field[@id='01']/@repeated", docA, docB, "true");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][1]/Field[@id='01']/Field[@id='01']", docA, docB, "test1");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][1]/Field[@id='01']/Field[@id='02']", docA, docB, "test-rep");
+		assertXPath("//Transaction/Segment[@id='MSG'][1]/Field[@id='01']/@repeated", docA, docB, "true");
+		assertXPath("//Transaction/Segment[@id='MSG'][1]/Field[@id='01']/Field[@id='01']", docA, docB, "test1");
+		assertXPath("//Transaction/Segment[@id='MSG'][1]/Field[@id='01']/Field[@id='02']", docA, docB, "test-rep");
 		
 		// Assert field with sub-elements
-		assertXPath("//TransactionSet/Segment[@id='MSG'][2]/Field[@id='01']/@repeated", docA, docB, "");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='01']", docA, docB, "test2");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='02']", docA, docB, "test3");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='03']", docA, docB, "test4");
-		assertXPath("//TransactionSet/Segment[@id='MSG'][2]/Field[@id='02']", docA, docB, "test5");
+		assertXPath("//Transaction/Segment[@id='MSG'][2]/Field[@id='01']/@repeated", docA, docB, "");
+		assertXPath("//Transaction/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='01']", docA, docB, "test2");
+		assertXPath("//Transaction/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='02']", docA, docB, "test3");
+		assertXPath("//Transaction/Segment[@id='MSG'][2]/Field[@id='01']/Field[@id='03']", docA, docB, "test4");
+		assertXPath("//Transaction/Segment[@id='MSG'][2]/Field[@id='02']", docA, docB, "test5");
 	}
 	
 	public void assertXPath(String xpath, Document A, Document B, String control) throws XPathExpressionException {

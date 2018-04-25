@@ -2,11 +2,10 @@ package com.vibridi.edix.reader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 import com.vibridi.edix.EDIFactory;
-import com.vibridi.edix.EDIReader;
 import com.vibridi.edix.EDIFactory.EDIFormat;
+import com.vibridi.edix.EDIReader;
 import com.vibridi.edix.error.EDISyntaxException;
 import com.vibridi.edix.model.EDIMessage;
 import com.vibridi.edix.writer.EDIWriter;

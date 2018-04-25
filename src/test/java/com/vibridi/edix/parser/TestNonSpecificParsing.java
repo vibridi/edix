@@ -2,20 +2,13 @@ package com.vibridi.edix.parser;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.xml.xpath.XPathConstants;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -30,15 +23,23 @@ import com.vibridi.edix.util.XMLUtils;
 import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class TestNonSpecificParsing {
-
-	@Rule public TemporaryFolder tmpfolder = new TemporaryFolder();
+	
+	private static final String pattern = "%s/%s.%s";
+	
+	private static String getXmlName(String name) {
+		return String.format(pattern, "benchmarks", name, "xml");
+	}
+	
+	private static String getEdiName(String name) {
+		return String.format(pattern, "transactions-x12", name, "edi");
+	}
 	
 	@Test
 	public void parse820() throws Exception {
-		String ediResource = "transactions-x12/_820/Example1_MortgageBankers.edi";
-		String bmk = getBenchmark(ediResource);
-		Document d1 = XMLUtils.stringToDocument(bmk);
-		Document d2 = TestUtils.readAndThen(ediResource, TestUtils::writeToDOM);
+		String source = "_820/Example1_MortgageBankers";
+		
+		Document d1 = TestResources.getAsDOM(getXmlName(source));
+		Document d2 = TestUtils.readAndThen(getEdiName(source), TestUtils::writeToDOM);
 		
 		NodeList s1 = (NodeList) XMLUtils.applyXPath(d1, "//Transaction", null, XPathConstants.NODESET);
 		NodeList s2 = (NodeList) XMLUtils.applyXPath(d2, "//Transaction", null, XPathConstants.NODESET);
@@ -73,7 +74,7 @@ public class TestNonSpecificParsing {
 		assertEquals(seg1, seg2);
 		
 		// Store and compare loop names
-		
+		// TODO
 		
 		
 	}
@@ -87,37 +88,12 @@ public class TestNonSpecificParsing {
 		return l;
 	}
 	
-	@Test
-	public void testBenchmark() throws Exception {
-		String s = getBenchmark("transactions-x12/278.edi");
-		System.out.println(s);
-	}
-	
-	@Test
+	//@Test
 	public void testPrint() throws Exception {
 		EDIMessage m = TestResources.getAsMessage("transactions-x12/_820/Example1_MortgageBankers.edi");
 		EDIXMLWriter w = (EDIXMLWriter) EDIFactory.newWriter(EDIFormat.XML, m);
 		String xml = w.writeToString("UTF-8");
 		System.out.println(xml);
-	}
-	
-	
-	private String getBenchmark(String inf) throws Exception {
-		String in = TestResources.getAsFile(inf).getAbsolutePath();
-		
-		File tmpf = tmpfolder.newFile(UUID.randomUUID().toString());
-		String out = tmpf.getAbsolutePath();
-		
-		Runtime rt = Runtime.getRuntime();
-		String[] commands = {"x12parser.bat", in, out};
-		Process proc = rt.exec(commands);
-		
-		proc.waitFor();
-		
-		if(proc.exitValue() != 0)
-			throw new IOException("X12Parser.exe didn't terminate correctly.");
-		
-		return new String(Files.readAllBytes(Paths.get(tmpf.toURI())));
 	}
 	
 }

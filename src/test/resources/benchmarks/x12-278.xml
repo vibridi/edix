@@ -25,7 +25,7 @@
         <Time>1244</Time>
         <ResponsibleAgency>X</ResponsibleAgency>
         <VersionIdCode>005010X217</VersionIdCode>
-        <TransactionSet code="278" controlNumber="1234" description="Health Care Services Review Information">
+        <Transaction code="278" controlNumber="1234" description="Health Care Services Review Information">
             <Segment id="BHT">
                 <Field id="01">0007</Field>
                 <Field id="02">13</Field>
@@ -152,6 +152,6 @@
                     </Loop>
                 </Loop>
             </Loop>
-        </TransactionSet>
+        </Transaction>
     </FunctionalGroup>
 </Interchange>

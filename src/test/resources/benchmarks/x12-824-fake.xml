@@ -25,7 +25,7 @@
 		<Time>1003</Time>
 		<ResponsibleAgency>X</ResponsibleAgency>
 		<VersionIdCode>004020CHRY</VersionIdCode>	
-		<TransactionSet code="824" controlNumber="000042460" description="Application Advice">
+		<Transaction code="824" controlNumber="000042460" description="Application Advice">
 			<Segment id="BGN">
 				<Field id="01">11</Field>
 				<Field id="02">07141005162 </Field>
@@ -69,6 +69,6 @@
 				</Field>
 				<Field id="02">test5</Field>
 			</Segment>
-		</TransactionSet>
+		</Transaction>
 	</FunctionalGroup>
 </Interchange>

@@ -25,14 +25,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class SpecConverter {
 
 	// READ FROM
-	private static final String tset = "820";
-	private static final String version = "4010";
+	private static final String tset = "997";	// CHANGE ME
+	private static final String version = "4010";	// CHANGE ME
 	private static final String source = "xml-descriptors/Ansi-%s-%sSpecification.xml";
 	
 	
 	// WRITE TO
-	private static final String dstVersion = "all";
-	private static final String desc = "Payment Order/Remittance Advice";
+	private static final String dstVersion = "all"; 									// CHANGE ME if needed
+	private static final String desc = "Functional Acknowledgment"; 				// CHANGE ME
 	private static final String fileOut ="src/main/resources/transaction-descriptors/ANSI_X12_%s.json";
 	
 	public static void main(String[] args) throws Exception {

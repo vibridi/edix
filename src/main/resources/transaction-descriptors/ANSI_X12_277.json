@@ -1,0 +1,53 @@
+{
+  "transactionSet" : "277",
+  "versions" : {
+    "all" : {
+      "name" : "277",
+      "description" : "Health Care Claim Status Notification",
+      "segments" : [ "BHT", "REF" ],
+      "loops" : [ {
+        "name" : "1000",
+        "description" : "Individual or Organizational Name",
+        "startingSegment" : "NM1",
+        "segments" : [ "N2", "N3", "N4", "REF", "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000",
+        "description" : "Hierarchical Level",
+        "startingSegment" : "HL",
+        "segments" : [ "SBR", "PAT", "DMG" ],
+        "loops" : [ {
+          "name" : "2100",
+          "description" : "Individual or Organizational Name",
+          "startingSegment" : "NM1",
+          "segments" : [ "N3", "N4", "PER" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2200",
+          "description" : "Trace",
+          "startingSegment" : "TRN",
+          "segments" : [ "STC", "REF", "DTP" ],
+          "loops" : [ {
+            "name" : "2210",
+            "description" : "Paperwork",
+            "startingSegment" : "PWK",
+            "segments" : [ "PER", "N1", "N3", "N4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2220",
+            "description" : "Service Information",
+            "startingSegment" : "SVC",
+            "segments" : [ "STC", "REF", "DTP" ],
+            "loops" : [ {
+              "name" : "2225",
+              "description" : "Paperwork",
+              "startingSegment" : "PWK",
+              "segments" : [ "PER", "N1", "N3", "N4" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

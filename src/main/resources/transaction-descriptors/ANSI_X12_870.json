@@ -1,0 +1,89 @@
+{
+  "transactionSet" : "870",
+  "versions" : {
+    "all" : {
+      "name" : "870",
+      "description" : "Order Status Report",
+      "segments" : [ "BSR", "TD3", "TD4", "TD5", "DTM", "CTT" ],
+      "loops" : [ {
+        "name" : "REF",
+        "description" : "Reference Identification",
+        "startingSegment" : "REF",
+        "segments" : [ "DTM" ],
+        "loops" : [ ]
+      }, {
+        "name" : "N1",
+        "description" : "Name",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "REF", "PER", "PWK" ],
+        "loops" : [ ]
+      }, {
+        "name" : "LM",
+        "description" : "Code Source Information",
+        "startingSegment" : "LM",
+        "segments" : [ "LQ" ],
+        "loops" : [ ]
+      }, {
+        "name" : "HL",
+        "description" : "Hierarchical Level",
+        "startingSegment" : "HL",
+        "segments" : [ "PRF", "PER", "DTM", "CS" ],
+        "loops" : [ {
+          "name" : "ISR",
+          "description" : "Item Status Report",
+          "startingSegment" : "ISR",
+          "segments" : [ "PID", "QTY" ],
+          "loops" : [ ]
+        }, {
+          "name" : "REF",
+          "description" : "Reference Identification",
+          "startingSegment" : "REF",
+          "segments" : [ "DTM" ],
+          "loops" : [ ]
+        }, {
+          "name" : "N1",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "REF", "PER" ],
+          "loops" : [ ]
+        }, {
+          "name" : "LM",
+          "description" : "Code Source Information",
+          "startingSegment" : "LM",
+          "segments" : [ "LQ" ],
+          "loops" : [ ]
+        }, {
+          "name" : "PO1",
+          "description" : "Baseline Item Data",
+          "startingSegment" : "PO1",
+          "segments" : [ "CUR", "SLN", "PO3", "PID", "MEA", "PKG" ],
+          "loops" : [ {
+            "name" : "ISR",
+            "description" : "Item Status Report",
+            "startingSegment" : "ISR",
+            "segments" : [ "PID", "QTY", "DTM", "N1", "N2", "N3", "N4", "TD1", "TD5", "TD3", "TD4", "REF", "SAC" ],
+            "loops" : [ {
+              "name" : "LM",
+              "description" : "Code Source Information",
+              "startingSegment" : "LM",
+              "segments" : [ "LQ" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "LX",
+            "description" : "Assigned Number",
+            "startingSegment" : "LX",
+            "segments" : [ "REF", "N1", "DTM" ],
+            "loops" : [ {
+              "name" : "LM",
+              "description" : "Code Source Information",
+              "startingSegment" : "LM",
+              "segments" : [ "LQ" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

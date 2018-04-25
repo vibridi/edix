@@ -1,0 +1,203 @@
+{
+  "transactionSet" : "850",
+  "versions" : {
+    "all" : {
+      "name" : "850",
+      "description" : "Purchase Order",
+      "segments" : [ "BEG", "CUR", "REF", "PER", "TAX", "FOB", "CTP", "PAM", "CSH", "TC2", "ITD", "DIS", "INC", "DTM", "LDT", "LIN", "SI", "PID", "MEA", "PWK", "PKG", "TD1", "TD5", "TD3", "TD4", "MAN", "PCT", "CTB", "TXI", "MSG" ],
+      "loops" : [ {
+        "name" : "SAC",
+        "description" : "Service, Promotion, Allowance, or Charg",
+        "startingSegment" : "SAC",
+        "segments" : [ "CUR" ],
+        "loops" : [ ]
+      }, {
+        "name" : "SAC",
+        "description" : "Service, Promotion, Allowance, or Charge Information",
+        "startingSegment" : "SAC",
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "AMT",
+        "description" : "Monetary Amount",
+        "startingSegment" : "AMT",
+        "segments" : [ "REF", "DTM", "PCT" ],
+        "loops" : [ {
+          "name" : "FA1",
+          "description" : "Type of Financial Accounting Data",
+          "startingSegment" : "FA1",
+          "segments" : [ "FA2" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "N9",
+        "description" : "Reference Identification",
+        "startingSegment" : "N9",
+        "segments" : [ "DTM", "MSG" ],
+        "loops" : [ ]
+      }, {
+        "name" : "N1",
+        "description" : "Name",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "NX2", "REF", "PER", "SI", "FOB", "TD1", "TD5", "TD3", "TD4", "PKG" ],
+        "loops" : [ ]
+      }, {
+        "name" : "LM",
+        "description" : "Code Source Information",
+        "startingSegment" : "LM",
+        "segments" : [ "LQ" ],
+        "loops" : [ ]
+      }, {
+        "name" : "SPI",
+        "description" : "Specification Identifier",
+        "startingSegment" : "SPI",
+        "segments" : [ "REF", "DTM", "MSG" ],
+        "loops" : [ {
+          "name" : "N1",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "REF", "G61", "MSG" ],
+          "loops" : [ ]
+        }, {
+          "name" : "CB1",
+          "description" : "Contract and Cost Accounting Standards",
+          "startingSegment" : "CB1",
+          "segments" : [ "REF", "DTM", "LDT", "MSG" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "ADV",
+        "description" : "Advertising Demographic Information",
+        "startingSegment" : "ADV",
+        "segments" : [ "DTM", "MTX" ],
+        "loops" : [ ]
+      }, {
+        "name" : "PO1",
+        "description" : "Baseline Item Data",
+        "startingSegment" : "PO1",
+        "segments" : [ "LIN", "SI", "CUR", "CN1", "PO3", "PAM", "MEA", "PWK", "PO4", "REF", "PER", "CTP", "IT8", "CSH", "ITD", "DIS", "INC", "TAX", "FOB", "SDQ", "IT3", "DTM", "TC2", "TD1", "TD5", "TD3", "TD4", "PCT", "MAN", "MSG", "SPI", "TXI", "CTB" ],
+        "loops" : [ {
+          "name" : "CTP",
+          "description" : "Pricing Information",
+          "startingSegment" : "CTP",
+          "segments" : [ "CUR" ],
+          "loops" : [ ]
+        }, {
+          "name" : "PID",
+          "description" : "Product/Item Description",
+          "startingSegment" : "PID",
+          "segments" : [ "MEA", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SAC",
+          "description" : "Service, Promotion, Allowance, or Charg",
+          "startingSegment" : "SAC",
+          "segments" : [ "CUR" ],
+          "loops" : [ ]
+        }, {
+          "name" : "QTY",
+          "description" : "Quantity",
+          "startingSegment" : "QTY",
+          "segments" : [ "SI" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SCH",
+          "description" : "Line Item Schedule",
+          "startingSegment" : "SCH",
+          "segments" : [ "TD1", "TD5", "TD3", "TD4", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "PKG",
+          "description" : "Marking, Packaging, Loading",
+          "startingSegment" : "PKG",
+          "segments" : [ "MEA" ],
+          "loops" : [ ]
+        }, {
+          "name" : "LS",
+          "description" : "Loop Header",
+          "startingSegment" : "LS",
+          "segments" : [ "LE" ],
+          "loops" : [ {
+            "name" : "LDT",
+            "description" : "Lead Time",
+            "startingSegment" : "LDT",
+            "segments" : [ "QTY", "MSG", "REF" ],
+            "loops" : [ {
+              "name" : "LM",
+              "description" : "Code Source Information",
+              "startingSegment" : "LM",
+              "segments" : [ "LQ" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        }, {
+          "name" : "N9",
+          "description" : "Reference Identification",
+          "startingSegment" : "N9",
+          "segments" : [ "DTM", "MEA", "MSG" ],
+          "loops" : [ ]
+        }, {
+          "name" : "N1",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "QTY", "NX2", "REF", "PER", "SI", "DTM", "FOB", "SCH", "TD1", "TD5", "TD3", "TD4", "PKG" ],
+          "loops" : [ {
+            "name" : "LDT",
+            "description" : "Lead Time",
+            "startingSegment" : "LDT",
+            "segments" : [ "MAN", "QTY", "MSG", "REF" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "SLN",
+          "description" : "Subline Item Detail",
+          "startingSegment" : "SLN",
+          "segments" : [ "MSG", "SI", "PID", "PO3", "TC2", "ADV", "DTM", "CTP", "PAM", "PO4", "TAX" ],
+          "loops" : [ {
+            "name" : "N9",
+            "description" : "Reference Identification",
+            "startingSegment" : "N9",
+            "segments" : [ "DTM", "MSG" ],
+            "loops" : [ ]
+          }, {
+            "name" : "SAC",
+            "description" : "Service, Promotion, Allowance, or Charg",
+            "startingSegment" : "SAC",
+            "segments" : [ "CUR", "CTP" ],
+            "loops" : [ ]
+          }, {
+            "name" : "QTY",
+            "description" : "Quantity",
+            "startingSegment" : "QTY",
+            "segments" : [ "SI" ],
+            "loops" : [ ]
+          }, {
+            "name" : "N1",
+            "description" : "Name",
+            "startingSegment" : "N1",
+            "segments" : [ "N2", "N3", "N4", "NX2", "REF", "PER", "SI" ],
+            "loops" : [ ]
+          } ]
+        }, {
+          "name" : "AMT",
+          "description" : "Monetary Amount",
+          "startingSegment" : "AMT",
+          "segments" : [ "REF", "PCT" ],
+          "loops" : [ ]
+        }, {
+          "name" : "LM",
+          "description" : "Code Source Information",
+          "startingSegment" : "LM",
+          "segments" : [ "LQ" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "CTT",
+        "description" : "Transaction Totals",
+        "startingSegment" : "CTT",
+        "segments" : [ "AMT" ],
+        "loops" : [ ]
+      } ]
+    }
+  }
+}

@@ -8,16 +8,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.vibridi.edix.EDIFactory;
-import com.vibridi.edix.EDIFactory.EDIFormat;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.TestResources;
 import com.vibridi.edix.loop.EDILoop;
 import com.vibridi.edix.loop.LoopDescriptorManager;
 import com.vibridi.edix.loop.impl.EDILoopContainer;
 import com.vibridi.edix.loop.impl.EDILoopNode;
-import com.vibridi.edix.model.EDIMessage;
-import com.vibridi.edix.writer.EDIXMLWriter;
 
 public class TestLoop {
 

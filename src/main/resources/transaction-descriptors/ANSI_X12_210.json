@@ -1,0 +1,83 @@
+{
+  "transactionSet" : "210",
+  "versions" : {
+    "all" : {
+      "name" : "210",
+      "description" : "Motor Carrier Freight Details and Invoice",
+      "segments" : [ "B3", "B2A", "C2", "C3", "ITD", "N9", "G62", "R3", "H3", "K1", "L3" ],
+      "loops" : [ {
+        "name" : "0100",
+        "description" : "Name",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "N9" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0200",
+        "description" : "Equipment Details",
+        "startingSegment" : "N7",
+        "segments" : [ "M7" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0250",
+        "description" : "Shipment Purchase Order Detail",
+        "startingSegment" : "SPO",
+        "segments" : [ "SDQ" ],
+        "loops" : [ ]
+      }, {
+        "name" : "0300",
+        "description" : "Stop Off Details",
+        "startingSegment" : "S5",
+        "segments" : [ "N9", "G62", "H3" ],
+        "loops" : [ {
+          "name" : "0305",
+          "description" : "Shipment Purchase Order Detail",
+          "startingSegment" : "SPO",
+          "segments" : [ "SDQ" ],
+          "loops" : [ ]
+        }, {
+          "name" : "0310",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "N9" ],
+          "loops" : [ {
+            "name" : "0320",
+            "description" : "Equipment Details",
+            "startingSegment" : "N7",
+            "segments" : [ "M7" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      }, {
+        "name" : "0400",
+        "description" : "Assigned Number",
+        "startingSegment" : "LX",
+        "segments" : [ "N9", "POD", "L5", "H1", "H2", "L0", "L1", "L4", "L7", "K1" ],
+        "loops" : [ {
+          "name" : "0430",
+          "description" : "Shipment Purchase Order Detail",
+          "startingSegment" : "SPO",
+          "segments" : [ "SDQ" ],
+          "loops" : [ ]
+        }, {
+          "name" : "0460",
+          "description" : "Name",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "N9" ],
+          "loops" : [ {
+            "name" : "0463",
+            "description" : "Carton (Package) Detail",
+            "startingSegment" : "CD3",
+            "segments" : [ "N9", "H6", "L9", "POD", "G62" ],
+            "loops" : [ ]
+          }, {
+            "name" : "0465",
+            "description" : "Shipment Purchase Order Detail",
+            "startingSegment" : "SPO",
+            "segments" : [ "SDQ" ],
+            "loops" : [ ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

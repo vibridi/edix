@@ -1,0 +1,23 @@
+{
+  "transactionSet" : "997",
+  "versions" : {
+    "all" : {
+      "name" : "997",
+      "description" : "Functional Acknowledgment",
+      "segments" : [ "AK1", "AK9" ],
+      "loops" : [ {
+        "name" : "AK2",
+        "description" : "",
+        "startingSegment" : "AK2",
+        "segments" : [ "AK5" ],
+        "loops" : [ {
+          "name" : "AK3",
+          "description" : "PAYER IDENTIFICATION",
+          "startingSegment" : "AK3",
+          "segments" : [ "AK4" ],
+          "loops" : [ ]
+        } ]
+      } ]
+    }
+  }
+}

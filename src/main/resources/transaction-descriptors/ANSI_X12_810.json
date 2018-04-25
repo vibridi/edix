@@ -1,0 +1,101 @@
+{
+  "transactionSet" : "810",
+  "versions" : {
+    "all" : {
+      "name" : "810",
+      "description" : "Invoice",
+      "segments" : [ "BIG", "NTE", "CUR", "REF", "YNQ", "PER", "ITD", "DTM", "FOB", "PID", "MEA", "PWK", "PKG", "L7", "BAL", "INC", "PAM", "TDS", "TXI", "CAD", "AMT", "CTT" ],
+      "loops" : [ {
+        "name" : "N1",
+        "description" : "Party",
+        "startingSegment" : "N1",
+        "segments" : [ "N2", "N3", "N4", "REF", "PER", "DMG" ],
+        "loops" : [ ]
+      }, {
+        "name" : "LM",
+        "description" : "",
+        "startingSegment" : "LM",
+        "segments" : [ "LQ" ],
+        "loops" : [ ]
+      }, {
+        "name" : "N9",
+        "description" : "",
+        "startingSegment" : "N9",
+        "segments" : [ "MSG" ],
+        "loops" : [ ]
+      }, {
+        "name" : "V1",
+        "description" : "",
+        "startingSegment" : "V1",
+        "segments" : [ "R4", "DTM" ],
+        "loops" : [ ]
+      }, {
+        "name" : "FA1",
+        "description" : "",
+        "startingSegment" : "FA1",
+        "segments" : [ "FA2" ],
+        "loops" : [ ]
+      }, {
+        "name" : "IT1",
+        "description" : "ITEM",
+        "startingSegment" : "IT1",
+        "segments" : [ "CRC", "QTY", "CUR", "IT3", "TXI", "CTP", "PAM", "MEA", "PWK", "PKG", "PO4", "ITD", "REF", "YNQ", "PER", "SDQ", "DTM", "CAD", "L7", "SR" ],
+        "loops" : [ {
+          "name" : "PID",
+          "description" : "PRODUCT/ITEM",
+          "startingSegment" : "PID",
+          "segments" : [ "MEA" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SAC",
+          "description" : "Service, Promotion, Allowance, or Charge Information",
+          "startingSegment" : "SAC",
+          "segments" : [ "TXI" ],
+          "loops" : [ ]
+        }, {
+          "name" : "SLN",
+          "description" : "",
+          "startingSegment" : "SLN",
+          "segments" : [ "DTM", "REF", "PID", "SAC", "TC2", "TXI" ],
+          "loops" : [ ]
+        }, {
+          "name" : "N1",
+          "description" : "Cost Center",
+          "startingSegment" : "N1",
+          "segments" : [ "N2", "N3", "N4", "REF", "PER", "DMG" ],
+          "loops" : [ ]
+        }, {
+          "name" : "LM",
+          "description" : "",
+          "startingSegment" : "LM",
+          "segments" : [ "LQ" ],
+          "loops" : [ ]
+        }, {
+          "name" : "V1",
+          "description" : "",
+          "startingSegment" : "V1",
+          "segments" : [ "R4", "DTM" ],
+          "loops" : [ ]
+        }, {
+          "name" : "FA1",
+          "description" : "",
+          "startingSegment" : "FA1",
+          "segments" : [ "FA2" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "SAC",
+        "description" : "",
+        "startingSegment" : "SAC",
+        "segments" : [ "TXI" ],
+        "loops" : [ ]
+      }, {
+        "name" : "ISS",
+        "description" : "",
+        "startingSegment" : "ISS",
+        "segments" : [ "PID" ],
+        "loops" : [ ]
+      } ]
+    }
+  }
+}

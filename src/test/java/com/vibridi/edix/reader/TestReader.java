@@ -1,7 +1,6 @@
 package com.vibridi.edix.reader;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -10,16 +9,12 @@ import java.io.InputStream;
 import org.junit.Test;
 
 import com.vibridi.edix.EDIFactory;
+import com.vibridi.edix.EDIFactory.EDIFormat;
 import com.vibridi.edix.EDIPlainReader;
 import com.vibridi.edix.EDIReader;
 import com.vibridi.edix.EDIStandard;
 import com.vibridi.edix.EDIXMLReader;
 import com.vibridi.edix.TestResources;
-import com.vibridi.edix.EDIFactory.EDIFormat;
-import com.vibridi.edix.lexer.TokenStream;
-import com.vibridi.edix.model.EDIMessage;
-import com.vibridi.edix.parser.EDIParser;
-import com.vibridi.edix.path.EDIPath;
 
 public class TestReader {
 	
