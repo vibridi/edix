@@ -41,15 +41,7 @@ public class EDIMessageImpl implements EDIMessage {
 	@Override
 	public void addSegment(String name, EDICompositeNode node) {
 		root.appendChild(node);
-		
-		if(segments.containsKey(name)) {
-			segments.get(name).add(node);
-			
-		} else {
-			List<EDICompositeNode> list = new ArrayList<>();
-			list.add(node);
-			segments.put(name, list);
-		}
+		segments.computeIfAbsent(name, k -> new ArrayList<>()).add(node);
 	}
 	
 	@Override

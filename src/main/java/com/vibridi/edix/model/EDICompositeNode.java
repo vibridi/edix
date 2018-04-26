@@ -1,6 +1,7 @@
 package com.vibridi.edix.model;
 
 public interface EDICompositeNode extends EDINode {
+	public int getLine();
 	public String getDelimiter();
 	public void setDelimiter(String delimiter);
 	public String getRepetitionSeparator();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vibridi.edix.EDIStandard;
-import com.vibridi.edix.loop.impl.EDILoopContainer;
+import com.vibridi.edix.model.impl.x12.X12TransactionSet;
 
 public enum LoopDescriptorManager {
 	instance;
@@ -28,6 +28,12 @@ public enum LoopDescriptorManager {
 	
 	private LoopDescriptorManager() {
 		this.om = new ObjectMapper();
+	}
+	
+	public LoopDescriptor forTransaction(EDIStandard standard, X12TransactionSet transaction) throws IOException {
+		String idCode = filterSpecialCases(transaction.getIdCode(), transaction);		
+		return forTransaction(standard, idCode, 
+				transaction.getFunctionalGroup().getInterchange().getVersionNumber());
 	}
 	
 	/**
@@ -112,13 +118,36 @@ public enum LoopDescriptorManager {
 			node.get("segments").forEach(jn -> ld.addAllowedSegment(jn.textValue()));
 				
 		if(node.has("loops")) {
-			JsonNode jsonLoops = node.get("loops");
-			for(int i = 0; i < jsonLoops.size(); i++) {
-				ld.addAllowedLoop(parseDescriptor(jsonLoops.get(i)));				
-			}
+			node.get("loops").forEach(jn -> ld.addAllowedLoop(parseDescriptor(jn)));
 		}
 		
 		return ld;
+	}
+	
+	private String filterSpecialCases(String idCode, X12TransactionSet transaction) {
+		switch(idCode) {
+		case "837":
+			
+			String gs08 = transaction.getFunctionalGroup().getVersionIdCode();
+			switch(gs08) {
+			
+			case "004010X098A1":
+			case "005010X222":
+				return "837P";
+
+			case "004010X096A1":
+			case "005010X223":
+			case "005010X223A1":
+				return "837I";
+
+			case "005010X224":
+			case "005010X224A1":
+				return "837D";
+			}
+		
+		default:
+			return idCode;
+		}
 	}
 	
 	private String textOrDefault(JsonNode node, String dft) {

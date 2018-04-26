@@ -43,7 +43,7 @@ public class X12TransactionSet {
 		
 		// Includes ST and SE themselves
 		if(Integer.parseInt(se.getChild(0).getTextContent()) != segments.size())
-			throw new EDISyntaxException("SE01 doesn't match number of segments: " + segments.size()); // TODO check size
+			throw new EDISyntaxException("SE01 doesn't match number of segments: " + segments.size());
 		
 		this.segments = segments.subList(1, segments.size() - 1);		
 		this.hloops = new HashMap<>();
@@ -67,7 +67,7 @@ public class X12TransactionSet {
 		return segments.size() + 2;
 	}
 	
-	private EDILoop processHL(EDILoop currentLoop, EDICompositeNode seg) throws EDISyntaxException {
+	private EDILoop processHL(EDILoop currentLoop, EDICompositeNode seg) throws EDISyntaxException {		
 		String id = seg.getChild(0).getTextContent();
         String parentId = seg.getChild(1).getTextContent();
         
@@ -83,14 +83,8 @@ public class X12TransactionSet {
         	// A head HL can only be child of ST or a non-HL loop
         	// It's enough to set HL as one of the ST main loops, and ensure it never appears as direct child 
         	// of another HL loop
-        			
-        	if(!currentLoop.allowsLoop(seg.getName()))
-        		throw new EDISyntaxException(
-        				String.format("HL segment [%s] has no specifications at path %s", 
-        						seg.toString(), 
-        						currentLoop.getPath()));
-        	
-        	currentLoop = currentLoop.appendHL(seg);
+        	// the config files must not declare HLs as allowed segments or loops of other HLs        	
+        	currentLoop = processSegment(currentLoop, seg);
         }
         
         hloops.put(id, currentLoop);
@@ -137,8 +131,7 @@ public class X12TransactionSet {
 
 	private EDILoop newLoopTree() {
 		try {
-			LoopDescriptor ld = LoopDescriptorManager.instance
-					.forTransaction(EDIStandard.ANSI_X12, idCode, group.getInterchange().getVersionNumber());
+			LoopDescriptor ld = LoopDescriptorManager.instance.forTransaction(EDIStandard.ANSI_X12, this);
 			return new EDILoopContainer(ld, null);
 		} catch (IOException e) {
 			throw new RuntimeException("Can't build the loop descriptor tree.", e);

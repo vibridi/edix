@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 import com.vibridi.edix.error.ErrorMessages;
 import com.vibridi.edix.loop.EDILoop;
@@ -60,6 +59,10 @@ public class EDILoopContainer extends EDILoopNode {
 	@Override
 	public EDILoop appendLoop(EDICompositeNode segment) {
 		String key = segment.getName();
+		
+		if(key.equals("HL"))
+			return appendHL(segment);
+		
 		if(!allowsLoop(key))
 			throw new IllegalArgumentException(String.format(
 					"This loop %s doesn't allow the loop %s",
@@ -72,7 +75,8 @@ public class EDILoopContainer extends EDILoopNode {
 		LoopDescriptor d = descriptor.getDescriptor(key);
 		
 		if(d == null)
-			throw new IllegalStateException(String.format(ErrorMessages.LOOP_DESCRIPTOR_MISSING, key));
+			throw new IllegalStateException(
+					String.format(ErrorMessages.LOOP_DESCRIPTOR_MISSING, key, segment, segment.getLine()));
 		
 		EDILoopContainer loop = new EDILoopContainer(d, this);
 		loop.appendSegment(segment);

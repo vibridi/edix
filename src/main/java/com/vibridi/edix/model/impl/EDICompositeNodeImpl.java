@@ -8,13 +8,15 @@ import java.util.StringJoiner;
 
 import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDINode;
+import com.vibridi.edix.model.EDIOrderedNode;
 
-public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompositeNode {
+public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompositeNode, EDIOrderedNode {
 
 	private List<EDINode> children;
 	private String delimiter;
 	private String repetitionSeparator;
 	private boolean repeated;
+	private int line;
 	
 	protected EDICompositeNodeImpl(EDINode parent) {
 		super(parent, "");
@@ -159,5 +161,19 @@ public class EDICompositeNodeImpl extends EDISimpleTextNode implements EDICompos
 		
 		children.clear();
 		children.add(merged);
+	}
+
+	public void setLineNumber(int line) {
+		this.line = line;
+	}
+
+	@Override
+	public int getLine() {
+		return line;
+	}
+
+	@Override
+	public void setLine(int line) {
+		this.line = line;		
 	}
 }

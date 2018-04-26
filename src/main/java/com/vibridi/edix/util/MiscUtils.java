@@ -28,6 +28,10 @@ public class MiscUtils {
 		case "HL":
 			code = segment.getChild(2).getTextContent();
 			break;
+			
+		case "N1":
+			code = segment.getChild(0).getTextContent();
+			break;
 		
 		case "NM1":
 			code = segment.getChild(0).getTextContent();

@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<Interchange segment-terminator="\" element-separator="*" sub-element-separator=":">
+  <ISA>
+    <!--Author Information Qualifier-->
+    <ISA01>00<!--No Authorization Information Present--></ISA01>
+    <!--Author Information-->
+    <ISA02>          </ISA02>
+    <!--Security Information Qualifer-->
+    <ISA03>00<!--No Security Information Present--></ISA03>
+    <!--Security Information-->
+    <ISA04>          </ISA04>
+    <!--Interchange ID Qualifier-->
+    <ISA05>01<!--Duns (Dun & Bradstreet)--></ISA05>
+    <!--Interchange Sender ID-->
+    <ISA06>123454321      </ISA06>
+    <!--Interchange ID Qualifier-->
+    <ISA07>01<!--Duns (Dun & Bradstreet)--></ISA07>
+    <!--Interchange Receiver ID-->
+    <ISA08>012341234      </ISA08>
+    <!--Interchange Date-->
+    <ISA09>031016</ISA09>
+    <!--Interchange Time-->
+    <ISA10>2359</ISA10>
+    <!--Inter Control Standards Identifier-->
+    <ISA11>U<!--U.S. EDI Community of ASC X12, TDCC, and UCS--></ISA11>
+    <!--Inter Control Version Number-->
+    <ISA12>00401</ISA12>
+    <!--Inter Control Number-->
+    <ISA13>987600111</ISA13>
+    <!--Acknowlegment Requested-->
+    <ISA14>0<!--No Acknowledgment Requested--></ISA14>
+    <!--Usage Indicator-->
+    <ISA15>P<!--Production Data--></ISA15>
+    <!--Component Element Separator-->
+    <ISA16>
+      <ISA1601 />
+      <ISA1602 />
+    </ISA16>
+  </ISA>
+  <FunctionGroup>
+    <GS>
+      <!--Functional Identifier Code-->
+      <GS01>RA<!--Payment Order/Remittance Advice (820)--></GS01>
+      <!--Application Sender's Code-->
+      <GS02>123454321</GS02>
+      <!--Application Receiver's Code-->
+      <GS03>012341234</GS03>
+      <!--Date-->
+      <GS04>031016</GS04>
+      <!--Time-->
+      <GS05>2359</GS05>
+      <!--Group Control Number-->
+      <GS06>987600111</GS06>
+      <!--Responsible Agency Code-->
+      <GS07>X<!--Accredited Standards Committee X12--></GS07>
+      <!--Version/Release/Industry Identifier Code-->
+      <GS08>004010 </GS08>
+    </GS>
+    <Transaction ControlNumber="987600111 ">
+      <ST>
+        <!--Transaction Set Identifier Code-->
+        <ST01>820</ST01>
+        <!--Transaction Set Control Number-->
+        <ST02>987600111 </ST02>
+      </ST>
+      <BPR>
+        <!--Transaction Handling Code-->
+        <BPR01>C<!--Payment Accompanies Remittance Advice--></BPR01>
+        <!--Monetary Amount-->
+        <BPR02>77.77</BPR02>
+        <!--Credit/Debit Flag Code-->
+        <BPR03>C<!--Credit--></BPR03>
+        <!--Payment Method Code-->
+        <BPR04>ACH<!--Automated Clearing House--></BPR04>
+        <!--Payment Format Code-->
+        <BPR05>CTX<!--Corporate Trade Exchange (820 bundled with ACH)--></BPR05>
+        <!--(DFI) ID Number Qualifier-->
+        <BPR06>01<!--ABA Transit Routing Number including Check Digits (9 digits)--></BPR06>
+        <!--(DFI) Identification Number-->
+        <BPR07>234056789</BPR07>
+        <!--Account Number Qualifier-->
+        <BPR08>DA</BPR08>
+        <!--Account Number-->
+        <BPR09>0099109999</BPR09>
+        <!--Originating Company Identifier-->
+        <BPR10>123454321</BPR10>
+        <!--Originating Company Supplemental Code-->
+        <BPR11>01</BPR11>
+        <!--(DFI) ID Number Qualifier-->
+        <BPR12>045678099</BPR12>
+        <!--(DFI) Identification Number-->
+        <BPR13>DA</BPR13>
+        <!--Account Number Qualifier-->
+        <BPR14>1008973899</BPR14>
+        <!--Account Number-->
+        <BPR15>031016</BPR15>
+      </BPR>
+      <TRN>
+        <!--Trace Type Code-->
+        <TRN01>1<!--Current Transaction Trace Numbers--></TRN01>
+        <!--Reference Identification-->
+        <TRN02>0310162359 </TRN02>
+      </TRN>
+      <REF>
+        <!--Reference Identification Qualifier-->
+        <REF01>AA</REF01>
+        <!--Reference Identification-->
+        <REF02>EDI6 </REF02>
+      </REF>
+      <Loop LoopId="N1" Name="Name">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>PR<!--Payer--></N101>
+          <!--Name-->
+          <N102>WHIZCO OF AMERICA INC </N102>
+        </N1>
+        <N3>
+          <!--Address Information-->
+          <N301>55 MEGAPLEASANT ROAD</N301>
+          <!--Address Information-->
+          <N302>SUITE 999 </N302>
+        </N3>
+        <N4>
+          <!--City Name-->
+          <N401>SUPERVILLE</N401>
+          <!--State or Provice Code-->
+          <N402>NY</N402>
+          <!--Postal Code-->
+          <N403>10954 </N403>
+        </N4>
+      </Loop>
+      <Loop LoopId="N1" Name="Name">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>PE<!--Payee--></N101>
+          <!--Name-->
+          <N102>YOWZACO </N102>
+        </N1>
+      </Loop>
+      <Loop LoopId="ENT" Name="Entity">
+        <ENT>
+          <!--AssignedNumber-->
+          <ENT01>1 </ENT01>
+        </ENT>
+        <Loop LoopId="RMR" Name="Remittance Advice Accounts Receivable O">
+          <RMR>
+            <!--Reference Identification Qualifier-->
+            <RMR01>AP</RMR01>
+            <!--Reference Identification-->
+            <RMR02>1111111111111111</RMR02>
+            <!--Payment Action Code-->
+            <RMR03>PO<!--Payment on Account--></RMR03>
+            <!--Monetary Amount-->
+            <RMR04>11.11 </RMR04>
+          </RMR>
+        </Loop>
+        <Loop LoopId="RMR" Name="Remittance Advice Accounts Receivable O">
+          <RMR>
+            <!--Reference Identification Qualifier-->
+            <RMR01>AP</RMR01>
+            <!--Reference Identification-->
+            <RMR02>2222222222222222</RMR02>
+            <!--Payment Action Code-->
+            <RMR03>PO<!--Payment on Account--></RMR03>
+            <!--Monetary Amount-->
+            <RMR04>22.22 </RMR04>
+          </RMR>
+        </Loop>
+        <Loop LoopId="RMR" Name="Remittance Advice Accounts Receivable O">
+          <RMR>
+            <!--Reference Identification Qualifier-->
+            <RMR01>AP</RMR01>
+            <!--Reference Identification-->
+            <RMR02>4444444444444444</RMR02>
+            <!--Payment Action Code-->
+            <RMR03>PO<!--Payment on Account--></RMR03>
+            <!--Monetary Amount-->
+            <RMR04>44.44 </RMR04>
+          </RMR>
+          <DTM>
+            <!--Data/Time Qualifier-->
+            <DTM01>055</DTM01>
+            <!--Date-->
+            <DTM02>031016 </DTM02>
+          </DTM>
+        </Loop>
+      </Loop>
+      <SE>
+        <!--Number of Included Segments-->
+        <SE01>14</SE01>
+        <!--Transaction Set Control Number-->
+        <SE02>987600111 </SE02>
+      </SE>
+    </Transaction>
+    <GE>
+      <!--Number of Transaction Sets Included-->
+      <GE01>1</GE01>
+      <!--Group Control Number-->
+      <GE02>987600111 </GE02>
+    </GE>
+  </FunctionGroup>
+  <IEA>
+    <!--Number of Included Functional Groups-->
+    <IEA01>1</IEA01>
+    <!--Interchange Control Number-->
+    <IEA02>987600111</IEA02>
+  </IEA>
+</Interchange>

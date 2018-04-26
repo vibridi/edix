@@ -1,0 +1,3035 @@
+<?xml version="1.0"?>
+<Interchange segment-terminator="~" element-separator="*" sub-element-separator="&gt;">
+  <ISA>
+    <!--Author Information Qualifier-->
+    <ISA01>00<!--No Authorization Information Present--></ISA01>
+    <!--Author Information-->
+    <ISA02>          </ISA02>
+    <!--Security Information Qualifer-->
+    <ISA03>00<!--No Security Information Present--></ISA03>
+    <!--Security Information-->
+    <ISA04>          </ISA04>
+    <!--Interchange ID Qualifier-->
+    <ISA05>ZZ<!--Mutually Defined--></ISA05>
+    <!--Interchange Sender ID-->
+    <ISA06>MMISNEBR       </ISA06>
+    <!--Interchange ID Qualifier-->
+    <ISA07>ZZ<!--Mutually Defined--></ISA07>
+    <!--Interchange Receiver ID-->
+    <ISA08>WWWWW          </ISA08>
+    <!--Interchange Date-->
+    <ISA09>120130</ISA09>
+    <!--Interchange Time-->
+    <ISA10>1637</ISA10>
+    <!--Inter Control Standards Identifier-->
+    <ISA11>^</ISA11>
+    <!--Inter Control Version Number-->
+    <ISA12>00501</ISA12>
+    <!--Inter Control Number-->
+    <ISA13>000000031</ISA13>
+    <!--Acknowlegment Requested-->
+    <ISA14>0<!--No Acknowledgment Requested--></ISA14>
+    <!--Usage Indicator-->
+    <ISA15>P<!--Production Data--></ISA15>
+    <!--Component Element Separator-->
+    <ISA16>
+      <ISA1601 />
+      <ISA1602 />
+    </ISA16>
+  </ISA>
+  <FunctionGroup>
+    <GS>
+      <!--Functional Identifier Code-->
+      <GS01>HP<!--Health Care Claim Payment/Advice (835)--></GS01>
+      <!--Application Sender's Code-->
+      <GS02>MMISNEBR</GS02>
+      <!--Application Receiver's Code-->
+      <GS03>WWWWW</GS03>
+      <!--Date-->
+      <GS04>20120130</GS04>
+      <!--Time-->
+      <GS05>163745</GS05>
+      <!--Group Control Number-->
+      <GS06>8</GS06>
+      <!--Responsible Agency Code-->
+      <GS07>X<!--Accredited Standards Committee X12--></GS07>
+      <!--Version / Release / Industry Identifier Code-->
+      <GS08>005010X221A1</GS08>
+    </GS>
+    <Transaction ControlNumber="8001">
+      <ST>
+        <!--Transaction Set Identifier Code-->
+        <ST01>835<!--Health Care Claim Payment/Advice--></ST01>
+        <!--Transaction Set Control Number-->
+        <ST02>8001</ST02>
+      </ST>
+      <BPR>
+        <!--Transaction Handling Code-->
+        <BPR01>I<!--Remittance Information Only--></BPR01>
+        <!--Monetary Amount-->
+        <BPR02>999.99</BPR02>
+        <!--Credit/Debit Flag Code-->
+        <BPR03>C<!--Credit--></BPR03>
+        <!--Payment Method Code-->
+        <BPR04>ACH<!--Automated Clearing House (ACH)--></BPR04>
+        <!--Payment Format Code-->
+        <BPR05>CTX<!--Corporate Trade Exchange (CTX) (ACH)--></BPR05>
+        <!--(DFI) ID Number Qualifier-->
+        <BPR06>01<!--ABA Transit Routing Number Including Check Digits (9 digits)--></BPR06>
+        <!--(DFI) Identification Number-->
+        <BPR07>999999999</BPR07>
+        <!--Account Number Qualifier-->
+        <BPR08>DA<!--Demand Deposit--></BPR08>
+        <!--Account Number-->
+        <BPR09>999999999999</BPR09>
+        <!--Originating Company Identifier-->
+        <BPR10>9999999999</BPR10>
+        <BPR11 />
+        <!--(DFI) ID Number Qualifier-->
+        <BPR12>01<!--ABA Transit Routing Number Including Check Digits (9 digits)--></BPR12>
+        <!--(DFI) Identification Number-->
+        <BPR13>999999999</BPR13>
+        <!--Account Number Qualifier-->
+        <BPR14>DA<!--Demand Deposit--></BPR14>
+        <!--Account Number-->
+        <BPR15>999999999</BPR15>
+        <!--Date-->
+        <BPR16>20120201</BPR16>
+      </BPR>
+      <TRN>
+        <!--Trace Type Code-->
+        <TRN01>1<!--Current Transaction Trace Numbers--></TRN01>
+        <!--Reference Identification-->
+        <TRN02>999999999</TRN02>
+        <!--Originating Company Identifier-->
+        <TRN03>9999999999</TRN03>
+      </TRN>
+      <DTM>
+        <!--Date/Time Qualifier-->
+        <DTM01>405<!--Production--></DTM01>
+        <!--Date-->
+        <DTM02>20120128</DTM02>
+      </DTM>
+      <Loop LoopId="1000A" Name="PAYER IDENTIFICATION">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>PR<!--Payer--></N101>
+          <!--Name-->
+          <N102>XXXXXXXX XXXXXXXX</N102>
+        </N1>
+        <N3>
+          <!--Address Information-->
+          <N301>X.X. XXX 99999</N301>
+        </N3>
+        <N4>
+          <!--City Name-->
+          <N401>XXXXXXX</N401>
+          <!--State or Province Code-->
+          <N402>NE</N402>
+          <!--Postal Code-->
+          <N403>999999999</N403>
+        </N4>
+        <PER>
+          <!--Contact Function Code-->
+          <PER01>CX<!--Payers Claim Office--></PER01>
+          <!--Name-->
+          <PER02>XXXXXXXX XXXXXXX XXXX</PER02>
+          <!--Communication Number Qualifier-->
+          <PER03>TE<!--Telephone--></PER03>
+          <!--Communication Number-->
+          <PER04>9999999999</PER04>
+          <!--Communication Number Qualifier-->
+          <PER05>TE<!--Telephone--></PER05>
+          <!--Communication Number-->
+          <PER06>9999999999</PER06>
+        </PER>
+        <PER>
+          <!--Contact Function Code-->
+          <PER01>BL<!--Technical Department--></PER01>
+          <!--Name-->
+          <PER02>XXXXXXXX XXX XXXX XXXX</PER02>
+          <!--Communication Number Qualifier-->
+          <PER03>TE<!--Telephone--></PER03>
+          <!--Communication Number-->
+          <PER04>9999999999</PER04>
+          <!--Communication Number Qualifier-->
+          <PER05>TE<!--Telephone--></PER05>
+          <!--Communication Number-->
+          <PER06>9999999999</PER06>
+          <!--Communication Number Qualifier-->
+          <PER07>EM<!--Electronic Mail--></PER07>
+          <!--Communication Number-->
+          <PER08>XXXX.XXXXXXXXXXX@XXXXXXXX.XXX</PER08>
+        </PER>
+        <PER>
+          <!--Contact Function Code-->
+          <PER01>IC<!--Information Contact--></PER01>
+          <PER02 />
+          <!--Communication Number Qualifier-->
+          <PER03>UR<!--Uniform Resource Locator (URL)--></PER03>
+          <!--Communication Number-->
+          <PER04>XXX.XXXX.XX.XXX/XXXXXXXX</PER04>
+        </PER>
+      </Loop>
+      <Loop LoopId="1000B" Name="PAYEE IDENTFICATION">
+        <N1>
+          <!--Entity Identifier Code-->
+          <N101>PE<!--Payee--></N101>
+          <!--Name-->
+          <N102>XXX,XXXXXXXX</N102>
+          <!--Identification Code Qualifier-->
+          <N103>XX<!--Centers for Medicare and Medicaid Services National Provider Identifier--></N103>
+          <!--Identification Code-->
+          <N104>9999999999</N104>
+        </N1>
+        <N3>
+          <!--Address Information-->
+          <N301>999X X XXXXXXX XXX</N301>
+        </N3>
+        <N4>
+          <!--City Name-->
+          <N401>XXXXXXXX</N401>
+          <!--State or Province Code-->
+          <N402>NE</N402>
+          <!--Postal Code-->
+          <N403>999999999</N403>
+        </N4>
+        <REF>
+          <!--Reference Identification Qualifier-->
+          <REF01>TJ<!--Federal Taxpayer's Identification Number--></REF01>
+          <!--Reference Identification-->
+          <REF02>999999999</REF02>
+        </REF>
+      </Loop>
+      <Loop LoopId="2000" Name="HEADER NUMBER">
+        <LX>
+          <!--Assigned Number-->
+          <LX01>1</LX01>
+        </LX>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>DAK</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>DAK</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>N</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120116</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120116</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120116</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>HC</SVC0101>
+                <SVC0102>90716</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120116</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>DAK</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>DAK</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>N</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120116</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120116</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120116</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>HC</SVC0101>
+                <SVC0102>90716</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120116</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111230</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+                <SVC0103>XX</SVC0103>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>204</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>A</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111216</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111216</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+                <SVC0103>XX</SVC0103>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <!--Name Middle-->
+            <NM105>M</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120109</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120109</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120109</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>J</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>J</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <!--Name Middle-->
+            <NM105>A</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120106</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120106</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120106</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <!--Name Middle-->
+            <NM105>A</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111230</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXX-XXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXX XXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>M</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120118</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120118</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>99.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XX XXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>C</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111216</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111216</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+                <SVC0103>99</SVC0103>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+                <SVC0103>XX</SVC0103>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111216</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+            <!--Name Middle-->
+            <NM105>N</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXX</NM104>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120111</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120111</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120111</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120111</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>N</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111230</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111223</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111223</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>9999999999-999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <!--Facility Code Value-->
+            <CLP08>11</CLP08>
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <NM105 />
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>74<!--Corrected Insured--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>J</NM105>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20120127</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20120106</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20120106</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20120106</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <REF>
+              <!--Reference Identification Qualifier-->
+              <REF01>6R<!--Provider Control Number--></REF01>
+              <!--Reference Identification-->
+              <REF02>999X999999999999999999</REF02>
+            </REF>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>176.12</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111008</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111009</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>999.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111008</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111009</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111014</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111014</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111014</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111025</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111025</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111025</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>1<!--Processed as Primary--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>99.99</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111128</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111128</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>99.99</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111128</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>45</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+        <Loop LoopId="2100" Name="CLAIM PAYMENT INFORMATION">
+          <CLP>
+            <!--Claim Submitter's Identifier-->
+            <CLP01>XXXXXX9999</CLP01>
+            <!--Claim Status Code-->
+            <CLP02>4<!--Denied--></CLP02>
+            <!--Monetary Amount-->
+            <CLP03>999.99</CLP03>
+            <!--Monetary Amount-->
+            <CLP04>0</CLP04>
+            <!--Monetary Amount-->
+            <CLP05>0</CLP05>
+            <!--Claim Filing Indicator Code-->
+            <CLP06>MC<!--Medicaid--></CLP06>
+            <!--Reference Identification-->
+            <CLP07>99999999999</CLP07>
+            <CLP08 />
+            <!--Claim Frequency Type Code-->
+            <CLP09>1</CLP09>
+            <CLP10 />
+            <CLP11 />
+            <!--Quantity-->
+            <CLP12>0</CLP12>
+          </CLP>
+          <NM1>
+            <!--Entity Identifier Code-->
+            <NM101>QC<!--Patient--></NM101>
+            <!--Entity Type Qualifier-->
+            <NM102>1<!--Person--></NM102>
+            <!--Name Last or Organization Name-->
+            <NM103>XXXXXXXX</NM103>
+            <!--Name First-->
+            <NM104>XXXXXXXX</NM104>
+            <!--Name Middle-->
+            <NM105>E</NM105>
+            <NM106 />
+            <NM107 />
+            <!--Identification Code Qualifier-->
+            <NM108>MR<!--Medicaid Recipient Identification Number--></NM108>
+            <!--Identification Code-->
+            <NM109>99999999999</NM109>
+          </NM1>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>050<!--Received--></DTM01>
+            <!--Date-->
+            <DTM02>20111227</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>232<!--Claim Statement Period Start--></DTM01>
+            <!--Date-->
+            <DTM02>20111209</DTM02>
+          </DTM>
+          <DTM>
+            <!--Date/Time Qualifier-->
+            <DTM01>233<!--Claim Statement Period End--></DTM01>
+            <!--Date-->
+            <DTM02>20111209</DTM02>
+          </DTM>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+                <SVC0103>XX</SVC0103>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>999.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111209</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>999.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111209</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111209</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111209</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+          <Loop LoopId="2110" Name="SERVICE PAYMENT INFORMATION">
+            <SVC>
+              <!--Composite Medical Procedure Identifier-->
+              <SVC01>
+                <SVC0101>XX</SVC0101>
+                <SVC0102>99999</SVC0102>
+              </SVC01>
+              <!--Monetary Amount-->
+              <SVC02>99.99</SVC02>
+              <!--Monetary Amount-->
+              <SVC03>0</SVC03>
+              <SVC04 />
+              <!--Quantity-->
+              <SVC05>9.999</SVC05>
+            </SVC>
+            <DTM>
+              <!--Date/Time Qualifier-->
+              <DTM01>472<!--Service--></DTM01>
+              <!--Date-->
+              <DTM02>20111209</DTM02>
+            </DTM>
+            <CAS>
+              <!--Claim Adjustment Group Code-->
+              <CAS01>CO<!--Contractual Obligations--></CAS01>
+              <!--Claim Adjustment Reason Code-->
+              <CAS02>24</CAS02>
+              <!--Monetary Amount-->
+              <CAS03>99.99</CAS03>
+              <!--Quantity-->
+              <CAS04>0</CAS04>
+            </CAS>
+            <LQ>
+              <!--Code List Qualifier Code-->
+              <LQ01>HE<!--Remittance Advice Remark Code--></LQ01>
+              <!--Industry Code-->
+              <LQ02>N1</LQ02>
+            </LQ>
+          </Loop>
+        </Loop>
+      </Loop>
+      <SE>
+        <!--Number of Included Segments-->
+        <SE01>287</SE01>
+        <!--Transaction Set Control Number-->
+        <SE02>8001</SE02>
+      </SE>
+    </Transaction>
+    <GE>
+      <!--Number of Transaction Sets Included-->
+      <GE01>1</GE01>
+      <!--Group Control Number-->
+      <GE02>8</GE02>
+    </GE>
+  </FunctionGroup>
+  <IEA>
+    <!--Number of Included Functional Groups-->
+    <IEA01>1</IEA01>
+    <!--Interchange Control Number-->
+    <IEA02>000000031</IEA02>
+  </IEA>
+</Interchange>

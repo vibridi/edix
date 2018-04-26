@@ -1,0 +1,454 @@
+{
+  "transactionSet" : "837P",
+  "versions" : {
+    "all" : {
+      "name" : "837P",
+      "description" : "Health Care Claim - Professional",
+      "segments" : [ "BHT", "REF" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "SUBMITTER NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "41" ],
+        "segments" : [ "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "RECEIVER NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "40" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000A",
+        "description" : "BILLING PROVIDER HIERARCHICAL LEVEL",
+        "startingSegment" : "HL",
+        "codes" : [ "20" ],
+        "segments" : [ "PRV", "CUR" ],
+        "loops" : [ {
+          "name" : "2010AA",
+          "description" : "BILLING PROVIDER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "85" ],
+          "segments" : [ "N3", "N4", "REF", "PER" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010AB",
+          "description" : "PAY-TO ADDRESS NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "87" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010AC",
+          "description" : "PAY-TO PLAN NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "PE" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000B",
+        "description" : "SUBSCRIBER HIERARCHICAL LEVEL",
+        "startingSegment" : "HL",
+        "codes" : [ "22" ],
+        "segments" : [ "SBR", "PAT" ],
+        "loops" : [ {
+          "name" : "2010BA",
+          "description" : "SUBSCRIBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "IL" ],
+          "segments" : [ "N3", "N4", "DMG", "REF", "PER" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010BB",
+          "description" : "PAYER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "PR", "IN" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "CLAIM INFORMATION",
+          "startingSegment" : "CLM",
+          "segments" : [ "DTP", "PWK", "CN1", "AMT", "REF", "K3", "NTE", "CR1", "CR2", "CRC", "HI", "HCP" ],
+          "loops" : [ {
+            "name" : "2310A",
+            "description" : "REFERRING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DN", "P3" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310B",
+            "description" : "RENDERING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "82" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310C",
+            "description" : "SERVICE FACILITY LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "77", "FA", "LI", "TL" ],
+            "segments" : [ "N3", "N4", "REF", "PER" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310D",
+            "description" : "SUPERVISING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DQ" ],
+            "segments" : [ "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310E",
+            "description" : "AMBULANCE PICK-UP LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "PW" ],
+            "segments" : [ "N3", "N4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310F",
+            "description" : "AMBULANCE DROP-OFF LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "45" ],
+            "segments" : [ "N3", "N4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "OTHER SUBSCRIBER INFORMATION",
+            "startingSegment" : "SBR",
+            "segments" : [ "DMG", "CAS", "AMT", "OI", "MOA" ],
+            "loops" : [ {
+              "name" : "2330A",
+              "description" : "OTHER SUBSCRIBER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "IL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330B",
+              "description" : "OTHER PAYER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR", "IN" ],
+              "segments" : [ "N3", "N4", "DTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330C",
+              "description" : "OTHER PAYER REFERRING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330D",
+              "description" : "OTHER PAYER RENDERING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330E",
+              "description" : "OTHER PAYER SERVICE FACILITY LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "77", "FA", "LI", "TL" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330F",
+              "description" : "OTHER PAYER SUPERVISING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330G",
+              "description" : "OTHER PAYER BILLING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2400",
+            "description" : "SERVICE LINE NUMBER",
+            "startingSegment" : "LX",
+            "segments" : [ "SV1", "SV5", "PWK", "CR1", "CR3", "CRC", "DTP", "MEA", "CN1", "REF", "AMT", "K3", "NTE", "PS1", "HCP" ],
+            "loops" : [ {
+              "name" : "2410",
+              "description" : "DRUG IDENTIFICATION",
+              "startingSegment" : "LIN",
+              "segments" : [ "CTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420A",
+              "description" : "RENDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420B",
+              "description" : "PURCHASED SERVICE PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "QB" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420C",
+              "description" : "SERVICE FACILITY LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "77", "FA", "LI", "TL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420D",
+              "description" : "SUPERVISING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420E",
+              "description" : "ORDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DK" ],
+              "segments" : [ "N3", "N4", "REF", "PER" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420F",
+              "description" : "REFERRING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420G",
+              "description" : "AMBULANCE PICK-UP LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "PW" ],
+              "segments" : [ "N3", "N4" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420H",
+              "description" : "AMBULANCE DROP-OFF LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "45" ],
+              "segments" : [ "N3", "N4" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2430",
+              "description" : "LINE ADJUDICATION INFORMATION",
+              "startingSegment" : "SVD",
+              "segments" : [ "CAS", "DTP", "AMT" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2440",
+              "description" : "FORM IDENTIFICATION CODE",
+              "startingSegment" : "LQ",
+              "segments" : [ "FRM" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "name" : "2000C",
+        "description" : "PATIENT HIERARCHICAL LOOP",
+        "startingSegment" : "HL",
+        "codes" : [ "23" ],
+        "segments" : [ "PAT" ],
+        "loops" : [ {
+          "name" : "2010CA",
+          "description" : "PATIENT NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "QC" ],
+          "segments" : [ "N3", "N4", "DMG", "REF", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "CLAIM INFORMATION",
+          "startingSegment" : "CLM",
+          "segments" : [ "DTP", "PWK", "CN1", "AMT", "REF", "K3", "NTE", "CR1", "CR2", "CRC", "HI", "HI", "HCP" ],
+          "loops" : [ {
+            "name" : "2310A",
+            "description" : "REFERRING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DN", "P3" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310B",
+            "description" : "RENDERING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "82" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310C",
+            "description" : "SERVICE FACILITY LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "77", "FA", "LI", "TL" ],
+            "segments" : [ "N3", "N4", "REF", "PER" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310D",
+            "description" : "SUPERVISING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DQ" ],
+            "segments" : [ "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310E",
+            "description" : "AMBULANCE PICK-UP LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "PW" ],
+            "segments" : [ "N3", "N4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310F",
+            "description" : "AMBULANCE DROP-OFF LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "45" ],
+            "segments" : [ "N3", "N4" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "OTHER SUBSCRIBER INFORMATION",
+            "startingSegment" : "SBR",
+            "segments" : [ "DMG", "CAS", "AMT", "OI", "MOA" ],
+            "loops" : [ {
+              "name" : "2330A",
+              "description" : "OTHER SUBSCRIBER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "IL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330B",
+              "description" : "OTHER PAYER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR", "IN" ],
+              "segments" : [ "N3", "N4", "DTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330C",
+              "description" : "OTHER PAYER REFERRING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330D",
+              "description" : "OTHER PAYER RENDERING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330E",
+              "description" : "OTHER PAYER SERVICE FACILITY LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "77", "FA", "LI", "TL" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330F",
+              "description" : "OTHER PAYER SUPERVISING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330G",
+              "description" : "OTHER PAYER BILLING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2400",
+            "description" : "SERVICE LINE NUMBER",
+            "startingSegment" : "LX",
+            "segments" : [ "SV1", "SV5", "PWK", "CR1", "CR3", "CRC", "DTP", "MEA", "CN1", "REF", "AMT", "K3", "NTE", "PS1", "HCP" ],
+            "loops" : [ {
+              "name" : "2410",
+              "description" : "DRUG IDENTIFICATION",
+              "startingSegment" : "LIN",
+              "segments" : [ "CTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420A",
+              "description" : "RENDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420B",
+              "description" : "PURCHASED SERVICE PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "QB" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420C",
+              "description" : "SERVICE FACILITY LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "77", "FA", "LI", "TL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420D",
+              "description" : "SUPERVISING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DQ" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420E",
+              "description" : "ORDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DK" ],
+              "segments" : [ "N3", "N4", "REF", "PER" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420F",
+              "description" : "REFERRING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420G",
+              "description" : "AMBULANCE PICK-UP LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "PW" ],
+              "segments" : [ "N3", "N4" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420H",
+              "description" : "AMBULANCE DROP-OFF LOCATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "45" ],
+              "segments" : [ "N3", "N4" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2430",
+              "description" : "LINE ADJUDICATION INFORMATION",
+              "startingSegment" : "SVD",
+              "segments" : [ "CAS", "DTP", "AMT" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2440",
+              "description" : "FORM IDENTIFICATION CODE",
+              "startingSegment" : "LQ",
+              "segments" : [ "FRM" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

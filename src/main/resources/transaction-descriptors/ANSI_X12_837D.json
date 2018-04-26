@@ -1,0 +1,304 @@
+{
+  "transactionSet" : "837D",
+  "versions" : {
+    "all" : {
+      "name" : "837D",
+      "description" : "Health Care Claim - Dental",
+      "segments" : [ "BHT", "REF" ],
+      "loops" : [ {
+        "name" : "1000A",
+        "description" : "SUBMITTER NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "41" ],
+        "segments" : [ "PER" ],
+        "loops" : [ ]
+      }, {
+        "name" : "1000B",
+        "description" : "RECEIVER NAME",
+        "startingSegment" : "NM1",
+        "codes" : [ "40" ],
+        "segments" : [ ],
+        "loops" : [ ]
+      }, {
+        "name" : "2000A",
+        "description" : "BILLING/PAY-TO PROVIDER HIERARCHICAL LEVEL",
+        "startingSegment" : "HL",
+        "codes" : [ "20" ],
+        "segments" : [ "PRV", "CUR" ],
+        "loops" : [ {
+          "name" : "2010AA",
+          "description" : "BILLING PROVIDER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "85" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010AB",
+          "description" : "PAY-TO PROVIDER'S NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "87" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        } ]
+      }, {
+        "name" : "2000B",
+        "description" : "SUBSCRIBER HIERARCHICAL LOOP",
+        "startingSegment" : "HL",
+        "codes" : [ "22" ],
+        "segments" : [ "SBR" ],
+        "loops" : [ {
+          "name" : "2010BA",
+          "description" : "SUBSCRIBER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "IL" ],
+          "segments" : [ "N3", "N4", "DMG", "REF", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010BB",
+          "description" : "PAYER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "PR" ],
+          "segments" : [ "N3", "N4", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2010BC",
+          "description" : "CREDIT/DEBIT CARD HOLDER NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "AO" ],
+          "segments" : [ "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "CLAIM INFORMATION",
+          "startingSegment" : "CLM",
+          "segments" : [ "DTP", "DN1", "DN2", "PWK", "AMT", "REF", "NTE" ],
+          "loops" : [ {
+            "name" : "2310A",
+            "description" : "REFERRING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DN", "P3" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310B",
+            "description" : "RENDERING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "82" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310C",
+            "description" : "SERVICE FACILITY LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "FA" ],
+            "segments" : [ "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310D",
+            "description" : "ASSISTANT SURGEON NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DD" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "OTHER SUBSCRIBER INFORMATION",
+            "startingSegment" : "SBR",
+            "segments" : [ "CAS", "AMT", "DMG", "OI" ],
+            "loops" : [ {
+              "name" : "2330A",
+              "description" : "OTHER SUBSCRIBER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "IL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330B",
+              "description" : "OTHER PAYER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR" ],
+              "segments" : [ "PER", "DTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330C",
+              "description" : "OTHER PAYER PATIENT INFORMATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "QC" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330D",
+              "description" : "OTHER PAYER REFERRING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330E",
+              "description" : "OTHER PAYER RENDERING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2400",
+            "description" : "SERVICE LINE",
+            "startingSegment" : "LX",
+            "segments" : [ "SV3", "TOO", "DTP", "QTY", "REF", "AMT", "NTE" ],
+            "loops" : [ {
+              "name" : "2420A",
+              "description" : "RENDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420B",
+              "description" : "OTHER PAYER PRIOR AUTHORIZATION OR REFERRAL NUMBER",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420C",
+              "description" : "ASSISTANT SURGEON NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DD" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2430",
+              "description" : "LINE ADJUDICATION INFORMATION",
+              "startingSegment" : "SVD",
+              "segments" : [ "CAS", "DTP", "AMT" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "name" : "2000C",
+        "description" : "PATIENT HIERARCHICAL LOOP",
+        "startingSegment" : "HL",
+        "codes" : [ "23" ],
+        "segments" : [ "PAT" ],
+        "loops" : [ {
+          "name" : "2010CA",
+          "description" : "PATIENT NAME",
+          "startingSegment" : "NM1",
+          "codes" : [ "QC" ],
+          "segments" : [ "N3", "N4", "DMG", "REF", "REF" ],
+          "loops" : [ ]
+        }, {
+          "name" : "2300",
+          "description" : "CLAIM INFORMATION",
+          "startingSegment" : "CLM",
+          "segments" : [ "DTP", "DN1", "DN2", "PWK", "AMT", "REF", "NTE" ],
+          "loops" : [ {
+            "name" : "2310A",
+            "description" : "REFERRING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DN", "P3" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310B",
+            "description" : "RENDERING PROVIDER NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "82" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310C",
+            "description" : "SERVICE FACILITY LOCATION",
+            "startingSegment" : "NM1",
+            "codes" : [ "FA" ],
+            "segments" : [ "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2310D",
+            "description" : "ASSISTANT SURGEON NAME",
+            "startingSegment" : "NM1",
+            "codes" : [ "DD" ],
+            "segments" : [ "PRV", "REF" ],
+            "loops" : [ ]
+          }, {
+            "name" : "2320",
+            "description" : "OTHER SUBSCRIBER INFORMATION",
+            "startingSegment" : "SBR",
+            "segments" : [ "CAS", "AMT", "DMG", "OI" ],
+            "loops" : [ {
+              "name" : "2330A",
+              "description" : "OTHER SUBSCRIBER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "IL" ],
+              "segments" : [ "N3", "N4", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330B",
+              "description" : "OTHER PAYER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR" ],
+              "segments" : [ "PER", "DTP", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330C",
+              "description" : "OTHER PAYER PATIENT INFORMATION",
+              "startingSegment" : "NM1",
+              "codes" : [ "QC" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330D",
+              "description" : "OTHER PAYER REFERRING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "DN", "P3" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2330E",
+              "description" : "OTHER PAYER RENDERING PROVIDER",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            } ]
+          }, {
+            "name" : "2400",
+            "description" : "SERVICE LINE",
+            "startingSegment" : "LX",
+            "segments" : [ "SV3", "TOO", "DTP", "QTY", "REF", "AMT", "NTE" ],
+            "loops" : [ {
+              "name" : "2420A",
+              "description" : "RENDERING PROVIDER NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "82" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420B",
+              "description" : "OTHER PAYER PRIOR AUTHORIZATION OR REFERRAL NUMBER",
+              "startingSegment" : "NM1",
+              "codes" : [ "PR" ],
+              "segments" : [ "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2420C",
+              "description" : "ASSISTANT SURGEON NAME",
+              "startingSegment" : "NM1",
+              "codes" : [ "DD" ],
+              "segments" : [ "PRV", "REF" ],
+              "loops" : [ ]
+            }, {
+              "name" : "2430",
+              "description" : "LINE ADJUDICATION INFORMATION",
+              "startingSegment" : "SVD",
+              "segments" : [ "CAS", "DTP", "AMT" ],
+              "loops" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }
+  }
+}

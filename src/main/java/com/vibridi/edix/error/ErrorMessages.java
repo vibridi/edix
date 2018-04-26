@@ -13,6 +13,7 @@ public interface ErrorMessages {
 	public static final String TRANSACTION_CONTROL_NUMBER = "ST and SE control numbers don't match";
 	
 	public static final String LOOP_DESCRIPTOR_MISSING = "Cannot find a suitable descriptor for loop with key %s.\n"
+			+ "Segment: %s at line %d\n"
 			+ "Possible causes: loop code field (e.g. HL03) has an unexpected value, or the config file doesn't specify that code.";
 
 	

@@ -77,11 +77,31 @@ public class LoopDescriptor {
 		return hasHLDescriptors;
 	}
 	
+	/**
+	 * The segment tag is ambiguous if: <br>
+	 * 1. there is one or more keys that start with it <br>
+	 * 2. there is one or more keys that specify a level code / entity identifier, which empirically evaluates to true
+	 * if the tag is followed by the code, e.g. NM1_QC <br>
+	 * <br>
+	 * Example A: <br>
+	 * NM1 for NM1_PR, NM1_QC returns true because both start with NM1 and both specify a code <br>
+	 * <br>
+	 * Example B: <br>
+	 * NM1 for NM1_QC returns true because the key starts with NM1 and specifies a code <br>
+	 * <br>
+	 * Example C: <br>
+	 * NM1 for NM1 returns false because the key starts with NM1 but doesn't specify a code <br>
+	 * 
+	 * @param segmentTag The segment tag
+	 * @return true if the tag is ambiguous, false otherwise
+	 */
 	public boolean isAmbiguous(String segmentTag) {
-		return allowedLoops.keySet()
+		return allowedLoops.entrySet()
 				.stream()
-				.filter(k -> k.startsWith(segmentTag))
-				.count() > 1;
+				.filter(e -> e.getKey().startsWith(segmentTag))
+				.filter(e -> e.getValue().codes.size() > 0)
+				.findAny()
+				.isPresent();
 	}
 	
 	protected void setDescription(String description) {

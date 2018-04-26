@@ -3,17 +3,21 @@ package com.vibridi.edix.model.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.vibridi.edix.model.EDICompositeNode;
 import com.vibridi.edix.model.EDINode;
+import com.vibridi.edix.model.EDIOrderedNode;
 
 public class EDIRootNode extends EDINodeImpl implements EDICompositeNode {
 
-	List<EDICompositeNode> segments;
+	private List<EDICompositeNode> segments;
+	private AtomicInteger aint;
 	
 	protected EDIRootNode(EDINode parent) {
 		super(parent);
 		segments = new ArrayList<>();
+		aint = new AtomicInteger(0);
 	}
 	
 	public EDIRootNode(EDIRootNode that, EDINode parent) {
@@ -52,6 +56,11 @@ public class EDIRootNode extends EDINodeImpl implements EDICompositeNode {
 		if(!(newChild instanceof EDICompositeNode))
 			throw new IllegalArgumentException("Root note can contain only composite children.");
 		checkOwnership(newChild, this);
+		
+		if(newChild instanceof EDIOrderedNode)
+			((EDIOrderedNode) newChild).setLine(aint.incrementAndGet());
+		
+		
 		segments.add((EDICompositeNode)newChild);
 		return newChild;
 	}
@@ -121,4 +130,10 @@ public class EDIRootNode extends EDINodeImpl implements EDICompositeNode {
 	public void importChild(EDINode n) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public int getLine() {
+		return 0;
+	}
+
 }
